@@ -2,10 +2,28 @@ import PlaceCard from '../../components/place-card/place-card';
 import Header from '../../components/header/header';
 
 type MainScreenProps = {
-  placesToStay: number;
+  PlacesToStayTotalCount: number;
+  PlacesToStayShownCount: number;
 }
 
-export default function Main({placesToStay}: MainScreenProps): JSX.Element {
+type PlacesToStayListProps = {
+  PlacesToStayShownCount: number;
+}
+
+function PlaceCards({PlacesToStayShownCount}: PlacesToStayListProps): JSX.Element {
+  const placeCards = [];
+  for (let i = 0; i < PlacesToStayShownCount; i++) {
+    placeCards.push(<PlaceCard key={i} />);
+  }
+
+  return (
+    <div className="cities__places-list places__list tabs__content">
+      {placeCards}
+    </div>
+  );
+}
+
+export default function Main({PlacesToStayTotalCount, PlacesToStayShownCount}: MainScreenProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <Header />
@@ -52,7 +70,7 @@ export default function Main({placesToStay}: MainScreenProps): JSX.Element {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{placesToStay} places to stay in Amsterdam</b>
+              <b className="places__found">{PlacesToStayTotalCount} places to stay in Amsterdam</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={0}>
@@ -68,13 +86,7 @@ export default function Main({placesToStay}: MainScreenProps): JSX.Element {
                   <li className="places__option" tabIndex={0}>Top rated first</li>
                 </ul>
               </form>
-              <div className="cities__places-list places__list tabs__content">
-                <PlaceCard />
-                <PlaceCard />
-                <PlaceCard />
-                <PlaceCard />
-                <PlaceCard />
-              </div>
+              <PlaceCards PlacesToStayShownCount={PlacesToStayShownCount} />
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>

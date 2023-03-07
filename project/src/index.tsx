@@ -2,8 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
 
-enum Setting {
-  PlacesToStay = 312,
+const enum Setting {
+  PlacesToStayTotalCount = 312,
+  PlacesToStayShownCount = 9,
 }
 
 const root = ReactDOM.createRoot(
@@ -12,8 +13,6 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App
-      placesToStay = {Setting.PlacesToStay}
-    />
+    <App PlacesToStayTotalCount={Setting.PlacesToStayTotalCount} PlacesToStayShownCount={Setting.PlacesToStayShownCount} />
   </React.StrictMode>,
 );

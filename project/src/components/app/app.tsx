@@ -1,13 +1,12 @@
 import Main from '../../pages/main/main';
 
 type AppScreenProps = {
-  placesToStay: number;
+  PlacesToStayTotalCount: number;
+  PlacesToStayShownCount: number;
 }
 
-export default function App({placesToStay}: AppScreenProps): JSX.Element {
+export default function App({PlacesToStayTotalCount, PlacesToStayShownCount}: AppScreenProps): JSX.Element {
   return (
-    <Main
-      placesToStay = {placesToStay}
-    />
+    <Main PlacesToStayTotalCount={PlacesToStayTotalCount} PlacesToStayShownCount={PlacesToStayShownCount} />
   );
 }
