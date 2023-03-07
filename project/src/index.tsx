@@ -13,6 +13,6 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App PlacesToStayTotalCount={Setting.PlacesToStayTotalCount} PlacesToStayShownCount={Setting.PlacesToStayShownCount} />
+    <App placesToStayTotalCount={Setting.PlacesToStayTotalCount} placesToStayShownCount={Setting.PlacesToStayShownCount} />
   </React.StrictMode>,
 );
