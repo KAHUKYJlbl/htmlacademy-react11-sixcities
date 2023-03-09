@@ -1,7 +1,7 @@
 import Header from '../../components/header/header';
 import PlaceCard from '../../components/place-card/place-card';
 
-export default function Room() {
+export default function Room(): JSX.Element {
   return (
     <div className="page">
       <Header />
