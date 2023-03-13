@@ -33,3 +33,7 @@ export type Offer = {
   title: string;
   type: OfferType;
 }
+
+export type GetOfferById = (arg: number) => Offer | undefined;
+
+export type GetOffer = () => Offer;

@@ -1,6 +1,7 @@
 import PlaceCard from '../../components/place-card/place-card';
 import Header from '../../components/header/header';
 import Footer from '../../components/footer/footer';
+import { getOfferRandom } from '../../mocks/offers';
 
 export default function Favorites(): JSX.Element {
   return (
@@ -22,8 +23,8 @@ export default function Favorites(): JSX.Element {
                 </div>
                 <div className="favorites__places">
                   {/* TODO заменить классы на favorite */}
-                  <PlaceCard />
-                  <PlaceCard />
+                  <PlaceCard offer={getOfferRandom()} />
+                  <PlaceCard offer={getOfferRandom()} />
                 </div>
               </li>
 
@@ -37,7 +38,7 @@ export default function Favorites(): JSX.Element {
                 </div>
                 <div className="favorites__places">
                   {/* TODO заменить классы на favorite */}
-                  <PlaceCard />
+                  <PlaceCard offer={getOfferRandom()} />
                 </div>
               </li>
             </ul>

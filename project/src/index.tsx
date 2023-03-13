@@ -16,6 +16,12 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App placesToStayTotalCount={Setting.PLACES_TO_STAY_TOTAL_COUNT} placesToStayShownCount={Setting.PLACES_TO_STAY_SHOWN_COUNT} getOfferById={getOfferById} getOfferRandom={getOfferRandom} getCommentRandom={getCommentRandom} />
+    <App
+      placesToStayTotalCount={Setting.PLACES_TO_STAY_TOTAL_COUNT}
+      placesToStayShownCount={Setting.PLACES_TO_STAY_SHOWN_COUNT}
+      getOfferById={getOfferById}
+      getOfferRandom={getOfferRandom}
+      getCommentRandom={getCommentRandom}
+    />
   </React.StrictMode>,
 );

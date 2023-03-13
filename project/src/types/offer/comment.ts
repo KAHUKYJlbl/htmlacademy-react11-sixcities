@@ -7,3 +7,5 @@ export type Comment = {
   rating: number;
   user: Person;
 }
+
+export type GetComment = () => Comment;

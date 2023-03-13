@@ -1,4 +1,4 @@
-import { Offer } from '../types/offer/offer';
+import { Offer, GetOfferById, GetOffer } from '../types/offer/offer';
 
 const offers: Offer[] = [
   {
@@ -16,14 +16,14 @@ const offers: Offer[] = [
       'Heating'
     ],
     host: {
-      avatarUrl: 'img/1.png',
+      avatarUrl: 'img/apartment-01.jpg',
       id: 1,
       isPro: true,
       name: 'Angelina'
     },
     id: 1,
     images: [
-      'img/1.png'
+      'img/apartment-01.jpg'
     ],
     isFavorite: true,
     isPremium: false,
@@ -33,7 +33,7 @@ const offers: Offer[] = [
       zoom: 8
     },
     maxAdults: 1,
-    previewImage: 'img/1.png',
+    previewImage: 'img/apartment-01.jpg',
     price: 110,
     rating: 1.1,
     title: 'Beautiful & luxurious studio at great location',
@@ -54,14 +54,14 @@ const offers: Offer[] = [
       'Kitchen'
     ],
     host: {
-      avatarUrl: 'img/2.png',
+      avatarUrl: 'img/apartment-02.jpg',
       id: 2,
       isPro: false,
       name: 'Bngelina'
     },
     id: 2,
     images: [
-      'img/2.png'
+      'img/apartment-02.jpg'
     ],
     isFavorite: false,
     isPremium: true,
@@ -71,7 +71,7 @@ const offers: Offer[] = [
       zoom: 8
     },
     maxAdults: 2,
-    previewImage: 'img/2.png',
+    previewImage: 'img/apartment-02.jpg',
     price: 120,
     rating: 2.2,
     title: 'Beautiful & luxurious studio at great location',
@@ -92,14 +92,14 @@ const offers: Offer[] = [
       'Cable TV'
     ],
     host: {
-      avatarUrl: 'img/3.png',
+      avatarUrl: 'img/apartment-03.jpg',
       id: 3,
       isPro: true,
       name: 'Cngelina'
     },
     id: 3,
     images: [
-      'img/3.png'
+      'img/apartment-03.jpg'
     ],
     isFavorite: true,
     isPremium: true,
@@ -109,7 +109,7 @@ const offers: Offer[] = [
       zoom: 8
     },
     maxAdults: 3,
-    previewImage: 'img/3.png',
+    previewImage: 'img/apartment-03.jpg',
     price: 130,
     rating: 3.3,
     title: 'Beautiful & luxurious studio at great location',
@@ -130,14 +130,14 @@ const offers: Offer[] = [
       'Wifi'
     ],
     host: {
-      avatarUrl: 'img/4.png',
+      avatarUrl: 'img/apartment-01.jpg',
       id: 4,
       isPro: false,
       name: 'Dngelina'
     },
     id: 4,
     images: [
-      'img/4.png'
+      'img/apartment-01.jpg'
     ],
     isFavorite: false,
     isPremium: false,
@@ -147,7 +147,7 @@ const offers: Offer[] = [
       zoom: 8
     },
     maxAdults: 4,
-    previewImage: 'img/4.png',
+    previewImage: 'img/apartment-01.jpg',
     price: 140,
     rating: 4.8,
     title: 'Beautiful & luxurious studio at great location',
@@ -155,6 +155,6 @@ const offers: Offer[] = [
   },
 ];
 
-export const getOfferById = (id: number): Offer | undefined => offers.find((offer) => offer.id === id);
+export const getOfferById: GetOfferById = (id) => offers.find((offer) => offer.id === id);
 
-export const getOfferRandom = (): Offer => offers[Math.floor( 4 * Math.random() )];
+export const getOfferRandom: GetOffer = () => offers[Math.floor( 4 * Math.random() )];

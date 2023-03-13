@@ -7,18 +7,30 @@ import PrivateRoute from '../private-route/private-route';
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const';
 
+import { GetOffer, GetOfferById } from '../../types/offer/offer';
+import { GetComment } from '../../types/offer/comment';
+
 type AppScreenProps = {
   placesToStayTotalCount: number;
   placesToStayShownCount: number;
+  getOfferById: GetOfferById;
+  getOfferRandom: GetOffer;
+  getCommentRandom: GetComment;
 }
 
-export default function App({placesToStayTotalCount, placesToStayShownCount}: AppScreenProps): JSX.Element {
+export default function App({placesToStayTotalCount, placesToStayShownCount, getOfferById, getOfferRandom, getCommentRandom}: AppScreenProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<Main placesToStayTotalCount={placesToStayTotalCount} placesToStayShownCount={placesToStayShownCount} />}
+          element={
+            <Main
+              placesToStayTotalCount={placesToStayTotalCount}
+              placesToStayShownCount={placesToStayShownCount}
+              getOfferRandom={getOfferRandom}
+            />
+          }
         />
         <Route
           path={AppRoute.Login}

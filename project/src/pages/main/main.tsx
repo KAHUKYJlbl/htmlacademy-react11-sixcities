@@ -1,19 +1,23 @@
 import PlaceCard from '../../components/place-card/place-card';
 import Header from '../../components/header/header';
 
+import { GetOffer } from '../../types/offer/offer';
+
 type MainScreenProps = {
   placesToStayTotalCount: number;
   placesToStayShownCount: number;
+  getOfferRandom: GetOffer;
 }
 
 type PlacesToStayListProps = {
   placesToStayShownCount: number;
+  getOfferRandom: GetOffer;
 }
 
-function PlaceCards({placesToStayShownCount}: PlacesToStayListProps): JSX.Element {
+function PlaceCards({placesToStayShownCount, getOfferRandom}: PlacesToStayListProps): JSX.Element {
   const placeCards = [];
   for (let i = 0; i < placesToStayShownCount; i++) {
-    placeCards.push(<PlaceCard key={i} />);
+    placeCards.push(<PlaceCard key={i} offer={getOfferRandom()} />);
   }
 
   return (
@@ -23,7 +27,7 @@ function PlaceCards({placesToStayShownCount}: PlacesToStayListProps): JSX.Elemen
   );
 }
 
-export default function Main({placesToStayTotalCount, placesToStayShownCount}: MainScreenProps): JSX.Element {
+export default function Main({placesToStayTotalCount, placesToStayShownCount, getOfferRandom}: MainScreenProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <Header />
@@ -86,7 +90,9 @@ export default function Main({placesToStayTotalCount, placesToStayShownCount}: M
                   <li className="places__option" tabIndex={0}>Top rated first</li>
                 </ul>
               </form>
-              <PlaceCards placesToStayShownCount={placesToStayShownCount} />
+              <PlaceCards
+                placesToStayShownCount={placesToStayShownCount} getOfferRandom={getOfferRandom}
+              />
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>
