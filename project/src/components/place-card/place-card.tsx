@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 
 type PlaceCardProps = {
   offer: Offer;
+  onCardMouseEnter: (arg: number) => void;
+  onCardMouseLeave: (arg: number) => void;
 }
 
 function Premium(): JSX.Element {
@@ -13,10 +15,10 @@ function Premium(): JSX.Element {
   );
 }
 
-export default function PlaceCard({offer}: PlaceCardProps): JSX.Element {
+export default function PlaceCard({offer, onCardMouseEnter, onCardMouseLeave}: PlaceCardProps): JSX.Element {
   return (
-    <article className="cities__card place-card">
-      {offer.isPremium} && <Premium />
+    <article className="cities__card place-card" onMouseEnter={() => onCardMouseEnter(offer.id)} onMouseLeave={() => onCardMouseLeave(offer.id)}>
+      {offer.isPremium && <Premium />}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={`/offer/${offer.id}`}>
           <img className="place-card__image" src={offer.previewImage} width="260" height="200" alt="Place image" />
