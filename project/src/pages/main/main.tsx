@@ -1,20 +1,18 @@
-import Header from '../../components/header/header';
+import Layout from '../../components/layout/layout';
 import PlaceCardList from '../../components/place-card-list/place-card-list';
 
 import { GetOfferById, Offer } from '../../types/offer/offer';
 import { Comment } from '../../types/offer/comment';
 
-type MainScreenProps = {
+type MainProps = {
   offers: Offer[];
   comments: Comment[];
   getOfferById: GetOfferById;
 }
 
-export default function Main({offers, comments, getOfferById}: MainScreenProps): JSX.Element {
+export default function Main({offers, comments, getOfferById}: MainProps): JSX.Element {
   return (
-    <div className="page page--gray page--main">
-      <Header />
-
+    <Layout isPageMain isPageGray isHeaderNav>
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
@@ -81,6 +79,6 @@ export default function Main({offers, comments, getOfferById}: MainScreenProps):
           </div>
         </div>
       </main>
-    </div>
+    </Layout>
   );
 }

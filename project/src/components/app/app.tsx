@@ -1,12 +1,13 @@
+import { Route, BrowserRouter, Routes } from 'react-router-dom';
+
 import Main from '../../pages/main/main';
 import Favorites from '../../pages/favorites/favorites';
 import Login from '../../pages/login/login';
 import Room from '../../pages/room/room';
 import NotFound from '../../pages/not-found/not-found';
 import PrivateRoute from '../private-route/private-route';
-import { Route, BrowserRouter, Routes } from 'react-router-dom';
-import { AppRoute, AuthorizationStatus } from '../../const';
 
+import { AppRoute, AuthorizationStatus } from '../../const';
 import { Offer, GetOfferById } from '../../types/offer/offer';
 import { Comment } from '../../types/offer/comment';
 
