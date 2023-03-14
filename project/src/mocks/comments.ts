@@ -1,6 +1,6 @@
 import { Comment } from '../types/offer/comment';
 
-const comments: Comment[] = [
+export const comments: Comment[] = [
   {
     comment: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     date: '2023-03-13T10:12:09.917Z',
@@ -122,5 +122,3 @@ const comments: Comment[] = [
     }
   },
 ];
-
-export const getCommentRandom = (): Comment => comments[Math.floor( 10 * Math.random() )];

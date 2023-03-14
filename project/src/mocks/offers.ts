@@ -1,4 +1,4 @@
-import { Offer, GetOfferById, GetOffer } from '../types/offer/offer';
+import { Offer, GetOfferById } from '../types/offer/offer';
 
 const offers: Offer[] = [
   {
@@ -149,12 +149,50 @@ const offers: Offer[] = [
     maxAdults: 4,
     previewImage: 'img/apartment-01.jpg',
     price: 140,
-    rating: 4.8,
+    rating: 4.4,
     title: 'Beautiful & luxurious studio at great location',
     type: 'hotel'
   },
+  {
+    bedrooms: 5,
+    city: {
+      location: {
+        latitude: 60.937008,
+        longitude: 10.959949,
+        zoom: 10
+      },
+      name: 'Hamburg'
+    },
+    description: 'H quiet cozy and picturesque that hides behind a a river by the unique lightness of Hamburg.',
+    goods: [
+      'Cable TV'
+    ],
+    host: {
+      avatarUrl: 'img/apartment-03.jpg',
+      id: 5,
+      isPro: true,
+      name: 'Hngelina'
+    },
+    id: 5,
+    images: [
+      'img/apartment-03.jpg'
+    ],
+    isFavorite: true,
+    isPremium: true,
+    location: {
+      latitude: 60.95514938496378,
+      longitude: 10.973877537499948,
+      zoom: 8
+    },
+    maxAdults: 5,
+    previewImage: 'img/apartment-03.jpg',
+    price: 150,
+    rating: 4.9,
+    title: 'Beautiful & luxurious studio at great location',
+    type: 'house'
+  },
 ];
 
-export const getOfferById: GetOfferById = (id) => offers.find((offer) => offer.id === id);
+const getOfferById: GetOfferById = (id) => offers.find((offer) => offer.id === id);
 
-export const getOfferRandom: GetOffer = () => offers[Math.floor( 4 * Math.random() )];
+export {getOfferById, offers};

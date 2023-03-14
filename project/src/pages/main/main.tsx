@@ -1,33 +1,16 @@
-import PlaceCard from '../../components/place-card/place-card';
 import Header from '../../components/header/header';
+import PlaceCardList from '../../components/place-card-list/place-card-list';
 
-import { GetOffer } from '../../types/offer/offer';
+import { GetOfferById, Offer } from '../../types/offer/offer';
+import { Comment } from '../../types/offer/comment';
 
 type MainScreenProps = {
-  placesToStayTotalCount: number;
-  placesToStayShownCount: number;
-  getOfferRandom: GetOffer;
+  offers: Offer[];
+  comments: Comment[];
+  getOfferById: GetOfferById;
 }
 
-type PlacesToStayListProps = {
-  placesToStayShownCount: number;
-  getOfferRandom: GetOffer;
-}
-
-function PlaceCards({placesToStayShownCount, getOfferRandom}: PlacesToStayListProps): JSX.Element {
-  const placeCards = [];
-  for (let i = 0; i < placesToStayShownCount; i++) {
-    placeCards.push(<PlaceCard key={i} offer={getOfferRandom()} />);
-  }
-
-  return (
-    <div className="cities__places-list places__list tabs__content">
-      {placeCards}
-    </div>
-  );
-}
-
-export default function Main({placesToStayTotalCount, placesToStayShownCount, getOfferRandom}: MainScreenProps): JSX.Element {
+export default function Main({offers, comments, getOfferById}: MainScreenProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <Header />
@@ -74,7 +57,7 @@ export default function Main({placesToStayTotalCount, placesToStayShownCount, ge
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{placesToStayTotalCount} places to stay in Amsterdam</b>
+              <b className="places__found">{offers.length} places to stay in Amsterdam</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={0}>
@@ -90,9 +73,7 @@ export default function Main({placesToStayTotalCount, placesToStayShownCount, ge
                   <li className="places__option" tabIndex={0}>Top rated first</li>
                 </ul>
               </form>
-              <PlaceCards
-                placesToStayShownCount={placesToStayShownCount} getOfferRandom={getOfferRandom}
-              />
+              <PlaceCardList offers={offers} />
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>
