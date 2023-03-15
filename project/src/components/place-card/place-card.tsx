@@ -17,6 +17,7 @@ type PlaceCardProps = {
 export default function PlaceCard({offer, onCardMouseEnter, onCardMouseLeave}: PlaceCardProps): JSX.Element {
   return (
     <article
+    // cities__card favorites__card
       className="cities__card place-card"
       onMouseEnter={() => onCardMouseEnter(offer.id)}
       onMouseLeave={() => onCardMouseLeave()}
@@ -42,7 +43,7 @@ export default function PlaceCard({offer, onCardMouseEnter, onCardMouseLeave}: P
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: ratingToStars(offer.rating, 10, 5)}}></span>
+            <span style={{width: ratingToStars(offer.rating, 5, 5)}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

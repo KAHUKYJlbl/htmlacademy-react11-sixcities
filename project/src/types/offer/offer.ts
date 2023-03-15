@@ -2,7 +2,7 @@ import { Person } from './person';
 
 type City = {
   location: Location;
-  name: CityName;
+  name: string;
 }
 
 type Location = {
@@ -11,7 +11,7 @@ type Location = {
   zoom: number;
 }
 
-type CityName = 'Paris' | 'Cologne' | 'Brussels' | 'Amsterdam' | 'Hamburg' | 'Dusseldorf';
+// type CityName = 'Paris' | 'Cologne' | 'Brussels' | 'Amsterdam' | 'Hamburg' | 'Dusseldorf';
 
 type OfferType = 'apartment' | 'room' | 'house' | 'hotel';
 

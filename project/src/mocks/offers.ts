@@ -111,7 +111,7 @@ export const offers: Offer[] = [
     maxAdults: 3,
     previewImage: 'img/apartment-03.jpg',
     price: 130,
-    rating: 9.3,
+    rating: 3.3,
     title: 'Beautiful & luxurious studio at great location',
     type: 'house'
   },
@@ -187,8 +187,84 @@ export const offers: Offer[] = [
     maxAdults: 5,
     previewImage: 'img/apartment-03.jpg',
     price: 150,
-    rating: 5.3,
+    rating: 4.9,
     title: 'Beautiful & luxurious studio at great location',
     type: 'house'
+  },
+  {
+    bedrooms: 6,
+    city: {
+      location: {
+        latitude: 52.370216,
+        longitude: 4.895168,
+        zoom: 10
+      },
+      name: 'Amsterdam'
+    },
+    description: 'I quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
+    goods: [
+      'Heating'
+    ],
+    host: {
+      avatarUrl: 'img/apartment-01.jpg',
+      id: 6,
+      isPro: true,
+      name: 'Ingelina'
+    },
+    id: 6,
+    images: [
+      'img/apartment-01.jpg'
+    ],
+    isFavorite: true,
+    isPremium: false,
+    location: {
+      latitude: 52.35514938496378,
+      longitude: 4.673877537499948,
+      zoom: 8
+    },
+    maxAdults: 6,
+    previewImage: 'img/apartment-01.jpg',
+    price: 160,
+    rating: 4.1,
+    title: 'Beautiful & luxurious studio at great location',
+    type: 'apartment'
+  },
+  {
+    bedrooms: 7,
+    city: {
+      location: {
+        latitude: 52.370216,
+        longitude: 4.895168,
+        zoom: 10
+      },
+      name: 'Amsterdam'
+    },
+    description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
+    goods: [
+      'Heating'
+    ],
+    host: {
+      avatarUrl: 'img/apartment-01.jpg',
+      id: 7,
+      isPro: true,
+      name: 'Angelina'
+    },
+    id: 7,
+    images: [
+      'img/apartment-01.jpg'
+    ],
+    isFavorite: true,
+    isPremium: false,
+    location: {
+      latitude: 52.35514938496378,
+      longitude: 4.673877537499948,
+      zoom: 8
+    },
+    maxAdults: 7,
+    previewImage: 'img/apartment-01.jpg',
+    price: 170,
+    rating: 1.7,
+    title: 'Beautiful & luxurious studio at great location',
+    type: 'apartment'
   },
 ];

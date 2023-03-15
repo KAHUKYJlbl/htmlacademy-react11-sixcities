@@ -37,9 +37,9 @@ export default function App({offers, comments}: AppScreenProps): JSX.Element {
           path={AppRoute.Favorites}
           element={
             <PrivateRoute
-              authorizationStatus={AuthorizationStatus.NoAuth}
+              authorizationStatus={AuthorizationStatus.Auth}
             >
-              <Favorites />
+              <Favorites favorites={offers} />
             </PrivateRoute>
           }
         />
