@@ -1,6 +1,5 @@
 import Layout from '../../components/layout/layout';
 // import PlaceCard from '../../components/place-card/place-card';
-// import { getOfferById } from '../../mocks/offers';
 
 export default function Room(): JSX.Element {
   return (

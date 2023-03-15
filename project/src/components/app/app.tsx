@@ -8,16 +8,15 @@ import NotFound from '../../pages/not-found/not-found';
 import PrivateRoute from '../private-route/private-route';
 
 import { AppRoute, AuthorizationStatus } from '../../const';
-import { Offer, GetOfferById } from '../../types/offer/offer';
+import { Offer } from '../../types/offer/offer';
 import { Comment } from '../../types/offer/comment';
 
 type AppScreenProps = {
-  getOfferById: GetOfferById;
   offers: Offer[];
   comments: Comment[];
 }
 
-export default function App({getOfferById, offers, comments}: AppScreenProps): JSX.Element {
+export default function App({offers, comments}: AppScreenProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
@@ -27,7 +26,6 @@ export default function App({getOfferById, offers, comments}: AppScreenProps): J
             <Main
               offers={offers}
               comments={comments}
-              getOfferById={getOfferById}
             />
           }
         />

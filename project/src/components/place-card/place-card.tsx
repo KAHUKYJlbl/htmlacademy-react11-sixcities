@@ -1,26 +1,29 @@
+import { Link, generatePath } from 'react-router-dom';
+
+import Badge from '../badge/badge';
+
 import { Offer } from '../../types/offer/offer';
-import { Link } from 'react-router-dom';
+
+import { ratingToStars } from '../../utils/rating-to-stars';
+import { capitalize } from '../../utils/capitalize';
+import { AppRoute } from '../../const';
 
 type PlaceCardProps = {
   offer: Offer;
   onCardMouseEnter: (arg: number) => void;
-  onCardMouseLeave: (arg: number) => void;
-}
-
-function Premium(): JSX.Element {
-  return (
-    <div className="place-card__mark">
-      <span>Premium</span>
-    </div>
-  );
+  onCardMouseLeave: () => void;
 }
 
 export default function PlaceCard({offer, onCardMouseEnter, onCardMouseLeave}: PlaceCardProps): JSX.Element {
   return (
-    <article className="cities__card place-card" onMouseEnter={() => onCardMouseEnter(offer.id)} onMouseLeave={() => onCardMouseLeave(offer.id)}>
-      {offer.isPremium && <Premium />}
+    <article
+      className="cities__card place-card"
+      onMouseEnter={() => onCardMouseEnter(offer.id)}
+      onMouseLeave={() => onCardMouseLeave()}
+    >
+      {offer.isPremium && <Badge str={'Premium'} />}
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <Link to={`/offer/${offer.id}`}>
+        <Link to={generatePath(AppRoute.Room, { id: offer.id.toString() })}>
           <img className="place-card__image" src={offer.previewImage} width="260" height="200" alt="Place image" />
         </Link>
       </div>
@@ -39,14 +42,14 @@ export default function PlaceCard({offer, onCardMouseEnter, onCardMouseLeave}: P
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `${Math.round(offer.rating) * 20}%`}}></span>
+            <span style={{width: ratingToStars(offer.rating, 10, 5)}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
         <h2 className="place-card__name">
           <a href="#">{offer.title}</a>
         </h2>
-        <p className="place-card__type">{offer.type}</p>
+        <p className="place-card__type">{capitalize(offer.type)}</p>
       </div>
     </article>
   );

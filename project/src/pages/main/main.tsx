@@ -1,16 +1,15 @@
 import Layout from '../../components/layout/layout';
 import PlaceCardList from '../../components/place-card-list/place-card-list';
 
-import { GetOfferById, Offer } from '../../types/offer/offer';
+import { Offer } from '../../types/offer/offer';
 import { Comment } from '../../types/offer/comment';
 
 type MainProps = {
   offers: Offer[];
   comments: Comment[];
-  getOfferById: GetOfferById;
 }
 
-export default function Main({offers, comments, getOfferById}: MainProps): JSX.Element {
+export default function Main({offers, comments}: MainProps): JSX.Element {
   return (
     <Layout isPageMain isPageGray isHeaderNav>
       <main className="page__main page__main--index">

@@ -15,7 +15,7 @@ type CityName = 'Paris' | 'Cologne' | 'Brussels' | 'Amsterdam' | 'Hamburg' | 'Du
 
 type OfferType = 'apartment' | 'room' | 'house' | 'hotel';
 
-type Offer = {
+export type Offer = {
   bedrooms: number;
   city: City;
   description: string;
@@ -33,7 +33,3 @@ type Offer = {
   title: string;
   type: OfferType;
 }
-
-type GetOfferById = (arg: number) => Offer | undefined;
-
-export type {Offer, GetOfferById};

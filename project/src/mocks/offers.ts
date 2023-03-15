@@ -1,6 +1,6 @@
-import { Offer, GetOfferById } from '../types/offer/offer';
+import { Offer } from '../types/offer/offer';
 
-const offers: Offer[] = [
+export const offers: Offer[] = [
   {
     bedrooms: 1,
     city: {
@@ -111,7 +111,7 @@ const offers: Offer[] = [
     maxAdults: 3,
     previewImage: 'img/apartment-03.jpg',
     price: 130,
-    rating: 3.3,
+    rating: 9.3,
     title: 'Beautiful & luxurious studio at great location',
     type: 'house'
   },
@@ -187,12 +187,8 @@ const offers: Offer[] = [
     maxAdults: 5,
     previewImage: 'img/apartment-03.jpg',
     price: 150,
-    rating: 4.9,
+    rating: 5.3,
     title: 'Beautiful & luxurious studio at great location',
     type: 'house'
   },
 ];
-
-const getOfferById: GetOfferById = (id) => offers.find((offer) => offer.id === id);
-
-export {getOfferById, offers};

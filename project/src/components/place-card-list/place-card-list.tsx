@@ -8,21 +8,26 @@ type PlaceCardListProps = {
 }
 
 export default function PlaceCardList({offers}: PlaceCardListProps): JSX.Element {
-  const [active, setActive] = useState<null | number>(null);
+  const [, setActiveId] = useState<null | number>(null);
 
   const handleMouseEnter = (id: number) => {
-    setActive(id);
+    setActiveId(id);
   };
 
-  const handleMouseLeave = (id: number) => {
-    if (active === id) {
-      setActive(null);
-    }
+  const handleMouseLeave = () => {
+    setActiveId(null);
   };
 
   return (
-    <div className="cities__places-list places__list tabs__content">
-      {offers.map((offer) => <PlaceCard key={offer.id} offer={offer} onCardMouseEnter={handleMouseEnter} onCardMouseLeave={handleMouseLeave} />)}
+    <div className="cities__places-list places__list">
+      {offers.map((offer) => (
+        <PlaceCard
+          key={offer.id}
+          offer={offer}
+          onCardMouseEnter={handleMouseEnter}
+          onCardMouseLeave={handleMouseLeave}
+        />
+      ))}
     </div>
   );
 }
