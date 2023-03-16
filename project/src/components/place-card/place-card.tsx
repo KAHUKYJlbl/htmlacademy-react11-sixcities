@@ -7,34 +7,64 @@ import { Offer } from '../../types/offer/offer';
 import { ratingToStars } from '../../utils/rating-to-stars';
 import { capitalize } from '../../utils/capitalize';
 import { AppRoute } from '../../const';
+import classNames from 'classnames';
 
 type PlaceCardProps = {
   offer: Offer;
+  placeCardType: 'favorites' | 'main';
   onCardMouseEnter: (arg: number) => void;
   onCardMouseLeave: () => void;
 }
 
-export default function PlaceCard({offer, onCardMouseEnter, onCardMouseLeave}: PlaceCardProps): JSX.Element {
+const placeCardTypes = {
+  favorites: {
+    placeCardClasses: ['place-card', 'favorites__card'],
+    cardInfoClasses: ['place-card__info', 'favorites__card-info'],
+    imageWrapperClasses: ['place-card__image-wrapper', 'favorites__image-wrapper'],
+  },
+  main: {
+    placeCardClasses: ['place-card', 'cities__card'],
+    cardInfoClasses: ['place-card__info'],
+    imageWrapperClasses: ['place-card__image-wrapper', 'cities__image-wrapper'],
+  }
+};
+
+export default function PlaceCard({
+  offer,
+  placeCardType,
+  onCardMouseEnter,
+  onCardMouseLeave
+}: PlaceCardProps): JSX.Element {
+  const placeCardClasses = classNames(placeCardTypes[placeCardType].placeCardClasses);
+  const imageWrapperClasses = classNames(placeCardTypes[placeCardType].imageWrapperClasses);
+  const cardInfoClasses = classNames(placeCardTypes[placeCardType].cardInfoClasses);
+
   return (
     <article
-    // cities__card favorites__card
-      className="cities__card place-card"
+      className={placeCardClasses}
       onMouseEnter={() => onCardMouseEnter(offer.id)}
       onMouseLeave={() => onCardMouseLeave()}
     >
       {offer.isPremium && <Badge str={'Premium'} />}
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className={imageWrapperClasses}>
         <Link to={generatePath(AppRoute.Room, { id: offer.id.toString() })}>
           <img className="place-card__image" src={offer.previewImage} width="260" height="200" alt="Place image" />
         </Link>
       </div>
-      <div className="place-card__info">
+      <div className={cardInfoClasses}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{offer.price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className="place-card__bookmark-button button" type="button">
+          <button
+            className={classNames(
+              'button',
+              'place-card__bookmark-button',
+              offer.isFavorite && 'place-card__bookmark-button--active'
+            )}
+            type="button"
+          >
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>

@@ -70,7 +70,15 @@ export default function Main({offers, comments}: MainProps): JSX.Element {
                   <li className="places__option" tabIndex={0}>Top rated first</li>
                 </ul>
               </form>
-              <PlaceCardList offers={offers} />
+              <PlaceCardList
+                offers={offers}
+                placeCardType={'main'}
+                placeCardContainerClasses={[
+                  'cities__places-list',
+                  'places__list',
+                  'tabs__content',
+                ]}
+              />
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>

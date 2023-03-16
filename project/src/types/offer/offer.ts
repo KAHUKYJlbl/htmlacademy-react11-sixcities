@@ -15,7 +15,7 @@ type Location = {
 
 type OfferType = 'apartment' | 'room' | 'house' | 'hotel';
 
-export type Offer = {
+type Offer = {
   bedrooms: number;
   city: City;
   description: string;
@@ -33,3 +33,9 @@ export type Offer = {
   title: string;
   type: OfferType;
 }
+
+type FavoritesByCities = {
+  [city: string]: Offer[];
+}
+
+export type {Offer, FavoritesByCities};
