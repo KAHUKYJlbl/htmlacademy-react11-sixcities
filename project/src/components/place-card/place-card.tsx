@@ -78,7 +78,9 @@ export default function PlaceCard({
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{offer.title}</a>
+          <Link to={generatePath(AppRoute.Room, { id: offer.id.toString() })}>
+            {offer.title}
+          </Link>
         </h2>
         <p className="place-card__type">{capitalize(offer.type)}</p>
       </div>
