@@ -2,7 +2,7 @@ import Layout from '../../components/layout/layout';
 
 export default function Login() {
   return (
-    <Layout isPageLogin isPageGray>
+    <Layout wrapperClasses={['page--gray', 'page--login']}>
       <main className="page__main page__main--login">
         <div className="page__login-container container">
           <section className="login">

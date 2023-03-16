@@ -11,7 +11,7 @@ type MainProps = {
 
 export default function Main({offers, comments}: MainProps): JSX.Element {
   return (
-    <Layout isPageMain isPageGray isHeaderNav>
+    <Layout isHeaderNav wrapperClasses={['page--gray', 'page--main']}>
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">

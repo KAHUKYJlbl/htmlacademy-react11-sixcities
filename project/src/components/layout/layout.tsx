@@ -7,27 +7,17 @@ type LayoutProps = {
   children: JSX.Element;
   isHeaderNav?: boolean;
   isFooter?: boolean;
-  isPageGray?: boolean;
-  isPageMain?: boolean;
-  isPageLogin?: boolean;
+  wrapperClasses?: string[];
 }
 
 export default function Layout ({
   children,
   isHeaderNav = false,
   isFooter = false,
-  isPageGray = false,
-  isPageMain = false,
-  isPageLogin = false
+  wrapperClasses
 }: LayoutProps): JSX.Element {
-  const wrapperClasses = classNames('page', {
-    'page--gray': isPageGray,
-    'page--main': isPageMain,
-    'page--login': isPageLogin
-  });
-
   return (
-    <div className={wrapperClasses}>
+    <div className={classNames('page', wrapperClasses)}>
       <Header isHeaderNav={isHeaderNav} />
       {children}
       {isFooter && <Footer />}
