@@ -11,7 +11,7 @@ import classNames from 'classnames';
 
 type PlaceCardProps = {
   offer: Offer;
-  placeCardType: 'favorites' | 'main';
+  placeCardType: 'favorites' | 'main' | 'nearby';
   onCardMouseEnter: (arg: number) => void;
   onCardMouseLeave: () => void;
 }
@@ -26,7 +26,12 @@ const placeCardTypes = {
     placeCardClasses: ['place-card', 'cities__card'],
     cardInfoClasses: ['place-card__info'],
     imageWrapperClasses: ['place-card__image-wrapper', 'cities__image-wrapper'],
-  }
+  },
+  nearby: {
+    placeCardClasses: ['place-card', 'near-places__card'],
+    cardInfoClasses: ['place-card__info'],
+    imageWrapperClasses: ['place-card__image-wrapper', 'near-places__image-wrapper'],
+  },
 };
 
 export default function PlaceCard({

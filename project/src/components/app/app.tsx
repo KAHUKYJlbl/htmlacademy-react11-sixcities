@@ -45,7 +45,7 @@ export default function App({offers, comments}: AppScreenProps): JSX.Element {
         />
         <Route
           path={AppRoute.Room}
-          element={<Room />}
+          element={<Room offers={offers} />}
         />
         <Route
           path="*"

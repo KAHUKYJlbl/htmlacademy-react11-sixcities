@@ -1,7 +1,13 @@
 import Layout from '../../components/layout/layout';
-// import PlaceCard from '../../components/place-card/place-card';
+import PlaceCardList from '../../components/place-card-list/place-card-list';
 
-export default function Room(): JSX.Element {
+import { Offer } from '../../types/offer/offer';
+
+type RoomProps = {
+  offers: Offer[];
+}
+
+export default function Room({offers}: RoomProps): JSX.Element {
   return (
     <Layout isHeaderNav>
       <main className="page__main page__main--property">
@@ -203,6 +209,14 @@ export default function Room(): JSX.Element {
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
+            <PlaceCardList
+              offers={[...offers].slice(-3)}
+              placeCardType={'nearby'}
+              placeCardContainerClasses={[
+                'near-places__list',
+                'places__list',
+              ]}
+            />
             <div className="near-places__list places__list">
               {/* <PlaceCard offer={getOfferRandom()} />
               <PlaceCard offer={getOfferRandom()} />

@@ -76,7 +76,6 @@ export default function Main({offers, comments}: MainProps): JSX.Element {
                 placeCardContainerClasses={[
                   'cities__places-list',
                   'places__list',
-                  'tabs__content',
                 ]}
               />
             </section>

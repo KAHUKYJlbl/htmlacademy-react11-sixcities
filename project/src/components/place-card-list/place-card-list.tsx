@@ -6,7 +6,7 @@ import classNames from 'classnames';
 
 type PlaceCardListProps = {
   offers: Offer[];
-  placeCardType: 'favorites' | 'main';
+  placeCardType: 'favorites' | 'main' | 'nearby';
   placeCardContainerClasses: string[];
 }
 
