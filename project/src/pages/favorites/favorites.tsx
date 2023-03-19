@@ -10,7 +10,7 @@ type FavoritesProps = {
 const sortOffersByCities = (favorites: Offer[]) => (
   favorites.reduce<FavoritesByCities>((acc, current) => {
     if (acc[current.city.name]) {
-      acc[current.city.name]?.push(current);
+      acc[current.city.name].push(current);
     } else {
       acc[current.city.name] = [current];
     }
