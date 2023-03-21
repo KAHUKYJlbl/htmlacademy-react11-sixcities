@@ -1,23 +1,12 @@
 import Layout from '../../components/layout/layout';
 import PlaceCardListByCities from '../../components/place-card-favorites-list/place-card-list-by-cities';
 
-import { Offer, FavoritesByCities } from '../../types/offer/offer';
+import { Offer } from '../../types/offer/offer';
+import { getOffersByCities } from '../../utils/offers-by-cities';
 
 type FavoritesProps = {
   favorites: Offer[];
 }
-
-const sortOffersByCities = (favorites: Offer[]) => (
-  favorites.reduce<FavoritesByCities>((acc, current) => {
-    if (acc[current.city.name]) {
-      acc[current.city.name].push(current);
-    } else {
-      acc[current.city.name] = [current];
-    }
-    return acc;
-  }, {})
-);
-
 
 export default function Favorites({favorites}: FavoritesProps): JSX.Element {
   return (
@@ -26,7 +15,7 @@ export default function Favorites({favorites}: FavoritesProps): JSX.Element {
         <div className="page__favorites-container container">
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
-            <PlaceCardListByCities favoritesByCities={sortOffersByCities(favorites)} />
+            <PlaceCardListByCities favoritesByCities={getOffersByCities(favorites)} />
           </section>
         </div>
       </main>

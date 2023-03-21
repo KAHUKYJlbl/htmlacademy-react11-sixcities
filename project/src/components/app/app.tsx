@@ -31,14 +31,12 @@ export default function App({offers, comments}: AppScreenProps): JSX.Element {
         />
         <Route
           path={AppRoute.Login}
-          element={<Login />}
+          element={<Login offers={offers} />}
         />
         <Route
           path={AppRoute.Favorites}
           element={
-            <PrivateRoute
-              authorizationStatus={AuthorizationStatus.Auth}
-            >
+            <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
               <Favorites favorites={offers} />
             </PrivateRoute>
           }

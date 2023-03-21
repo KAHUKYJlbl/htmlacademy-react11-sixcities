@@ -24,7 +24,6 @@ export default function NewCommentForm (): JSX.Element {
 
   const handleFormSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    // evt.currentTarget.reset();
 
     setNewComment({
       rating: '',
