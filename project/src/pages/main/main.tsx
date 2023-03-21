@@ -33,7 +33,9 @@ export default function Main({offers, comments}: MainProps): JSX.Element {
                 ]}
               />
             </section>
-            <CityMap />
+            <div className="cities__right-section">
+              <CityMap mapClasses={['cities__map']} />
+            </div>
           </div>
         </div>
       </main>

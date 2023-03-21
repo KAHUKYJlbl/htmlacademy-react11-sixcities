@@ -1,7 +1,11 @@
-export default function CityMap (): JSX.Element {
+import classNames from 'classnames';
+
+type CityMapProps = {
+  mapClasses: string[];
+}
+
+export default function CityMap ({mapClasses}: CityMapProps): JSX.Element {
   return (
-    <div className="cities__right-section">
-      <section className="cities__map map"></section>
-    </div>
+    <section className={classNames('map', mapClasses)}></section>
   );
 }
