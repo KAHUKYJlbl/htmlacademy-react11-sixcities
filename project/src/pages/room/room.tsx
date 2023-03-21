@@ -1,3 +1,5 @@
+import { useParams } from 'react-router-dom';
+
 import Gallery from '../../components/gallery/gallery';
 import Layout from '../../components/layout/layout';
 import PlaceCardList from '../../components/place-card-list/place-card-list';
@@ -9,13 +11,20 @@ type RoomProps = {
   offers: Offer[];
 }
 
+type MyParams = {
+  id: string;
+};
+
 export default function Room({offers}: RoomProps): JSX.Element {
+  const {id} = useParams() as MyParams;
+  const offer = offers[+id - 1];
+
   return (
     <Layout isHeaderNav>
       <main className="page__main page__main--property">
         <section className="property">
           <Gallery />
-          <RoomInfo />
+          <RoomInfo offer={offer} />
           <section className="property__map map"></section>
         </section>
         <div className="container">

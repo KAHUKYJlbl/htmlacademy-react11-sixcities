@@ -50,7 +50,7 @@ export default function PlaceCard({
       onMouseEnter={() => onCardMouseEnter(offer.id)}
       onMouseLeave={() => onCardMouseLeave()}
     >
-      {offer.isPremium && <Badge str='Premium' />}
+      {offer.isPremium && <Badge str='Premium' badgeClasses={['place-card__mark']} />}
       <div className={imageWrapperClasses}>
         <Link to={generatePath(AppRoute.Room, { id: offer.id.toString() })}>
           <img className="place-card__image" src={offer.previewImage} width="260" height="200" alt="Place image" />

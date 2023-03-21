@@ -1,30 +1,32 @@
+import classNames from 'classnames';
+
 import Badge from '../badge/badge';
 import FavoriteButton from '../favorite-button/favorite-button';
 import NewCommentForm from '../new-comment-form/new-comment-form';
 import StarRating from '../star-rating/star-rating';
+import ReviewItem from '../review-item/review-item';
+
+import { Offer } from '../../types/offer/offer';
 
 import { comments } from '../../mocks/comments';
-import { offers } from '../../mocks/offers';
-import ReviewItem from '../review-item/review-item';
-import classNames from 'classnames';
 
 type RoomInfoProps = {
   isPremium?: boolean;
+  offer: Offer;
 };
 
-export default function RoomInfo ({isPremium = true}: RoomInfoProps): JSX.Element {
-  const offer = offers[0];
+export default function RoomInfo ({isPremium = true, offer}: RoomInfoProps): JSX.Element {
   return (
     <div className="property__container container">
       <div className="property__wrapper">
-        {isPremium && <Badge str='Premium' />}
+        {isPremium && <Badge str='Premium' badgeClasses={['property__mark']} />}
         <div className="property__name-wrapper">
           <h1 className="property__name">
             {offer.title}
           </h1>
-          <FavoriteButton isFavorite buttonType='room' />
+          <FavoriteButton isFavorite={offer.isFavorite} buttonType='room' />
         </div>
-        <StarRating starRatingType='room' />
+        <StarRating rating={offer.rating} starRatingType='room' />
         <ul className="property__features">
           <li className="property__feature property__feature--entire">
             {offer.type}
@@ -71,7 +73,7 @@ export default function RoomInfo ({isPremium = true}: RoomInfoProps): JSX.Elemen
           <div className="property__description">
             {offer.description.split('. ').map((sentence) => (
               <p className="property__text" key={sentence.slice(3, 6)}>
-                {`${sentence}.`}
+                {sentence}
               </p>
             ))}
           </div>
