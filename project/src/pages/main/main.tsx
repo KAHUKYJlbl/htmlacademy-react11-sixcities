@@ -2,7 +2,7 @@ import Layout from '../../components/layout/layout';
 import PlaceCardList from '../../components/place-card-list/place-card-list';
 import Locations from '../../components/locations/locations';
 import Sort from '../../components/sort/sort';
-
+import CityMap from '../../components/city-map/city-map';
 
 import { Offer } from '../../types/offer/offer';
 import { Comment } from '../../types/offer/comment';
@@ -33,9 +33,7 @@ export default function Main({offers, comments}: MainProps): JSX.Element {
                 ]}
               />
             </section>
-            <div className="cities__right-section">
-              <section className="cities__map map"></section>
-            </div>
+            <CityMap />
           </div>
         </div>
       </main>

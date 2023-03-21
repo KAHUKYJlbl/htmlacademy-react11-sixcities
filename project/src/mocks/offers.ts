@@ -16,7 +16,7 @@ export const offers: Offer[] = [
       'Heating'
     ],
     host: {
-      avatarUrl: 'img/apartment-01.jpg',
+      avatarUrl: 'img/avatar-angelina.jpg',
       id: 1,
       isPro: true,
       name: 'Angelina'
@@ -54,7 +54,7 @@ export const offers: Offer[] = [
       'Kitchen'
     ],
     host: {
-      avatarUrl: 'img/apartment-02.jpg',
+      avatarUrl: 'img/avatar-max.jpg',
       id: 2,
       isPro: false,
       name: 'Bngelina'
@@ -92,7 +92,7 @@ export const offers: Offer[] = [
       'Cable TV'
     ],
     host: {
-      avatarUrl: 'img/apartment-03.jpg',
+      avatarUrl: 'img/avatar-angelina.jpg',
       id: 3,
       isPro: true,
       name: 'Cngelina'
@@ -130,7 +130,7 @@ export const offers: Offer[] = [
       'Wifi'
     ],
     host: {
-      avatarUrl: 'img/apartment-01.jpg',
+      avatarUrl: 'img/avatar-max.jpg',
       id: 4,
       isPro: false,
       name: 'Dngelina'
@@ -168,7 +168,7 @@ export const offers: Offer[] = [
       'Cable TV'
     ],
     host: {
-      avatarUrl: 'img/apartment-03.jpg',
+      avatarUrl: 'img/avatar-angelina.jpg',
       id: 5,
       isPro: true,
       name: 'Hngelina'
@@ -206,7 +206,7 @@ export const offers: Offer[] = [
       'Heating'
     ],
     host: {
-      avatarUrl: 'img/apartment-01.jpg',
+      avatarUrl: 'img/avatar-max.jpg',
       id: 6,
       isPro: true,
       name: 'Ingelina'
@@ -244,7 +244,7 @@ export const offers: Offer[] = [
       'Heating'
     ],
     host: {
-      avatarUrl: 'img/apartment-01.jpg',
+      avatarUrl: 'img/avatar-angelina.jpg',
       id: 7,
       isPro: true,
       name: 'Angelina'

@@ -7,7 +7,7 @@ export const comments: Comment[] = [
     id: 1,
     rating: 1,
     user: {
-      avatarUrl: 'img/1.png',
+      avatarUrl: 'img/avatar-max.jpg',
       id: 1,
       isPro: false,
       name: 'Oliver.connerA'
@@ -19,7 +19,7 @@ export const comments: Comment[] = [
     id: 2,
     rating: 2,
     user: {
-      avatarUrl: 'img/2.png',
+      avatarUrl: 'img/avatar-angelina.jpg',
       id: 2,
       isPro: false,
       name: 'Oliver.connerB'
@@ -31,7 +31,7 @@ export const comments: Comment[] = [
     id: 3,
     rating: 3,
     user: {
-      avatarUrl: 'img/3.png',
+      avatarUrl: 'img/avatar-max.jpg',
       id: 3,
       isPro: false,
       name: 'Oliver.connerC'
@@ -43,7 +43,7 @@ export const comments: Comment[] = [
     id: 4,
     rating: 4,
     user: {
-      avatarUrl: 'img/4.png',
+      avatarUrl: 'img/avatar-angelina.jpg',
       id: 4,
       isPro: false,
       name: 'Oliver.connerD'
@@ -55,7 +55,7 @@ export const comments: Comment[] = [
     id: 5,
     rating: 5,
     user: {
-      avatarUrl: 'img/5.png',
+      avatarUrl: 'img/avatar-max.jpg',
       id: 5,
       isPro: false,
       name: 'Oliver.connerE'
@@ -67,7 +67,7 @@ export const comments: Comment[] = [
     id: 6,
     rating: 1,
     user: {
-      avatarUrl: 'img/6.png',
+      avatarUrl: 'img/avatar-angelina.jpg',
       id: 6,
       isPro: false,
       name: 'Oliver.connerF'
@@ -79,7 +79,7 @@ export const comments: Comment[] = [
     id: 7,
     rating: 2,
     user: {
-      avatarUrl: 'img/7.png',
+      avatarUrl: 'img/avatar-max.jpg',
       id: 7,
       isPro: false,
       name: 'Oliver.connerG'
@@ -91,7 +91,7 @@ export const comments: Comment[] = [
     id: 8,
     rating: 3,
     user: {
-      avatarUrl: 'img/8.png',
+      avatarUrl: 'img/avatar-angelina.jpg',
       id: 8,
       isPro: false,
       name: 'Oliver.connerH'
@@ -103,7 +103,7 @@ export const comments: Comment[] = [
     id: 9,
     rating: 4,
     user: {
-      avatarUrl: 'img/9.png',
+      avatarUrl: 'img/avatar-max.jpg',
       id: 9,
       isPro: false,
       name: 'Oliver.connerI'
@@ -115,7 +115,7 @@ export const comments: Comment[] = [
     id: 10,
     rating: 5,
     user: {
-      avatarUrl: 'img/10.png',
+      avatarUrl: 'img/avatar-angelina.jpg',
       id: 10,
       isPro: false,
       name: 'Oliver.connerJ'
