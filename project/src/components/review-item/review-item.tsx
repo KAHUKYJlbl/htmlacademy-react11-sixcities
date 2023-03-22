@@ -23,7 +23,12 @@ export default function ReviewItem ({comment}: ReviewItemProps): JSX.Element {
         <p className="reviews__text">
           {comment.comment}
         </p>
-        <time className="reviews__time" dateTime={comment.date}>{dayjs(comment.date).format('MMMM YYYY')}</time>
+        <time
+          className="reviews__time"
+          dateTime={dayjs(comment.date).format('YYYY-MM-DDThh:mm:ssZ')}
+        >
+          {dayjs(comment.date).format('MMMM YYYY')}
+        </time>
       </div>
     </li>
   );

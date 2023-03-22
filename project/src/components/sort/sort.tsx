@@ -18,7 +18,7 @@ export default function Sort (): JSX.Element {
       <span
         className="places__sorting-type"
         tabIndex={0}
-        onClick={() => setIsOpen((currrent) => !currrent)}
+        onClick={() => setIsOpen((current) => !current)}
       >
         {currentSort}
         <svg className="places__sorting-arrow" width="7" height="4">

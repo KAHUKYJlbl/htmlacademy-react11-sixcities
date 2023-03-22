@@ -61,7 +61,8 @@ export default function NewCommentForm (): JSX.Element {
     });
   };
 
-  const ratings = Object.keys(Rating).sort((a, b) => +b - +a);
+  // flex-direction: reverse
+  const ratings = Object.keys(Rating).reverse();
 
   return (
     <form
