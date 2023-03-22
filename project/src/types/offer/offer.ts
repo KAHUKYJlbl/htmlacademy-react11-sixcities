@@ -11,10 +11,6 @@ type Location = {
   zoom: number;
 }
 
-// type CityName = 'Paris' | 'Cologne' | 'Brussels' | 'Amsterdam' | 'Hamburg' | 'Dusseldorf';
-
-type OfferType = 'apartment' | 'room' | 'house' | 'hotel';
-
 type Offer = {
   bedrooms: number;
   city: City;
@@ -31,7 +27,7 @@ type Offer = {
   price: number;
   rating: number;
   title: string;
-  type: OfferType;
+  type: string;
 }
 
 type FavoritesByCities = {

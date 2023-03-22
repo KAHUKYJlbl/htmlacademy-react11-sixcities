@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { ratingToStars } from '../../utils/rating-to-stars';
 
 type StarRatingProps = {
-  rating?: number;
+  rating: number;
   starRatingType: 'room' | 'card' | 'review';
 };
 
@@ -24,11 +24,11 @@ const starRatingTypes = {
   },
 };
 
-export default function StarRating ({rating = 4.8, starRatingType}: StarRatingProps): JSX.Element {
+export default function StarRating ({rating, starRatingType}: StarRatingProps): JSX.Element {
   return (
     <div className={classNames('rating', starRatingTypes[starRatingType].wrapperClasses)}>
       <div className={classNames('rating__stars', starRatingTypes[starRatingType].starClasses)}>
-        <span style={{width: ratingToStars(rating, 5, 5)}}></span>
+        <span style={{width: ratingToStars(rating)}}></span>
         <span className="visually-hidden">Rating</span>
       </div>
       {starRatingTypes[starRatingType].isDigits && <span className="property__rating-value rating__value">{rating}</span>}

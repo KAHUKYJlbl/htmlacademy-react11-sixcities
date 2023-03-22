@@ -11,7 +11,7 @@ export default function NearPlaces ({offers}: NearPlacesProps): JSX.Element {
     <section className="near-places places">
       <h2 className="near-places__title">Other places in the neighbourhood</h2>
       <PlaceCardList
-        offers={[...offers].slice(-3)}
+        offers={offers.slice(-3)}
         placeCardType={'nearby'}
         placeCardContainerClasses={[
           'near-places__list',

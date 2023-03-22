@@ -43,7 +43,7 @@ export default function FavoriteButton ({isFavorite, buttonType}: FavoriteButton
       >
         <use xlinkHref="#icon-bookmark"></use>
       </svg>
-      <span className="visually-hidden">To bookmarks</span>
+      <span className="visually-hidden">{favoriteState ? 'In bookmarks' : 'To bookmarks' }</span>
     </button>
   );
 }

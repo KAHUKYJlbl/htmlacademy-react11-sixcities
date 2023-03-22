@@ -31,7 +31,7 @@ export default function App({offers, comments}: AppScreenProps): JSX.Element {
         />
         <Route
           path={AppRoute.Login}
-          element={<Login offers={offers} />}
+          element={<Login />}
         />
         <Route
           path={AppRoute.Favorites}

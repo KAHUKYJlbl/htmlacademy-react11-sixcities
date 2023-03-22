@@ -23,7 +23,7 @@ export const offers: Offer[] = [
     },
     id: 1,
     images: [
-      'img/apartment-01.jpg'
+      'img/apartment-01.jpg',
     ],
     isFavorite: true,
     isPremium: false,
@@ -61,6 +61,7 @@ export const offers: Offer[] = [
     },
     id: 2,
     images: [
+      'img/apartment-01.jpg',
       'img/apartment-02.jpg'
     ],
     isFavorite: false,
@@ -99,6 +100,8 @@ export const offers: Offer[] = [
     },
     id: 3,
     images: [
+      'img/apartment-01.jpg',
+      'img/apartment-02.jpg',
       'img/apartment-03.jpg'
     ],
     isFavorite: true,
@@ -137,7 +140,10 @@ export const offers: Offer[] = [
     },
     id: 4,
     images: [
-      'img/apartment-01.jpg'
+      'img/apartment-01.jpg',
+      'img/apartment-02.jpg',
+      'img/apartment-03.jpg',
+      'img/apartment-01.jpg',
     ],
     isFavorite: false,
     isPremium: false,
@@ -175,7 +181,11 @@ export const offers: Offer[] = [
     },
     id: 5,
     images: [
-      'img/apartment-03.jpg'
+      'img/apartment-03.jpg',
+      'img/apartment-01.jpg',
+      'img/apartment-02.jpg',
+      'img/apartment-03.jpg',
+      'img/apartment-01.jpg',
     ],
     isFavorite: true,
     isPremium: true,
@@ -213,7 +223,12 @@ export const offers: Offer[] = [
     },
     id: 6,
     images: [
-      'img/apartment-01.jpg'
+      'img/apartment-01.jpg',
+      'img/apartment-02.jpg',
+      'img/apartment-03.jpg',
+      'img/apartment-01.jpg',
+      'img/apartment-02.jpg',
+      'img/apartment-03.jpg',
     ],
     isFavorite: true,
     isPremium: false,
@@ -251,7 +266,17 @@ export const offers: Offer[] = [
     },
     id: 7,
     images: [
-      'img/apartment-01.jpg'
+      'img/apartment-01.jpg',
+      'img/apartment-01.jpg',
+      'img/apartment-01.jpg',
+      'img/apartment-01.jpg',
+      'img/apartment-01.jpg',
+      'img/apartment-01.jpg',
+      'img/apartment-01.jpg',
+      'img/apartment-01.jpg',
+      'img/apartment-01.jpg',
+      'img/apartment-01.jpg',
+      'img/apartment-01.jpg',
     ],
     isFavorite: true,
     isPremium: false,

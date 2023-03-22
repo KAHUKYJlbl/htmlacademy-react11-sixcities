@@ -1,14 +1,14 @@
 import classNames from 'classnames';
 
 type BadgeProps = {
-  str: string;
+  title: string;
   badgeClasses: string[];
 }
 
-export default function Badge({str, badgeClasses}: BadgeProps): JSX.Element {
+export default function Badge({title, badgeClasses}: BadgeProps): JSX.Element {
   return (
     <div className={classNames(badgeClasses)}>
-      <span>{str}</span>
+      <span>{title}</span>
     </div>
   );
 }

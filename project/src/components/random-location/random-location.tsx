@@ -1,16 +1,9 @@
 import { Link } from 'react-router-dom';
 
-import { Offer } from '../../types/offer/offer';
-import { getOffersByCities } from '../../utils/offers-by-cities';
-import { AppRoute } from '../../const';
+import { AppRoute, CITIES } from '../../const';
 
-type RandomLocationProps = {
-  offers: Offer[];
-}
-
-export default function RandomLocation ({offers}: RandomLocationProps): JSX.Element {
-  const cities = Object.keys(getOffersByCities(offers));
-  const randomCity = cities[Math.floor(Math.random() * cities.length)];
+export default function RandomLocation (): JSX.Element {
+  const randomCity = CITIES[Math.floor(Math.random() * CITIES.length)];
   return (
     <section className="locations locations--login locations--current">
       <div className="locations__item">

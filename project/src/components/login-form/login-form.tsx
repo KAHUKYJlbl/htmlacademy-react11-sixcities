@@ -1,30 +1,23 @@
 import { useState } from 'react';
 
 export default function LoginForm (): JSX.Element {
-  const [token, setToken] = useState({
-    login: '',
+  const [formData, setformData] = useState({
+    email: '',
     password: '',
   });
 
-  const handleLoginInput = (evt: React.ChangeEvent<HTMLInputElement>) => {
-    setToken({
-      ...token,
-      login: evt.target.value
-    });
-  };
-
-  const handlePasswordInput = (evt: React.ChangeEvent<HTMLInputElement>) => {
-    setToken({
-      ...token,
-      password: evt.target.value
+  const handleFormDataChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    setformData({
+      ...formData,
+      [evt.target.name]: evt.target.value
     });
   };
 
   const handleFormSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
-    setToken({
-      login: '',
+    setformData({
+      email: '',
       password: '',
     });
   };
@@ -45,8 +38,8 @@ export default function LoginForm (): JSX.Element {
             type="email" name="email"
             placeholder="Email"
             required
-            value={token.login}
-            onInput={handleLoginInput}
+            value={formData.email}
+            onChange={handleFormDataChange}
           />
         </div>
         <div className="login__input-wrapper form__input-wrapper">
@@ -57,8 +50,8 @@ export default function LoginForm (): JSX.Element {
             name="password"
             placeholder="Password"
             required
-            value={token.password}
-            onInput={handlePasswordInput}
+            value={formData.password}
+            onChange={handleFormDataChange}
 
           />
         </div>

@@ -1,19 +1,20 @@
+import { Offer } from '../../types/offer/offer';
+
 const MAX_PHOTO_COUNT = 6;
 
-export default function Gallery (): JSX.Element {
-  const list = [];
-  for (let i = 0; i < MAX_PHOTO_COUNT; i++) {
-    list.push(
-      <div key={i} className="property__image-wrapper">
-        <img className="property__image" src="img/room.jpg" alt="Photo studio" />
-      </div>
-    );
-  }
+type GalleryProps = {
+  offer: Offer;
+}
 
+export default function Gallery ({offer}: GalleryProps): JSX.Element {
   return (
     <div className="property__gallery-container container">
       <div className="property__gallery">
-        {list}
+        {offer.images.slice(0, MAX_PHOTO_COUNT).map((photo) => (
+          <div key={photo} className="property__image-wrapper">
+            <img className="property__image" src={photo} alt={`Photo ${offer.type}`} />
+          </div>
+        ))}
       </div>
     </div>
   );

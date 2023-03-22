@@ -19,7 +19,7 @@ export default function RoomInfo ({isPremium = true, offer}: RoomInfoProps): JSX
   return (
     <div className="property__container container">
       <div className="property__wrapper">
-        {isPremium && <Badge str='Premium' badgeClasses={['property__mark']} />}
+        {isPremium && <Badge title='Premium' badgeClasses={['property__mark']} />}
         <div className="property__name-wrapper">
           <h1 className="property__name">
             {offer.title}
@@ -35,7 +35,7 @@ export default function RoomInfo ({isPremium = true, offer}: RoomInfoProps): JSX
             {`${offer.bedrooms} Bedrooms`}
           </li>
           <li className="property__feature property__feature--adults">
-            {`Max ${offer.maxAdults} adults`}
+            Max {offer.maxAdults} adults
           </li>
         </ul>
         <div className="property__price">
