@@ -2,7 +2,8 @@ export enum AppRoute {
   Main = '/',
   Login = '/login',
   Favorites = '/favorites',
-  Room = '/offer/:id'
+  Room = '/offer/:id',
+  NotFound = '/not-found',
 }
 
 export enum AuthorizationStatus {
@@ -10,3 +11,11 @@ export enum AuthorizationStatus {
   NoAuth = 'NO_AUTH',
   Unknown = 'UNKNOWN',
 }
+export const CITIES = [
+  'Paris',
+  'Cologne',
+  'Amsterdam',
+  'Brussels',
+  'Hamburg',
+  'Dusseldorf'
+];

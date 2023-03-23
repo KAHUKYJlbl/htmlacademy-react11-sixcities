@@ -1,51 +1,24 @@
-import PlaceCard from '../../components/place-card/place-card';
-import Header from '../../components/header/header';
-import Footer from '../../components/footer/footer';
+import Layout from '../../components/layout/layout';
+import PlaceCardListByCities from '../../components/place-card-favorites-list/place-card-list-by-cities';
 
-export default function Favorites(): JSX.Element {
+import { Offer } from '../../types/offer/offer';
+import { getOffersByCities } from '../../utils/offers-by-cities';
+
+type FavoritesProps = {
+  favorites: Offer[];
+}
+
+export default function Favorites({favorites}: FavoritesProps): JSX.Element {
   return (
-    <div className="page">
-      <Header />
-
+    <Layout isFooter isHeaderNav>
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
-            <ul className="favorites__list">
-              <li className="favorites__locations-items">
-                <div className="favorites__locations locations locations--current">
-                  <div className="locations__item">
-                    <a className="locations__item-link" href="#">
-                      <span>Amsterdam</span>
-                    </a>
-                  </div>
-                </div>
-                <div className="favorites__places">
-                  {/* TODO заменить классы на favorite */}
-                  <PlaceCard />
-                  <PlaceCard />
-                </div>
-              </li>
-
-              <li className="favorites__locations-items">
-                <div className="favorites__locations locations locations--current">
-                  <div className="locations__item">
-                    <a className="locations__item-link" href="#">
-                      <span>Cologne</span>
-                    </a>
-                  </div>
-                </div>
-                <div className="favorites__places">
-                  {/* TODO заменить классы на favorite */}
-                  <PlaceCard />
-                </div>
-              </li>
-            </ul>
+            <PlaceCardListByCities favoritesByCities={getOffersByCities(favorites)} />
           </section>
         </div>
       </main>
-
-      <Footer />
-    </div>
+    </Layout>
   );
 }

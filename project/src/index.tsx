@@ -2,10 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
 
-const enum Setting {
-  PlacesToStayTotalCount = 312,
-  PlacesToStayShownCount = 9,
-}
+import { offers } from './mocks/offers';
+import { comments } from './mocks/comments';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -13,6 +11,9 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App placesToStayTotalCount={Setting.PlacesToStayTotalCount} placesToStayShownCount={Setting.PlacesToStayShownCount} />
+    <App
+      offers={offers}
+      comments={comments}
+    />
   </React.StrictMode>,
 );

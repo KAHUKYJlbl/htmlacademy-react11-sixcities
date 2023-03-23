@@ -1,37 +1,79 @@
-export default function PlaceCard(): JSX.Element {
+import { Link, generatePath } from 'react-router-dom';
+import classNames from 'classnames';
+
+import Badge from '../badge/badge';
+import FavoriteButton from '../favorite-button/favorite-button';
+import StarRating from '../star-rating/star-rating';
+
+import { Offer } from '../../types/offer/offer';
+import { capitalize } from '../../utils/capitalize';
+import { AppRoute } from '../../const';
+
+type PlaceCardProps = {
+  offer: Offer;
+  placeCardType: 'favorites' | 'main' | 'nearby';
+  onCardMouseEnter: (arg: number) => void;
+  onCardMouseLeave: () => void;
+}
+
+const placeCardTypes = {
+  favorites: {
+    placeCardClasses: ['place-card', 'favorites__card'],
+    cardInfoClasses: ['place-card__info', 'favorites__card-info'],
+    imageWrapperClasses: ['place-card__image-wrapper', 'favorites__image-wrapper'],
+  },
+  main: {
+    placeCardClasses: ['place-card', 'cities__card'],
+    cardInfoClasses: ['place-card__info'],
+    imageWrapperClasses: ['place-card__image-wrapper', 'cities__image-wrapper'],
+  },
+  nearby: {
+    placeCardClasses: ['place-card', 'near-places__card'],
+    cardInfoClasses: ['place-card__info'],
+    imageWrapperClasses: ['place-card__image-wrapper', 'near-places__image-wrapper'],
+  },
+};
+
+export default function PlaceCard({
+  offer,
+  placeCardType,
+  onCardMouseEnter,
+  onCardMouseLeave
+}: PlaceCardProps): JSX.Element {
+  const placeCardClasses = classNames(placeCardTypes[placeCardType].placeCardClasses);
+  const imageWrapperClasses = classNames(placeCardTypes[placeCardType].imageWrapperClasses);
+  const cardInfoClasses = classNames(placeCardTypes[placeCardType].cardInfoClasses);
+
   return (
-    <article className="cities__card place-card">
-      <div className="place-card__mark">
-        <span>Premium</span>
+    <article
+      className={placeCardClasses}
+      onMouseEnter={() => onCardMouseEnter(offer.id)}
+      onMouseLeave={() => onCardMouseLeave()}
+    >
+      {offer.isPremium && <Badge title="Premium" badgeClasses={['place-card__mark']} />}
+      <div className={imageWrapperClasses}>
+        <Link to={generatePath(AppRoute.Room, { id: offer.id.toString() })}>
+          <img className="place-card__image" src={offer.previewImage} width="260" height="200" alt="Place image" />
+        </Link>
       </div>
-      <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="#">
-          <img className="place-card__image" src="img/apartment-01.jpg" width="260" height="200" alt="Place image" />
-        </a>
-      </div>
-      <div className="place-card__info">
+      <div className={cardInfoClasses}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
-            <b className="place-card__price-value">&euro;120</b>
+            <b className="place-card__price-value">&euro;{offer.price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className="place-card__bookmark-button button" type="button">
-            <svg className="place-card__bookmark-icon" width="18" height="19">
-              <use xlinkHref="#icon-bookmark"></use>
-            </svg>
-            <span className="visually-hidden">To bookmarks</span>
-          </button>
+          <FavoriteButton
+            isFavorite={offer.isFavorite}
+            buttonType="card"
+          />
         </div>
-        <div className="place-card__rating rating">
-          <div className="place-card__stars rating__stars">
-            <span style={{width: '80%'}}></span>
-            <span className="visually-hidden">Rating</span>
-          </div>
-        </div>
+        <StarRating rating={offer.rating} starRatingType='card' />
         <h2 className="place-card__name">
-          <a href="#">Beautiful &amp; luxurious apartment at great location</a>
+          <Link to={generatePath(AppRoute.Room, { id: offer.id.toString() })}>
+            {offer.title}
+          </Link>
         </h2>
-        <p className="place-card__type">Apartment</p>
+        <p className="place-card__type">{capitalize(offer.type)}</p>
       </div>
     </article>
   );
