@@ -52,7 +52,7 @@ export default function CityMap ({mapClasses, offers}: CityMapProps): JSX.Elemen
 
       return clearMap;
     }
-  }, [defaultCustomIcon, map, markers, offers]);
+  }, [map, offers]);
 
   useEffect(() => {
     if (map) {
