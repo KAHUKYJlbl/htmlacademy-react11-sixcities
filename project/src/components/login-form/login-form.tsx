@@ -35,7 +35,8 @@ export default function LoginForm (): JSX.Element {
           <label className="visually-hidden">E-mail</label>
           <input
             className="login__input form__input"
-            type="email" name="email"
+            type="email"
+            name="email"
             placeholder="Email"
             required
             value={formData.email}

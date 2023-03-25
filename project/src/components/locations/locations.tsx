@@ -1,16 +1,13 @@
-import { useState } from 'react';
 import classNames from 'classnames';
-
-import { Offer } from '../../types/offer/offer';
 
 import { CITIES } from '../../const';
 
 type LocationsProps = {
-  offers: Offer[];
+  activeLocation: string;
+  onLocationChange: (arg: string) => void;
 }
 
-export default function Locations ({offers}: LocationsProps): JSX.Element {
-  const [activeLocation, setActiveLocation] = useState(CITIES[0]);
+export default function Locations ({activeLocation, onLocationChange}: LocationsProps): JSX.Element {
 
   return (
     <div className="tabs">
@@ -27,7 +24,7 @@ export default function Locations ({offers}: LocationsProps): JSX.Element {
                   href="#"
                   onClick={(evt) => {
                     evt.preventDefault();
-                    setActiveLocation(location);
+                    onLocationChange(location);
                   }}
                 >
                   <span>{location}</span>
