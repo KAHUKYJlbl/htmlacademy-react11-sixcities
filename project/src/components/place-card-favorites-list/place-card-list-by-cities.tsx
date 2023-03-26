@@ -4,9 +4,10 @@ import { FavoritesByCities } from '../../types/offer/offer';
 
 type PlaceCardListByCitiesProps = {
   favoritesByCities: FavoritesByCities;
+  onCurrentOfferChange: (arg: number | null) => void;
 }
 
-export default function PlaceCardListByCities({favoritesByCities}: PlaceCardListByCitiesProps): JSX.Element {
+export default function PlaceCardListByCities({favoritesByCities, onCurrentOfferChange}: PlaceCardListByCitiesProps): JSX.Element {
   const favoriteCities = Object.keys(favoritesByCities);
 
   return (
@@ -22,6 +23,7 @@ export default function PlaceCardListByCities({favoritesByCities}: PlaceCardList
           </div>
           <PlaceCardList
             offers={favoritesByCities[city]}
+            onCurrentOfferChange = {onCurrentOfferChange}
             placeCardType={'favorites'}
             placeCardContainerClasses={['favorites__places']}
           />

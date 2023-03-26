@@ -18,6 +18,8 @@ export default function Main({offers, comments}: MainProps): JSX.Element {
   const [currentCity, setCurrentCity] = useState(CITIES[0]);
   const currentOffers = offers.filter((offer) => offer.city.name === currentCity);
 
+  const [currentOffer, setCurrentOffer] = useState<number | null>(null);
+
   return (
     <Layout isHeaderNav wrapperClasses={['page--gray', 'page--main']}>
       <main className="page__main page__main--index">
@@ -31,6 +33,7 @@ export default function Main({offers, comments}: MainProps): JSX.Element {
               <Sort />
               <PlaceCardList
                 offers={currentOffers}
+                onCurrentOfferChange = {setCurrentOffer}
                 placeCardType={'main'}
                 placeCardContainerClasses={[
                   'cities__places-list',
@@ -39,7 +42,7 @@ export default function Main({offers, comments}: MainProps): JSX.Element {
               />
             </section>
             <div className="cities__right-section">
-              <CityMap mapClasses={['cities__map']} offers={currentOffers} />
+              <CityMap mapClasses={['cities__map']} offers={currentOffers} currentOffer={currentOffer} />
             </div>
           </div>
         </div>
