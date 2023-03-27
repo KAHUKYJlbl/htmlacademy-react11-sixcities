@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, generatePath } from 'react-router-dom';
 import { AppRoute } from '../../const';
 
 import classNames from 'classnames';
@@ -24,7 +24,7 @@ export default function Logo({logoType}: LogoProps): JSX.Element {
   return (
     <Link
       className={classNames(LogoTypes[logoType].classes)}
-      to={AppRoute.Main}
+      to={generatePath(AppRoute.Main, { city: '' })}
     >
       <img
         className="header__logo"

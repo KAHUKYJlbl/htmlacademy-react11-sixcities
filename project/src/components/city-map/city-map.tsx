@@ -14,20 +14,22 @@ type CityMapProps = {
 
 export default function CityMap ({mapClasses, offers, currentOfferId}: CityMapProps): JSX.Element {
   const mapRef = useRef(null);
+  const currentLocation = offers[0].location;
+  const currentCityLocation = offers[0].city.location;
 
-  const map = useMap(mapRef, offers[0].location);
+  const map = useMap(mapRef, currentLocation);
 
   useEffect(() => {
     if (map) {
       map.setView(
         {
-          lat: offers[0].city.location.latitude,
-          lng: offers[0].city.location.longitude,
+          lat: currentCityLocation.latitude,
+          lng: currentCityLocation.longitude,
         },
-        offers[0].city.location.zoom,
+        currentCityLocation.zoom,
       );
     }
-  }, [map, offers]);
+  }, [map, currentCityLocation]);
 
   useEffect(() => {
     const markersLayer = leaflet.layerGroup([]);

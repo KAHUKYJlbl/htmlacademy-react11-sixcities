@@ -1,13 +1,13 @@
 import classNames from 'classnames';
+import { Link, generatePath } from 'react-router-dom';
 
-import { CITIES } from '../../const';
+import { AppRoute, CITIES } from '../../const';
 
 type LocationsProps = {
   activeLocation: string;
-  onLocationChange: (newLocation: string) => void;
 }
 
-export default function Locations ({activeLocation, onLocationChange}: LocationsProps): JSX.Element {
+export default function Locations ({activeLocation}: LocationsProps): JSX.Element {
 
   return (
     <div className="tabs">
@@ -16,19 +16,28 @@ export default function Locations ({activeLocation, onLocationChange}: Locations
           {
             Array.from(CITIES, (location) => (
               <li className="locations__item" key={location}>
-                <a
+                {/* <a
                   className={classNames(
                     'locations__item-link tabs__item',
                     activeLocation === location && 'tabs__item--active'
                   )}
-                  href="#"
-                  onClick={(evt) => {
-                    evt.preventDefault();
-                    onLocationChange(location);
-                  }}
+                  href={}
+                  // onClick={(evt) => {
+                  //   evt.preventDefault();
+                  //   onLocationChange(location);
+                  // }}
                 >
                   <span>{location}</span>
-                </a>
+                </a> */}
+                <Link
+                  className={classNames(
+                    'locations__item-link tabs__item',
+                    activeLocation === location && 'tabs__item--active'
+                  )}
+                  to={generatePath(AppRoute.Main, { city: location })}
+                >
+                  <span>{location}</span>
+                </Link>
               </li>
             ))
           }

@@ -49,6 +49,7 @@ export default function PlaceCard({
       className={placeCardClasses}
       onMouseEnter={() => onCardMouseEnter(offer.id)}
       onMouseLeave={() => onCardMouseLeave()}
+      // onClick={() => window.scrollTo(0, 0)}
     >
       {offer.isPremium && <Badge title="Premium" badgeClasses={['place-card__mark']} />}
       <div className={imageWrapperClasses}>
