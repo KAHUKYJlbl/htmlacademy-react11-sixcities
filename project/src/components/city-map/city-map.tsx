@@ -9,26 +9,13 @@ import useMap from '../../hooks/use-map/use-map';
 type CityMapProps = {
   mapClasses: string[];
   offers: Offer[];
-  currentOffer: number | null;
+  currentOfferId: number | null;
 }
 
-export default function CityMap ({mapClasses, offers, currentOffer}: CityMapProps): JSX.Element {
+export default function CityMap ({mapClasses, offers, currentOfferId}: CityMapProps): JSX.Element {
   const mapRef = useRef(null);
 
-  const defaultCustomIcon = leaflet.icon({
-    iconUrl: 'img/pin.svg',
-    iconSize: [27, 39],
-    iconAnchor: [14, 39],
-  });
-
-  const currentCustomIcon = leaflet.icon({
-    iconUrl: 'img/pin-active.svg',
-    iconSize: [27, 39],
-    iconAnchor: [14, 39],
-  });
-
   const map = useMap(mapRef, offers[0].location);
-  const markers = leaflet.layerGroup([]);
 
   useEffect(() => {
     if (map) {
@@ -39,7 +26,25 @@ export default function CityMap ({mapClasses, offers, currentOffer}: CityMapProp
         },
         offers[0].city.location.zoom,
       );
+    }
+  }, [map, offers]);
 
+  useEffect(() => {
+    const markersLayer = leaflet.layerGroup([]);
+
+    const defaultCustomIcon = leaflet.icon({
+      iconUrl: 'img/pin.svg',
+      iconSize: [27, 39],
+      iconAnchor: [14, 39],
+    });
+
+    const currentCustomIcon = leaflet.icon({
+      iconUrl: 'img/pin-active.svg',
+      iconSize: [27, 39],
+      iconAnchor: [14, 39],
+    });
+
+    if (map) {
       offers.forEach((offer) => {
         leaflet
           .marker({
@@ -47,19 +52,19 @@ export default function CityMap ({mapClasses, offers, currentOffer}: CityMapProp
             lng: offer.city.location.longitude,
           }, {
             icon:
-              offer.id === currentOffer
+              offer.id === currentOfferId
                 ? currentCustomIcon
                 : defaultCustomIcon,
           })
-          .addTo(markers);
+          .addTo(markersLayer);
       });
-      markers.addTo(map);
+      markersLayer.addTo(map);
 
       return () => {
-        map.removeLayer(markers);
+        map.removeLayer(markersLayer);
       };
     }
-  }, [map, offers]);
+  }, [map, offers, currentOfferId]);
 
   return (
     <section className={classNames('map', mapClasses)} ref={mapRef}>

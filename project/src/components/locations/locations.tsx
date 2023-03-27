@@ -4,7 +4,7 @@ import { CITIES } from '../../const';
 
 type LocationsProps = {
   activeLocation: string;
-  onLocationChange: (arg: string) => void;
+  onLocationChange: (newLocation: string) => void;
 }
 
 export default function Locations ({activeLocation, onLocationChange}: LocationsProps): JSX.Element {
