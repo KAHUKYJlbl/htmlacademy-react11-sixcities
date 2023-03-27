@@ -1,13 +1,13 @@
 import { useState } from 'react';
 
 export default function LoginForm (): JSX.Element {
-  const [formData, setformData] = useState({
+  const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
 
   const handleFormDataChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
-    setformData({
+    setFormData({
       ...formData,
       [evt.target.name]: evt.target.value
     });
@@ -16,7 +16,7 @@ export default function LoginForm (): JSX.Element {
   const handleFormSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
-    setformData({
+    setFormData({
       email: '',
       password: '',
     });
@@ -35,7 +35,8 @@ export default function LoginForm (): JSX.Element {
           <label className="visually-hidden">E-mail</label>
           <input
             className="login__input form__input"
-            type="email" name="email"
+            type="email"
+            name="email"
             placeholder="Email"
             required
             value={formData.email}

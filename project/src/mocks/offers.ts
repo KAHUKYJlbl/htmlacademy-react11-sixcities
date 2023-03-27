@@ -5,8 +5,8 @@ export const offers: Offer[] = [
     bedrooms: 1,
     city: {
       location: {
-        latitude: 52.370216,
-        longitude: 4.895168,
+        latitude: 52.360216,
+        longitude: 4.885168,
         zoom: 10
       },
       name: 'Amsterdam'
@@ -163,8 +163,8 @@ export const offers: Offer[] = [
     bedrooms: 5,
     city: {
       location: {
-        latitude: 60.937008,
-        longitude: 10.959949,
+        latitude: 53.557438,
+        longitude: 9.992444,
         zoom: 10
       },
       name: 'Hamburg'
@@ -190,8 +190,8 @@ export const offers: Offer[] = [
     isFavorite: true,
     isPremium: true,
     location: {
-      latitude: 60.95514938496378,
-      longitude: 10.973877537499948,
+      latitude: 53.55743868460439,
+      longitude: 9.992444481846945,
       zoom: 8
     },
     maxAdults: 5,
@@ -248,8 +248,8 @@ export const offers: Offer[] = [
     bedrooms: 7,
     city: {
       location: {
-        latitude: 52.370216,
-        longitude: 4.895168,
+        latitude: 48.857901,
+        longitude: 2.314240,
         zoom: 10
       },
       name: 'Paris'
@@ -281,8 +281,8 @@ export const offers: Offer[] = [
     isFavorite: true,
     isPremium: false,
     location: {
-      latitude: 52.35514938496378,
-      longitude: 4.673877537499948,
+      latitude: 48.85790117000979,
+      longitude: 2.314240406108316,
       zoom: 8
     },
     maxAdults: 7,

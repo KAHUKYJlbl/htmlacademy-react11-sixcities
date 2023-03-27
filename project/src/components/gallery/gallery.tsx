@@ -10,8 +10,8 @@ export default function Gallery ({offer}: GalleryProps): JSX.Element {
   return (
     <div className="property__gallery-container container">
       <div className="property__gallery">
-        {offer.images.slice(0, MAX_PHOTO_COUNT).map((photo) => (
-          <div key={photo} className="property__image-wrapper">
+        {offer.images.slice(0, MAX_PHOTO_COUNT).map((photo, id) => (
+          <div key={photo.slice(id)} className="property__image-wrapper">
             <img className="property__image" src={photo} alt={`Photo ${offer.type}`} />
           </div>
         ))}

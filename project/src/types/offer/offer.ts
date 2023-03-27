@@ -34,4 +34,4 @@ type FavoritesByCities = {
   [city: string]: Offer[];
 }
 
-export type {Offer, FavoritesByCities};
+export type {Offer, FavoritesByCities, Location};

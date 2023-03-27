@@ -1,5 +1,5 @@
 import Layout from '../../components/layout/layout';
-import PlaceCardListByCities from '../../components/place-card-favorites-list/place-card-list-by-cities';
+import PlaceCardListByCities from '../../components/place-card-list-by-cities/place-card-list-by-cities';
 
 import { Offer } from '../../types/offer/offer';
 import { getOffersByCities } from '../../utils/offers-by-cities';
@@ -9,6 +9,7 @@ type FavoritesProps = {
 }
 
 export default function Favorites({favorites}: FavoritesProps): JSX.Element {
+
   return (
     <Layout isFooter isHeaderNav>
       <main className="page__main page__main--favorites">

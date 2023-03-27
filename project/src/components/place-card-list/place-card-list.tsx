@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import PlaceCard from '../../components/place-card/place-card';
 
 import { Offer } from '../../types/offer/offer';
@@ -6,23 +5,28 @@ import classNames from 'classnames';
 
 type PlaceCardListProps = {
   offers: Offer[];
+  onCurrentOfferChange?: (arg: number | null) => void;
   placeCardType: 'favorites' | 'main' | 'nearby';
   placeCardContainerClasses: string[];
 }
 
 export default function PlaceCardList({
   offers,
+  onCurrentOfferChange,
   placeCardType,
   placeCardContainerClasses
 }: PlaceCardListProps): JSX.Element {
-  const [, setActiveId] = useState<null | number>(null);
 
   const handleMouseEnter = (id: number) => {
-    setActiveId(id);
+    if (onCurrentOfferChange) {
+      onCurrentOfferChange(id);
+    }
   };
 
   const handleMouseLeave = () => {
-    setActiveId(null);
+    if (onCurrentOfferChange) {
+      onCurrentOfferChange(null);
+    }
   };
 
   return (

@@ -39,7 +39,7 @@ export default function RoomInfo ({isPremium = true, offer}: RoomInfoProps): JSX
           </li>
         </ul>
         <div className="property__price">
-          <b className="property__price-value">{`&euro;${offer.price}`}</b>
+          <b className="property__price-value">{`€${offer.price}`}</b>
           <span className="property__price-text">&nbsp;night</span>
         </div>
         <div className="property__inside">

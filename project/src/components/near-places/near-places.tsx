@@ -7,6 +7,7 @@ type NearPlacesProps = {
 }
 
 export default function NearPlaces ({offers}: NearPlacesProps): JSX.Element {
+
   return (
     <section className="near-places places">
       <h2 className="near-places__title">Other places in the neighbourhood</h2>
