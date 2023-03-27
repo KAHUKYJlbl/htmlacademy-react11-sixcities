@@ -20,7 +20,16 @@ export default function App({offers, comments}: AppScreenProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
-        <Route
+        {[AppRoute.Main, AppRoute.MainDefault].map((path) => (
+          <Route key={path} path={path} element={
+            <Main
+              offers={offers}
+              comments={comments}
+            />
+          }
+          />
+        ))}
+        {/* <Route
           path={AppRoute.Main}
           element={
             <Main
@@ -29,6 +38,15 @@ export default function App({offers, comments}: AppScreenProps): JSX.Element {
             />
           }
         />
+        <Route
+          path={AppRoute.MainDefault}
+          element={
+            <Main
+              offers={offers}
+              comments={comments}
+            />
+          }
+        /> */}
         <Route
           path={AppRoute.Login}
           element={<Login />}

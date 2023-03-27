@@ -8,6 +8,7 @@ import { Offer } from '../../types/offer/offer';
 import { Comment } from '../../types/offer/comment';
 import { CITIES } from '../../const';
 import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 type MainProps = {
   offers: Offer[];
@@ -15,7 +16,10 @@ type MainProps = {
 }
 
 export default function Main({offers, comments}: MainProps): JSX.Element {
-  const [currentCity, setCurrentCity] = useState(CITIES[0]);
+  const params = useParams();
+  const currentCity = params.city ? params.city : CITIES[0];
+
+  // const [currentCity, setCurrentCity] = useState(city);
   const currentOffers = offers.filter((offer) => offer.city.name === currentCity);
 
   const [currentOfferId, setCurrentOfferId] = useState<number | null>(null);
@@ -24,7 +28,7 @@ export default function Main({offers, comments}: MainProps): JSX.Element {
     <Layout isHeaderNav wrapperClasses={['page--gray', 'page--main']}>
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
-        <Locations activeLocation={currentCity} onLocationChange={setCurrentCity} />
+        <Locations activeLocation={currentCity} />
         <div className="cities">
           <div className="cities__places-container container">
             <section className="cities__places places">
