@@ -17,7 +17,7 @@ type MainProps = {
 
 export default function Main({offers, comments}: MainProps): JSX.Element {
   const params = useParams();
-  const currentCity = params.city ? params.city : CITIES[0];
+  const currentCity = params.city || CITIES[0];
 
   // const [currentCity, setCurrentCity] = useState(city);
   const currentOffers = offers.filter((offer) => offer.city.name === currentCity);
