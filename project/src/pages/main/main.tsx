@@ -42,7 +42,7 @@ export default function Main({offers, comments}: MainProps): JSX.Element {
               <Sort />
               <PlaceCardList
                 offers={filteredOffers}
-                onCurrentOfferChange = {setHoveredOfferId}
+                onHoveredOfferChange = {setHoveredOfferId}
                 placeCardType={'main'}
                 placeCardContainerClasses={[
                   'cities__places-list',
