@@ -19,16 +19,15 @@ type MainProps = {
 }
 
 export default function Main({offers, comments}: MainProps): JSX.Element {
-  // const [currentCity, setCurrentCity] = useState(CITIES[0]);
   const currentCity = useAppSelector((state) => state.currentCity);
-  const currentOffers = offers.filter((offer) => offer.city.name === currentCity);
+  const filteredOffers = offers.filter((offer) => offer.city.name === currentCity);
 
   const dispatch = useAppDispatch();
   const handleLocationChange = (newLocation: string) => {
     dispatch(setCurrentCity(newLocation));
   };
 
-  const [currentOfferId, setCurrentOfferId] = useState<number | null>(null);
+  const [hoveredOfferId, setHoveredOfferId] = useState<number | null>(null);
 
   return (
     <Layout isHeaderNav wrapperClasses={['page--gray', 'page--main']}>
@@ -39,11 +38,11 @@ export default function Main({offers, comments}: MainProps): JSX.Element {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{currentOffers.length} places to stay in {currentCity}</b>
+              <b className="places__found">{filteredOffers.length} places to stay in {currentCity}</b>
               <Sort />
               <PlaceCardList
-                offers={currentOffers}
-                onCurrentOfferChange = {setCurrentOfferId}
+                offers={filteredOffers}
+                onCurrentOfferChange = {setHoveredOfferId}
                 placeCardType={'main'}
                 placeCardContainerClasses={[
                   'cities__places-list',
@@ -54,8 +53,8 @@ export default function Main({offers, comments}: MainProps): JSX.Element {
             <div className="cities__right-section">
               <CityMap
                 mapClasses={['cities__map']}
-                offers={currentOffers}
-                currentOfferId={currentOfferId}
+                offers={filteredOffers}
+                hoveredOfferId={hoveredOfferId}
               />
             </div>
           </div>

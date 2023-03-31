@@ -9,10 +9,10 @@ import useMap from '../../hooks/use-map/use-map';
 type CityMapProps = {
   mapClasses: string[];
   offers: Offer[];
-  currentOfferId: number | null;
+  hoveredOfferId: number | null;
 }
 
-export default function CityMap ({mapClasses, offers, currentOfferId}: CityMapProps): JSX.Element {
+export default function CityMap ({mapClasses, offers, hoveredOfferId}: CityMapProps): JSX.Element {
   const mapRef = useRef(null);
   const currentLocation = offers[0].location;
   const currentCityLocation = offers[0].city.location;
@@ -54,7 +54,7 @@ export default function CityMap ({mapClasses, offers, currentOfferId}: CityMapPr
             lng: offer.city.location.longitude,
           }, {
             icon:
-              offer.id === currentOfferId
+              offer.id === hoveredOfferId
                 ? currentCustomIcon
                 : defaultCustomIcon,
           })
@@ -66,7 +66,7 @@ export default function CityMap ({mapClasses, offers, currentOfferId}: CityMapPr
         map.removeLayer(markersLayer);
       };
     }
-  }, [map, offers, currentOfferId]);
+  }, [map, offers, hoveredOfferId]);
 
   return (
     <section className={classNames('map', mapClasses)} ref={mapRef}>
