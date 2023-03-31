@@ -6,9 +6,12 @@ import CityMap from '../../components/city-map/city-map';
 
 import { Offer } from '../../types/offer/offer';
 import { Comment } from '../../types/offer/comment';
-import { CITIES } from '../../const';
+
+import { useAppSelector } from '../../hooks/store-hooks/use-app-selector';
+
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useAppDispatch } from '../../hooks/store-hooks/use -app-dispatch';
+import { setCurrentCity } from '../../store/actions/set-current-city';
 
 type MainProps = {
   offers: Offer[];
@@ -16,28 +19,30 @@ type MainProps = {
 }
 
 export default function Main({offers, comments}: MainProps): JSX.Element {
-  const params = useParams();
-  const currentCity = params.city || CITIES[0];
+  const currentCity = useAppSelector((state) => state.currentCity);
+  const filteredOffers = offers.filter((offer) => offer.city.name === currentCity);
 
-  // const [currentCity, setCurrentCity] = useState(city);
-  const currentOffers = offers.filter((offer) => offer.city.name === currentCity);
+  const dispatch = useAppDispatch();
+  const handleLocationChange = (newLocation: string) => {
+    dispatch(setCurrentCity(newLocation));
+  };
 
-  const [currentOfferId, setCurrentOfferId] = useState<number | null>(null);
+  const [hoveredOfferId, setHoveredOfferId] = useState<number | null>(null);
 
   return (
     <Layout isHeaderNav wrapperClasses={['page--gray', 'page--main']}>
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
-        <Locations activeLocation={currentCity} />
+        <Locations activeLocation={currentCity} onLocationChange={handleLocationChange} />
         <div className="cities">
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{currentOffers.length} places to stay in {currentCity}</b>
+              <b className="places__found">{filteredOffers.length} places to stay in {currentCity}</b>
               <Sort />
               <PlaceCardList
-                offers={currentOffers}
-                onCurrentOfferChange = {setCurrentOfferId}
+                offers={filteredOffers}
+                onHoveredOfferChange = {setHoveredOfferId}
                 placeCardType={'main'}
                 placeCardContainerClasses={[
                   'cities__places-list',
@@ -48,8 +53,8 @@ export default function Main({offers, comments}: MainProps): JSX.Element {
             <div className="cities__right-section">
               <CityMap
                 mapClasses={['cities__map']}
-                offers={currentOffers}
-                currentOfferId={currentOfferId}
+                offers={filteredOffers}
+                hoveredOfferId={hoveredOfferId}
               />
             </div>
           </div>

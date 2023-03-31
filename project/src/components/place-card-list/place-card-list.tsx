@@ -5,27 +5,27 @@ import classNames from 'classnames';
 
 type PlaceCardListProps = {
   offers: Offer[];
-  onCurrentOfferChange?: (arg: number | null) => void;
+  onHoveredOfferChange?: (arg: number | null) => void;
   placeCardType: 'favorites' | 'main' | 'nearby';
   placeCardContainerClasses: string[];
 }
 
 export default function PlaceCardList({
   offers,
-  onCurrentOfferChange,
+  onHoveredOfferChange,
   placeCardType,
   placeCardContainerClasses
 }: PlaceCardListProps): JSX.Element {
 
   const handleMouseEnter = (id: number) => {
-    if (onCurrentOfferChange) {
-      onCurrentOfferChange(id);
+    if (onHoveredOfferChange) {
+      onHoveredOfferChange(id);
     }
   };
 
   const handleMouseLeave = () => {
-    if (onCurrentOfferChange) {
-      onCurrentOfferChange(null);
+    if (onHoveredOfferChange) {
+      onHoveredOfferChange(null);
     }
   };
 
