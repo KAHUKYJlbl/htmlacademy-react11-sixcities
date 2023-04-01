@@ -11,7 +11,9 @@ import { useAppSelector } from '../../hooks/store-hooks/use-app-selector';
 
 import { useState } from 'react';
 import { useAppDispatch } from '../../hooks/store-hooks/use -app-dispatch';
-import { setCurrentCity } from '../../store/actions/set-current-city';
+import { changeCurrentCity } from '../../store/actions/change-current-city';
+import { currentSortCallback } from '../../utils/sort-offers';
+import { SortType } from '../../const';
 
 type MainProps = {
   offers: Offer[];
@@ -22,9 +24,16 @@ export default function Main({offers, comments}: MainProps): JSX.Element {
   const currentCity = useAppSelector((state) => state.currentCity);
   const filteredOffers = offers.filter((offer) => offer.city.name === currentCity);
 
+  const currentSort = useAppSelector((state) => state.currentSort);
+  const sortedOffers = (
+    currentSort === SortType.Popular
+      ? filteredOffers
+      : filteredOffers.sort(currentSortCallback[currentSort])
+  );
+
   const dispatch = useAppDispatch();
   const handleLocationChange = (newLocation: string) => {
-    dispatch(setCurrentCity(newLocation));
+    dispatch(changeCurrentCity(newLocation));
   };
 
   const [hoveredOfferId, setHoveredOfferId] = useState<number | null>(null);
@@ -41,8 +50,8 @@ export default function Main({offers, comments}: MainProps): JSX.Element {
               <b className="places__found">{filteredOffers.length} places to stay in {currentCity}</b>
               <Sort />
               <PlaceCardList
-                offers={filteredOffers}
-                onHoveredOfferChange = {setHoveredOfferId}
+                offers={sortedOffers}
+                onHoveredOfferChange={setHoveredOfferId}
                 placeCardType={'main'}
                 placeCardContainerClasses={[
                   'cities__places-list',
