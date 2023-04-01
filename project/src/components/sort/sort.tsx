@@ -8,16 +8,8 @@ import { useAppDispatch } from '../../hooks/store-hooks/use -app-dispatch';
 
 import { SortType } from '../../const';
 
-// const SortTypes = {
-//   POPULAR: 'Popular',
-//   LTH: 'Price: low to high',
-//   HTL: 'Price: high to low',
-//   TOP_RATED: 'Top rated first',
-// } as const;
-
 export default function Sort (): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
-  // const [currentSort, setCurrentSort] = useState<typeof SortType[keyof typeof SortType]>(SortType.Popular);
   const currentSort = useAppSelector((state) => state.currentSort);
 
   const dispatch = useAppDispatch();
