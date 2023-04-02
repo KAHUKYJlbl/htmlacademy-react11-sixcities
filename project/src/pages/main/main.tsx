@@ -1,42 +1,36 @@
+import { useState } from 'react';
+import { useAppSelector } from '../../hooks/store-hooks/use-app-selector';
+import { useAppDispatch } from '../../hooks/store-hooks/use -app-dispatch';
+
 import Layout from '../../components/layout/layout';
 import PlaceCardList from '../../components/place-card-list/place-card-list';
 import Locations from '../../components/locations/locations';
 import Sort from '../../components/sort/sort';
 import CityMap from '../../components/city-map/city-map';
 
-import { Offer } from '../../types/offer/offer';
-import { Comment } from '../../types/offer/comment';
-
-import { useAppSelector } from '../../hooks/store-hooks/use-app-selector';
-
-import { useState } from 'react';
-import { useAppDispatch } from '../../hooks/store-hooks/use -app-dispatch';
 import { changeCurrentCity } from '../../store/actions/change-current-city';
-import { currentSortCallback } from '../../utils/sort-offers';
+import { CurrentSortCallback } from '../../utils/sort-offers';
 import { SortType } from '../../const';
 
-type MainProps = {
-  offers: Offer[];
-  comments: Comment[];
-}
-
-export default function Main({offers, comments}: MainProps): JSX.Element {
+export default function Main(): JSX.Element {
+  const offers = useAppSelector((state) => state.offers);
   const currentCity = useAppSelector((state) => state.currentCity);
-  const filteredOffers = offers.filter((offer) => offer.city.name === currentCity);
-
   const currentSort = useAppSelector((state) => state.currentSort);
-  const sortedOffers = (
-    currentSort === SortType.Popular
-      ? filteredOffers
-      : filteredOffers.sort(currentSortCallback[currentSort])
-  );
+
+  const [hoveredOfferId, setHoveredOfferId] = useState<number | null>(null);
 
   const dispatch = useAppDispatch();
   const handleLocationChange = (newLocation: string) => {
     dispatch(changeCurrentCity(newLocation));
   };
 
-  const [hoveredOfferId, setHoveredOfferId] = useState<number | null>(null);
+  const filteredOffers = offers.filter((offer) => offer.city.name === currentCity);
+
+  const sortedOffers = (
+    currentSort === SortType.Popular
+      ? filteredOffers
+      : filteredOffers.sort(CurrentSortCallback[currentSort])
+  );
 
   return (
     <Layout isHeaderNav wrapperClasses={['page--gray', 'page--main']}>

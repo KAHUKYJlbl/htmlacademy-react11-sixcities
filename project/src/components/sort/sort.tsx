@@ -1,25 +1,28 @@
 import classNames from 'classnames';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 import { changeCurrentSort } from '../../store/actions/change-current-sort';
 
 import { useAppSelector } from '../../hooks/store-hooks/use-app-selector';
 import { useAppDispatch } from '../../hooks/store-hooks/use -app-dispatch';
+import useClickOutside from '../../hooks/use-click-outside/use-click-outside';
 
 import { SortType } from '../../const';
 
 export default function Sort (): JSX.Element {
+  const ref = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
+  useClickOutside(ref, () => setIsOpen(false));
   const currentSort = useAppSelector((state) => state.currentSort);
-
   const dispatch = useAppDispatch();
-  const handleSortChange = (newSort: typeof SortType[keyof typeof SortType]) => {
+
+  const handleSortChange = (newSort: SortType) => {
     dispatch(changeCurrentSort(newSort));
     setIsOpen(false);
   };
 
   return (
-    <form className="places__sorting" action="#" method="get">
+    <form className="places__sorting" action="#" method="get" ref={ref}>
       <span className="places__sorting-caption">Sort by </span>
       <span
         className="places__sorting-type"
