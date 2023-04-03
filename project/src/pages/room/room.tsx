@@ -32,7 +32,7 @@ export default function Room({offers}: RoomProps): JSX.Element {
         <section className="property">
           <Gallery offer={currentOffer} />
           <RoomInfo offer={currentOffer} />
-          <CityMap mapClasses={['property__map']} offers={[currentOffer, ...offers]} currentOfferId={currentOffer.id} />
+          <CityMap mapClasses={['property__map']} offers={[currentOffer, ...offers]} hoveredOfferId={currentOffer.id} />
         </section>
         <div className="container">
           <NearPlaces offers={offers} />

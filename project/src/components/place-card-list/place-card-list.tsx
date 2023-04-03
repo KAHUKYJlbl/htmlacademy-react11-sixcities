@@ -18,15 +18,11 @@ export default function PlaceCardList({
 }: PlaceCardListProps): JSX.Element {
 
   const handleMouseEnter = (id: number) => {
-    if (onHoveredOfferChange) {
-      onHoveredOfferChange(id);
-    }
+    onHoveredOfferChange?.(id);
   };
 
   const handleMouseLeave = () => {
-    if (onHoveredOfferChange) {
-      onHoveredOfferChange(null);
-    }
+    onHoveredOfferChange?.(null);
   };
 
   return (

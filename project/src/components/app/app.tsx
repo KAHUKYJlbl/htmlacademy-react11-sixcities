@@ -1,50 +1,40 @@
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
+// import PrivateRoute from '../private-route/private-route';
 
 import Main from '../../pages/main/main';
-import Favorites from '../../pages/favorites/favorites';
+// import Favorites from '../../pages/favorites/favorites';
 import Login from '../../pages/login/login';
-import Room from '../../pages/room/room';
+// import Room from '../../pages/room/room';
 import NotFound from '../../pages/not-found/not-found';
-import PrivateRoute from '../private-route/private-route';
 
-import { AppRoute, AuthorizationStatus } from '../../const';
-import { Offer } from '../../types/offer/offer';
-import { Comment } from '../../types/offer/comment';
+import { AppRoute } from '../../const';
 
-type AppScreenProps = {
-  offers: Offer[];
-  comments: Comment[];
-}
-
-export default function App({offers, comments}: AppScreenProps): JSX.Element {
+export default function App(): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Main}
           element={
-            <Main
-              offers={offers}
-              comments={comments}
-            />
+            <Main />
           }
         />
         <Route
           path={AppRoute.Login}
           element={<Login />}
         />
-        <Route
+        {/* <Route
           path={AppRoute.Favorites}
           element={
             <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
-              <Favorites favorites={offers} />
+              <Favorites favorites={offersList} />
             </PrivateRoute>
           }
         />
         <Route
           path={AppRoute.Room}
-          element={<Room offers={offers} />}
-        />
+          element={<Room offers={offersList} />}
+        /> */}
         <Route
           path="*"
           element={<NotFound />}

@@ -1,5 +1,5 @@
 import leaflet, { Map } from 'leaflet';
-import { useEffect, useRef, useState } from 'react';
+import { MutableRefObject, useEffect, useRef, useState } from 'react';
 import { Location } from '../../types/offer/offer';
 
 const TileLayer = {
@@ -11,7 +11,7 @@ const TileLayer = {
   ],
 };
 
-export default function useMap(mapRef: React.MutableRefObject<null>, location: Location): leaflet.Map | null {
+export default function useMap(mapRef: MutableRefObject<null>, location: Location): leaflet.Map | null {
   const [map, setMap] = useState<Map | null>(null);
   const isRenderedRef = useRef(false);
 
