@@ -1,17 +1,17 @@
 import { createReducer } from '@reduxjs/toolkit';
 
-import { changeCurrentCity } from '../actions/change-current-city';
-import { changeCurrentSort } from '../actions/change-current-sort';
-import { getOffers } from '../actions/get-offers';
-import { setIsLoading } from '../actions/set-is-loading';
+import { changeCurrentCity, changeCurrentSort, setAuthStatus } from '../actions/app-actions';
+import { getOffers } from '../actions/offers-actions';
+import { setIsLoading } from '../actions/app-actions';
 
 import { Offer } from '../../types/offer/offer';
-import { CITIES, SortType } from '../../const';
+import { AuthorizationStatus, CITIES, SortType } from '../../const';
 
 type InitialState = {
   currentCity: string;
   currentSort: SortType;
   isLoading: boolean;
+  AuthStatus: AuthorizationStatus;
   offers: Offer[] | [];
 }
 
@@ -19,6 +19,7 @@ const initialState: InitialState = {
   currentCity: CITIES[0],
   currentSort: SortType.Popular,
   isLoading: false,
+  AuthStatus: AuthorizationStatus.Unknown,
   offers: [],
 };
 
@@ -43,6 +44,11 @@ export const reducer = createReducer(initialState,
       .addCase(setIsLoading,
         (state, action) => {
           state.isLoading = action.payload;
+        }
+      )
+      .addCase(setAuthStatus,
+        (state, action) => {
+          state.AuthStatus = action.payload;
         }
       );
   }

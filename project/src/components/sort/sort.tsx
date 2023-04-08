@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { useRef, useState } from 'react';
 
-import { changeCurrentSort } from '../../store/actions/change-current-sort';
+import { changeCurrentSort } from '../../store/actions/app-actions';
 
 import { useAppSelector } from '../../hooks/store-hooks/use-app-selector';
 import { useAppDispatch } from '../../hooks/store-hooks/use -app-dispatch';

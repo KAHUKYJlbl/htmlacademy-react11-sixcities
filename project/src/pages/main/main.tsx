@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useAppSelector } from '../../hooks/store-hooks/use-app-selector';
 import { useAppDispatch } from '../../hooks/store-hooks/use -app-dispatch';
-import { MagnifyingGlass } from 'react-loader-spinner';
 
 import Layout from '../../components/layout/layout';
 import PlaceCardList from '../../components/place-card-list/place-card-list';
@@ -9,11 +8,12 @@ import Locations from '../../components/locations/locations';
 import Sort from '../../components/sort/sort';
 import CityMap from '../../components/city-map/city-map';
 
-import { changeCurrentCity } from '../../store/actions/change-current-city';
+import { changeCurrentCity } from '../../store/actions/app-actions';
 import { CurrentSortCallback } from '../../utils/sort-offers';
 import { SortType } from '../../const';
-import { fetchOffers } from '../../store/api-actions/fetch-offers';
+import { fetchOffers } from '../../store/actions/api-actions';
 import classNames from 'classnames';
+import LoadingSpinner from '../../components/loading-spinner/loading-spinner';
 
 export default function Main(): JSX.Element {
 
@@ -39,7 +39,7 @@ export default function Main(): JSX.Element {
       : filteredOffers.sort(CurrentSortCallback[currentSort])
   );
 
-  function CitiesEmpty(): JSX.Element {
+  function OffersEmpty(): JSX.Element {
     return(
       <div className="cities__places-container cities__places-container--empty container">
         <section className="cities__no-places">
@@ -54,20 +54,7 @@ export default function Main(): JSX.Element {
   }
 
   if (isLoading) {
-    return (
-      <main className="page__main page__main--index">
-        <MagnifyingGlass
-          visible
-          height="80"
-          width="80"
-          ariaLabel="MagnifyingGlass-loading"
-          wrapperStyle={{margin: '100px auto 0'}}
-          wrapperClass="MagnifyingGlass-wrapper"
-          glassColor = '#c0efff'
-          color = '#007bff'
-        />
-      </main>
-    );
+    return <LoadingSpinner spinnerType='page' />;
   }
 
   return (
@@ -77,8 +64,9 @@ export default function Main(): JSX.Element {
         <Locations activeLocation={currentCity} onLocationChange={handleLocationChange} />
         <div className="cities">
           {
-            filteredOffers.length
-              ? (
+            !filteredOffers.length
+              ? <OffersEmpty />
+              : (
                 <div className="cities__places-container container">
                   <section className="cities__places places">
                     <h2 className="visually-hidden">Places</h2>
@@ -102,7 +90,7 @@ export default function Main(): JSX.Element {
                     />
                   </div>
                 </div>
-              ) : <CitiesEmpty />
+              )
           }
         </div>
       </main>
