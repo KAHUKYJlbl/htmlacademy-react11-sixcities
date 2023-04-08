@@ -11,7 +11,7 @@ import { AppRoute } from '../../const';
 
 type PlaceCardProps = {
   offer: Offer;
-  placeCardType: 'favorites' | 'main' | 'nearby';
+  placeCardType: keyof typeof placeCardTypes;
   onCardMouseEnter: (arg: number) => void;
   onCardMouseLeave: () => void;
 }

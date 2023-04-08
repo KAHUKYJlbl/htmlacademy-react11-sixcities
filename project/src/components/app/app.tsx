@@ -7,9 +7,16 @@ import Login from '../../pages/login/login';
 // import Room from '../../pages/room/room';
 import NotFound from '../../pages/not-found/not-found';
 
-import { AppRoute } from '../../const';
+import { AppRoute, AuthorizationStatus } from '../../const';
+import { useAppSelector } from '../../hooks/store-hooks/use-app-selector';
+import LoadingSpinner from '../loading-spinner/loading-spinner';
 
 export default function App(): JSX.Element {
+  const authStatus = useAppSelector((state) => state.AuthStatus);
+  if (authStatus === AuthorizationStatus.Unknown) {
+    return <LoadingSpinner spinnerType='page' />;
+  }
+
   return (
     <BrowserRouter>
       <Routes>
