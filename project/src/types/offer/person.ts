@@ -4,8 +4,3 @@ export type Person = {
   isPro: boolean;
   name: string;
 }
-
-export type User = Person & {
-  email: string;
-  token: string;
-};

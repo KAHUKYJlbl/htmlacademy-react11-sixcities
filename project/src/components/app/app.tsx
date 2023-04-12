@@ -1,4 +1,4 @@
-import { Route, BrowserRouter, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 // import PrivateRoute from '../private-route/private-route';
 
 import Main from '../../pages/main/main';
@@ -10,15 +10,18 @@ import NotFound from '../../pages/not-found/not-found';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { useAppSelector } from '../../hooks/store-hooks/use-app-selector';
 import LoadingSpinner from '../loading-spinner/loading-spinner';
+import HistoryRouter from '../history-router/history-router';
+import browserHistory from '../../services/browser-history';
 
 export default function App(): JSX.Element {
-  const authStatus = useAppSelector((state) => state.AuthStatus);
+  const authStatus = useAppSelector((state) => state.authStatus);
+
   if (authStatus === AuthorizationStatus.Unknown) {
     return <LoadingSpinner spinnerType='page' />;
   }
 
   return (
-    <BrowserRouter>
+    <HistoryRouter history={browserHistory}>
       <Routes>
         <Route
           path={AppRoute.Main}
@@ -47,6 +50,6 @@ export default function App(): JSX.Element {
           element={<NotFound />}
         />
       </Routes>
-    </BrowserRouter>
+    </HistoryRouter>
   );
 }

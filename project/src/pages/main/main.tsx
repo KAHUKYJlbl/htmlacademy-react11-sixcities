@@ -25,7 +25,7 @@ export default function Main(): JSX.Element {
   const [hoveredOfferId, setHoveredOfferId] = useState<number | null>(null);
   useEffect(() => {
     dispatch(fetchOffers());
-  }, []);
+  }, [dispatch]);
 
   const handleLocationChange = (newLocation: string) => {
     dispatch(changeCurrentCity(newLocation));

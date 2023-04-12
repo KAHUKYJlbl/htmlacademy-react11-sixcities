@@ -1,26 +1,29 @@
 import { createReducer } from '@reduxjs/toolkit';
 
-import { changeCurrentCity, changeCurrentSort, setAuthStatus } from '../actions/app-actions';
+import { changeCurrentCity, changeCurrentSort, setAuthStatus, setUser } from '../actions/app-actions';
 import { getOffers } from '../actions/offers-actions';
 import { setIsLoading } from '../actions/app-actions';
 
 import { Offer } from '../../types/offer/offer';
 import { AuthorizationStatus, CITIES, SortType } from '../../const';
+import { safeUser } from '../../types/api/login';
 
 type InitialState = {
   currentCity: string;
   currentSort: SortType;
   isLoading: boolean;
-  AuthStatus: AuthorizationStatus;
+  authStatus: AuthorizationStatus;
   offers: Offer[] | [];
+  user: safeUser | null;
 }
 
 const initialState: InitialState = {
   currentCity: CITIES[0],
   currentSort: SortType.Popular,
   isLoading: false,
-  AuthStatus: AuthorizationStatus.Unknown,
+  authStatus: AuthorizationStatus.Unknown,
   offers: [],
+  user: null,
 };
 
 export const reducer = createReducer(initialState,
@@ -48,7 +51,12 @@ export const reducer = createReducer(initialState,
       )
       .addCase(setAuthStatus,
         (state, action) => {
-          state.AuthStatus = action.payload;
+          state.authStatus = action.payload;
+        }
+      )
+      .addCase(setUser,
+        (state, action) => {
+          state.user = action.payload;
         }
       );
   }
