@@ -6,10 +6,10 @@ import { Offer } from '../../types/offer/offer';
 import { User } from '../../types/api/login';
 import { AuthData } from '../../types/api/login';
 
-import { setAuthStatus, setIsLoading } from './app-actions';
+import { redirectToRoute, setAuthStatus, setIsLoading, setUser } from './app-actions';
 import { getOffers } from './offers-actions';
 import { dropToken, setToken } from '../../services/token';
-import { APIRoute, AuthorizationStatus } from '../../const';
+import { APIRoute, AppRoute, AuthorizationStatus } from '../../const';
 
 export const fetchOffers = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
@@ -33,7 +33,14 @@ export const checkAuthStatus = createAsyncThunk<void, undefined, {
   'user/checkAuthStatus',
   async (_arg, {dispatch, extra: axios}) => {
     try {
-      await axios.get<User>(APIRoute.Login);
+      const {data} = await axios.get<User>(APIRoute.Login);
+      dispatch(setUser({
+        avatarUrl: data.avatarUrl,
+        id: data.id,
+        isPro: data.isPro,
+        name: data.name,
+        email: data.email,
+      }));
       dispatch(setAuthStatus(AuthorizationStatus.Auth));
     } catch {
       dispatch(setAuthStatus(AuthorizationStatus.NoAuth));
@@ -49,10 +56,17 @@ export const login = createAsyncThunk<void, AuthData, {
   'user/login',
   async ({login: email, password}, {dispatch, extra: axios}) => {
     try {
-      const {data: {token}} = await axios.post<User>(APIRoute.Login, {email, password});
-      setToken(token);
-
+      const {data} = await axios.post<User>(APIRoute.Login, {email, password});
+      setToken(data.token);
+      dispatch(setUser({
+        avatarUrl: data.avatarUrl,
+        id: data.id,
+        isPro: data.isPro,
+        name: data.name,
+        email: data.email,
+      }));
       dispatch(setAuthStatus(AuthorizationStatus.Auth));
+      dispatch(redirectToRoute(AppRoute.Main));
     } catch {
       dispatch(setAuthStatus(AuthorizationStatus.NoAuth));
     }

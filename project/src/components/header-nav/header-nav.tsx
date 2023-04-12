@@ -8,6 +8,7 @@ import { logout } from '../../store/actions/api-actions';
 
 export default function HeaderNav(): JSX.Element {
   const isLogged = useAppSelector((state) => state.authStatus === AuthorizationStatus.Auth);
+  const user = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
 
   const handleLogoutClick = () => {
@@ -25,8 +26,8 @@ export default function HeaderNav(): JSX.Element {
               isLogged
                 ? (
                   <>
-                    <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-                    <span className="header__favorite-count">3</span>
+                    <span className="header__user-name user__name">{user?.email}</span>
+                    <span className="header__favorite-count">{user?.id}</span>
                   </>)
                 : (
                   <span className="header__login">Sign in</span>)

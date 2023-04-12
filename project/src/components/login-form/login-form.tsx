@@ -100,7 +100,13 @@ export default function LoginForm (): JSX.Element {
             </div>
           );
         })}
-        <button className="login__submit form__submit button" type="submit">Sign in</button>
+        <button
+          className="login__submit form__submit button"
+          type="submit"
+          disabled={formData.password.isError || formData.email.isError}
+        >
+        Sign in
+        </button>
       </form>
     </section>
   );

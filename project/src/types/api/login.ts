@@ -5,7 +5,10 @@ export type AuthData = {
   password: string;
 };
 
-export type User = Person & {
+export type safeUser = Person & {
   email: string;
+};
+
+export type User = safeUser & {
   token: string;
 };
