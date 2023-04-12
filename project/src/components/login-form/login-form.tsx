@@ -31,7 +31,7 @@ const formInitialState = {
 
 export default function LoginForm (): JSX.Element {
   const dispatch = useAppDispatch();
-  const [formData, setFormData] = useState < Record <string, FormInputData> > (formInitialState);
+  const [formData, setFormData] = useState < Record<string, FormInputData> > (formInitialState);
 
   const handleFormDataChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const {name, value} = evt.target;
