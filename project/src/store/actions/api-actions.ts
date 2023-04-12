@@ -3,10 +3,13 @@ import { AxiosInstance } from 'axios';
 
 import { AppDispatch, State } from '../../types/state/state';
 import { Offer } from '../../types/offer/offer';
+import { User } from '../../types/api/login';
+import { AuthData } from '../../types/api/login';
+
 import { APIRoute, AuthorizationStatus } from '../../const';
 import { setAuthStatus, setIsLoading } from './app-actions';
 import { getOffers } from './offers-actions';
-import { User } from '../../types/offer/person';
+import { dropToken, setToken } from '../../services/token';
 
 export const fetchOffers = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
@@ -35,5 +38,36 @@ export const checkAuthStatus = createAsyncThunk<void, undefined, {
     } catch {
       dispatch(setAuthStatus(AuthorizationStatus.NoAuth));
     }
+  },
+);
+
+export const login = createAsyncThunk<void, AuthData, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'api/login',
+  async ({login: email, password}, {dispatch, extra: axios}) => {
+    try {
+      const {data: {token}} = await axios.post<User>(APIRoute.Login, {email, password});
+      setToken(token);
+
+      dispatch(setAuthStatus(AuthorizationStatus.Auth));
+    } catch {
+      dispatch(setAuthStatus(AuthorizationStatus.NoAuth));
+    }
+  },
+);
+
+export const logout = createAsyncThunk<void, undefined, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'user/logout',
+  async (_arg, {dispatch, extra: axios}) => {
+    await axios.delete(APIRoute.Logout);
+    dropToken();
+    dispatch(setAuthStatus(AuthorizationStatus.NoAuth));
   },
 );

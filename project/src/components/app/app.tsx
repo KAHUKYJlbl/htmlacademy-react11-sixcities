@@ -12,7 +12,8 @@ import { useAppSelector } from '../../hooks/store-hooks/use-app-selector';
 import LoadingSpinner from '../loading-spinner/loading-spinner';
 
 export default function App(): JSX.Element {
-  const authStatus = useAppSelector((state) => state.AuthStatus);
+  const authStatus = useAppSelector((state) => state.authStatus);
+
   if (authStatus === AuthorizationStatus.Unknown) {
     return <LoadingSpinner spinnerType='page' />;
   }

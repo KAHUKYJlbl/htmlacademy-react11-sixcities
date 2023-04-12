@@ -13,7 +13,7 @@ export default function Header({isHeaderNav = true}: HeaderProps): JSX.Element {
           <div className="header__left">
             <Logo logoType='header' />
           </div>
-          {isHeaderNav && <HeaderNav isLogged />}
+          {isHeaderNav && <HeaderNav />}
         </div>
       </div>
     </header>

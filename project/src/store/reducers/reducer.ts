@@ -11,7 +11,7 @@ type InitialState = {
   currentCity: string;
   currentSort: SortType;
   isLoading: boolean;
-  AuthStatus: AuthorizationStatus;
+  authStatus: AuthorizationStatus;
   offers: Offer[] | [];
 }
 
@@ -19,7 +19,7 @@ const initialState: InitialState = {
   currentCity: CITIES[0],
   currentSort: SortType.Popular,
   isLoading: false,
-  AuthStatus: AuthorizationStatus.Unknown,
+  authStatus: AuthorizationStatus.Unknown,
   offers: [],
 };
 
@@ -48,7 +48,7 @@ export const reducer = createReducer(initialState,
       )
       .addCase(setAuthStatus,
         (state, action) => {
-          state.AuthStatus = action.payload;
+          state.authStatus = action.payload;
         }
       );
   }
