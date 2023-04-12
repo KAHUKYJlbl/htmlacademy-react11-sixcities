@@ -36,25 +36,14 @@ export default function LoginForm (): JSX.Element {
   const handleFormDataChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const {name, value} = evt.target;
 
-    if (formData[name].regexp.test(value)) {
-      setFormData({
-        ...formData,
-        [name]: {
-          ...formData[name],
-          isError: false,
-          value: value,
-        }
-      });
-    } else {
-      setFormData({
-        ...formData,
-        [name]: {
-          ...formData[name],
-          isError: true,
-          value: value,
-        }
-      });
-    }
+    setFormData({
+      ...formData,
+      [name]: {
+        ...formData[name],
+        isError: !formData[name].regexp.test(value),
+        value: value,
+      }
+    });
   };
 
   const handleFormSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
