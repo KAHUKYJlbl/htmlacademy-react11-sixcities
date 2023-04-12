@@ -8,4 +8,3 @@ export const setAuthStatus = createAction<AuthorizationStatus>('app/setAuthStatu
 export const changeCurrentCity = createAction<string>('app/changeCurrentCity');
 
 export const changeCurrentSort = createAction<typeof SortType[keyof typeof SortType]>('app/changeCurrentSort');
-

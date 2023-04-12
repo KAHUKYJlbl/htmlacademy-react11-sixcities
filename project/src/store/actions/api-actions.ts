@@ -6,17 +6,17 @@ import { Offer } from '../../types/offer/offer';
 import { User } from '../../types/api/login';
 import { AuthData } from '../../types/api/login';
 
-import { APIRoute, AuthorizationStatus } from '../../const';
 import { setAuthStatus, setIsLoading } from './app-actions';
 import { getOffers } from './offers-actions';
 import { dropToken, setToken } from '../../services/token';
+import { APIRoute, AuthorizationStatus } from '../../const';
 
 export const fetchOffers = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
-  'api/fetchOffers',
+  'data/fetchOffers',
   async (_arg, {dispatch, extra: axios}) => {
     dispatch(setIsLoading(true));
     const {data} = await axios.get<Offer[]>(APIRoute.Offers);
@@ -30,7 +30,7 @@ export const checkAuthStatus = createAsyncThunk<void, undefined, {
   state: State;
   extra: AxiosInstance;
 }>(
-  'api/checkAuthStatus',
+  'user/checkAuthStatus',
   async (_arg, {dispatch, extra: axios}) => {
     try {
       await axios.get<User>(APIRoute.Login);
@@ -46,7 +46,7 @@ export const login = createAsyncThunk<void, AuthData, {
   state: State;
   extra: AxiosInstance;
 }>(
-  'api/login',
+  'user/login',
   async ({login: email, password}, {dispatch, extra: axios}) => {
     try {
       const {data: {token}} = await axios.post<User>(APIRoute.Login, {email, password});
