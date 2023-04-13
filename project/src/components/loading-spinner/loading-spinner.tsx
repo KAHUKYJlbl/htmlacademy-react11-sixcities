@@ -6,11 +6,13 @@ const spinnerTypes = {
     height: '240',
     width: '240',
     wrapperHeight: '100vh',
+    color: '#007bff',
   },
   button: {
-    height: '24',
-    width: '24',
+    height: '15',
+    width: '15',
     wrapperHeight: '100%',
+    color: '#ffffcc',
   }
 };
 
@@ -24,7 +26,7 @@ export default function LoadingSpinner ({spinnerType}: LoadingSpinnerProps): JSX
       height={spinnerTypes[spinnerType].height}
       width={spinnerTypes[spinnerType].width}
       radius="48"
-      color="#007bff"
+      color={spinnerTypes[spinnerType].color}
       ariaLabel="watch-loading"
       wrapperStyle={{height: spinnerTypes[spinnerType].wrapperHeight}}
       wrapperClass={classes.container}

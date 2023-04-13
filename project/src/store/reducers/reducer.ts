@@ -6,7 +6,7 @@ import { setIsLoading } from '../actions/app-actions';
 
 import { Offer } from '../../types/offer/offer';
 import { AuthorizationStatus, CITIES, SortType } from '../../const';
-import { safeUser } from '../../types/api/login';
+import { StoredUser } from '../../types/api/login';
 
 type InitialState = {
   currentCity: string;
@@ -14,7 +14,7 @@ type InitialState = {
   isLoading: boolean;
   authStatus: AuthorizationStatus;
   offers: Offer[] | [];
-  user: safeUser | null;
+  user: StoredUser | null;
 }
 
 const initialState: InitialState = {

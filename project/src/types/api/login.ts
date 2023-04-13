@@ -1,14 +1,14 @@
 import { Person } from '../offer/person';
 
 export type AuthData = {
-  login: string;
+  email: string;
   password: string;
 };
 
-export type safeUser = Person & {
+export type StoredUser = Person & {
   email: string;
 };
 
-export type User = safeUser & {
+export type User = StoredUser & {
   token: string;
 };

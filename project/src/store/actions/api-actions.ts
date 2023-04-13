@@ -54,22 +54,18 @@ export const login = createAsyncThunk<void, AuthData, {
   extra: AxiosInstance;
 }>(
   'user/login',
-  async ({login: email, password}, {dispatch, extra: axios}) => {
+  async ({email, password}, {dispatch, extra: axios}) => {
+    dispatch(setIsLoading(true));
     try {
-      const {data} = await axios.post<User>(APIRoute.Login, {email, password});
-      setToken(data.token);
-      dispatch(setUser({
-        avatarUrl: data.avatarUrl,
-        id: data.id,
-        isPro: data.isPro,
-        name: data.name,
-        email: data.email,
-      }));
+      const {data: {token, ...rest}} = await axios.post<User>(APIRoute.Login, {email, password});
+      setToken(token);
+      dispatch(setUser(rest));
       dispatch(setAuthStatus(AuthorizationStatus.Auth));
       dispatch(redirectToRoute(AppRoute.Main));
     } catch {
       dispatch(setAuthStatus(AuthorizationStatus.NoAuth));
     }
+    dispatch(setIsLoading(false));
   },
 );
 

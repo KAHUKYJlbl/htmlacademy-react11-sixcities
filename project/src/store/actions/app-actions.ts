@@ -1,11 +1,11 @@
 import { createAction } from '@reduxjs/toolkit';
 
 import { AppRoute, AuthorizationStatus, SortType } from '../../const';
-import { safeUser } from '../../types/api/login';
+import { StoredUser } from '../../types/api/login';
 
 export const setIsLoading = createAction<boolean>('app/setIsLoading');
 
-export const setUser = createAction<safeUser>('app/setUser');
+export const setUser = createAction<StoredUser>('app/setUser');
 
 export const setAuthStatus = createAction<AuthorizationStatus>('app/setAuthStatus');
 
