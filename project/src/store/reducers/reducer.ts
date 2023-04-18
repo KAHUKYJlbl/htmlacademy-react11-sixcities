@@ -1,15 +1,16 @@
 import { createReducer } from '@reduxjs/toolkit';
 
-import { changeCurrentCity, changeCurrentSort, setAuthStatus, setUser } from '../actions/app-actions';
+import { changeCurrentCity, changeCurrentSort } from '../actions/app-actions';
 import { getOffers } from '../actions/offers-actions';
 import { setIsLoading } from '../actions/app-actions';
+import { setAuthStatus, setUser } from '../actions/user-actions';
 
 import { Offer } from '../../types/offer/offer';
-import { AuthorizationStatus, CITIES, SortType } from '../../const';
 import { StoredUser } from '../../types/api/login';
+import { AuthorizationStatus, Cities, SortType } from '../../const';
 
 type InitialState = {
-  currentCity: string;
+  currentCity: Cities;
   currentSort: SortType;
   isLoading: boolean;
   authStatus: AuthorizationStatus;
@@ -18,7 +19,7 @@ type InitialState = {
 }
 
 const initialState: InitialState = {
-  currentCity: CITIES[0],
+  currentCity: Cities.Paris,
   currentSort: SortType.Popular,
   isLoading: false,
   authStatus: AuthorizationStatus.Unknown,

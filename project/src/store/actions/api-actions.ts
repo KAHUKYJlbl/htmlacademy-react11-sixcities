@@ -6,7 +6,8 @@ import { Offer } from '../../types/offer/offer';
 import { User } from '../../types/api/login';
 import { AuthData } from '../../types/api/login';
 
-import { redirectToRoute, setAuthStatus, setIsLoading, setUser } from './app-actions';
+import { setAuthStatus, setUser } from './user-actions';
+import { redirectToRoute, setIsLoading } from './app-actions';
 import { getOffers } from './offers-actions';
 import { dropToken, setToken } from '../../services/token';
 import { APIRoute, AppRoute, AuthorizationStatus } from '../../const';

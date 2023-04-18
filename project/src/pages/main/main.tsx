@@ -10,7 +10,7 @@ import CityMap from '../../components/city-map/city-map';
 
 import { changeCurrentCity } from '../../store/actions/app-actions';
 import { CurrentSortCallback } from '../../utils/sort-offers';
-import { SortType } from '../../const';
+import { Cities, SortType } from '../../const';
 import { fetchOffers } from '../../store/actions/api-actions';
 import classNames from 'classnames';
 import LoadingSpinner from '../../components/loading-spinner/loading-spinner';
@@ -27,7 +27,7 @@ export default function Main(): JSX.Element {
     dispatch(fetchOffers());
   }, [dispatch]);
 
-  const handleLocationChange = (newLocation: string) => {
+  const handleLocationChange = (newLocation: Cities) => {
     dispatch(changeCurrentCity(newLocation));
   };
 

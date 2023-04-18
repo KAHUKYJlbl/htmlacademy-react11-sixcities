@@ -6,6 +6,12 @@ export enum AppRoute {
   NotFound = '/not-found',
 }
 
+export enum NameSpace {
+  App = 'APP',
+  User = 'USER',
+  Room = 'ROOM',
+}
+
 export enum APIRoute {
   Offers = '/hotels',
   Login = '/login',
@@ -17,6 +23,12 @@ export enum AuthorizationStatus {
   NoAuth = 'NO_AUTH',
   Unknown = 'UNKNOWN',
 }
+export enum FetchStatus {
+  Idle = 'Idle',
+  Pending = 'Pending',
+  Success = 'Success',
+  Failed = 'Failed',
+}
 
 export enum SortType {
   Popular = 'Popular',
@@ -25,11 +37,11 @@ export enum SortType {
   TopRated = 'Top rated first',
 }
 
-export const CITIES = [
-  'Paris',
-  'Cologne',
-  'Amsterdam',
-  'Brussels',
-  'Hamburg',
-  'Dusseldorf'
-];
+export enum Cities {
+  Paris = 'Paris',
+  Cologne = 'Cologne',
+  Amsterdam = 'Amsterdam',
+  Brussels = 'Brussels',
+  Hamburg = 'Hamburg',
+  Dusseldorf = 'Dusseldorf'
+}
