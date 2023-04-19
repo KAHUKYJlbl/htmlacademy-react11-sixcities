@@ -14,6 +14,9 @@ export enum NameSpace {
 
 export enum APIRoute {
   Offers = '/hotels',
+  Offer = '/hotels/:hotelId',
+  Nearby = '/hotels/:hotelId/nearby',
+  Comments = '/comments/:hotelId',
   Login = '/login',
   Logout = '/logout',
 }

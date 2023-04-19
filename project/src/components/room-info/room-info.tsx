@@ -1,14 +1,14 @@
 import classNames from 'classnames';
 
+import { Offer } from '../../types/offer/offer';
+
 import Badge from '../badge/badge';
 import FavoriteButton from '../favorite-button/favorite-button';
 import NewCommentForm from '../new-comment-form/new-comment-form';
 import StarRating from '../star-rating/star-rating';
 import ReviewItem from '../review-item/review-item';
-
-import { Offer } from '../../types/offer/offer';
-
-import { comments } from '../../mocks/comments';
+import { useAppSelector } from '../../hooks/store-hooks/use-app-selector';
+import { getComments } from '../../store/room/selectors';
 
 type RoomInfoProps = {
   isPremium?: boolean;
@@ -16,6 +16,8 @@ type RoomInfoProps = {
 };
 
 export default function RoomInfo ({isPremium = true, offer}: RoomInfoProps): JSX.Element {
+  const comments = useAppSelector(getComments);
+
   return (
     <div className="property__container container">
       <div className="property__wrapper">

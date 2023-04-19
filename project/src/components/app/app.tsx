@@ -4,7 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import Main from '../../pages/main/main';
 // import Favorites from '../../pages/favorites/favorites';
 import Login from '../../pages/login/login';
-// import Room from '../../pages/room/room';
+import Room from '../../pages/room/room';
 import NotFound from '../../pages/not-found/not-found';
 
 import { AppRoute, AuthorizationStatus } from '../../const';
@@ -41,11 +41,11 @@ export default function App(): JSX.Element {
               <Favorites favorites={offersList} />
             </PrivateRoute>
           }
-        />
+        /> */}
         <Route
           path={AppRoute.Room}
-          element={<Room offers={offersList} />}
-        /> */}
+          element={<Room />}
+        />
         <Route
           path="*"
           element={<NotFound />}
