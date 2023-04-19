@@ -6,6 +6,7 @@ import { useAppSelector } from '../../hooks/store-hooks/use-app-selector';
 import LoadingSpinner from '../loading-spinner/loading-spinner';
 import { getUserLoadingStatus } from '../../store/user/selectors';
 import { login } from '../../store/user/api-actions';
+import { FetchStatus } from '../../const';
 
 type FormInputData = {
   label: string;
@@ -33,7 +34,7 @@ const formInitialState = {
 };
 
 export default function LoginForm (): JSX.Element {
-  const isLoading = useAppSelector(getUserLoadingStatus);
+  const isLoading = useAppSelector(getUserLoadingStatus) === FetchStatus.Pending;
   const dispatch = useAppDispatch();
   const [formData, setFormData] = useState < Record<string, FormInputData> > (formInitialState);
 

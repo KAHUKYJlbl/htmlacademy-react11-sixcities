@@ -11,7 +11,7 @@ import CityMap from '../../components/city-map/city-map';
 
 import { changeCurrentCity } from '../../store/app/actions';
 import { CurrentSortCallback } from '../../utils/sort-offers';
-import { Cities, SortType } from '../../const';
+import { Cities, FetchStatus, SortType } from '../../const';
 import LoadingSpinner from '../../components/loading-spinner/loading-spinner';
 import { getCurrentCity, getCurrentSort, getOffers, getOffersLoadingStatus } from '../../store/app/selectors';
 import { fetchOffers } from '../../store/app/api-actions';
@@ -21,7 +21,7 @@ export default function Main(): JSX.Element {
   const offers = useAppSelector(getOffers);
   const currentCity = useAppSelector(getCurrentCity);
   const currentSort = useAppSelector(getCurrentSort);
-  const isLoading = useAppSelector(getOffersLoadingStatus);
+  const isOffersLoading = useAppSelector(getOffersLoadingStatus);
   const dispatch = useAppDispatch();
   const [hoveredOfferId, setHoveredOfferId] = useState<number | null>(null);
   useEffect(() => {
@@ -54,7 +54,7 @@ export default function Main(): JSX.Element {
     );
   }
 
-  if (isLoading) {
+  if (isOffersLoading === FetchStatus.Idle || isOffersLoading === FetchStatus.Pending) {
     return <LoadingSpinner spinnerType='page' />;
   }
 

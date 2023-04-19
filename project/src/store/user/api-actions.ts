@@ -36,6 +36,7 @@ export const login = createAsyncThunk<User, AuthData, {
   async ({email, password}, {dispatch, extra: axios}) => {
     try {
       const {data} = await axios.post<User>(APIRoute.Login, {email, password});
+      dispatch(redirectToRoute(AppRoute.Main));
       return data;
     } catch (err) {
       toast.error('Login failed. Please try again.', {position: toast.POSITION.BOTTOM_RIGHT});

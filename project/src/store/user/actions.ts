@@ -19,7 +19,7 @@ const initialState: InitialState = {
 };
 
 export const userProcess = createSlice({
-  name: NameSpace.App,
+  name: NameSpace.User,
   initialState,
   reducers: {},
   extraReducers(builder) {
@@ -55,6 +55,7 @@ export const userProcess = createSlice({
         state.isUserLoading = FetchStatus.Success;
         state.authStatus = AuthorizationStatus.NoAuth;
         dropToken();
+        state.user = null;
       })
       .addCase(logout.pending, (state) => {
         state.isUserLoading = FetchStatus.Pending;

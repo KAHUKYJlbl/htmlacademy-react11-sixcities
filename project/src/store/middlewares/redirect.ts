@@ -1,4 +1,4 @@
-import {PayloadAction} from '@reduxjs/toolkit';
+import { PayloadAction } from '@reduxjs/toolkit';
 import { Middleware } from 'redux';
 
 import browserHistory from '../../services/browser-history';
