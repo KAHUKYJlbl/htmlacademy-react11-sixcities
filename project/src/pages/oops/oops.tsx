@@ -1,9 +1,16 @@
 import classes from './oops.module.sass';
-import { Link } from 'react-router-dom';
+import { useAppDispatch } from '../../hooks/store-hooks/use -app-dispatch';
+import { fetchOffers } from '../../store/app/api-actions';
 
 export default function Oops (): JSX.Element {
+  const dispatch = useAppDispatch();
+
+  const oopsClickHandler = () => {
+    dispatch(fetchOffers());
+  };
+
   return (
-    <Link to="/">
+    <a href="#" onClick={oopsClickHandler}>
       <div className={classes.container}>
         <figure>
           <figcaption>
@@ -15,6 +22,6 @@ export default function Oops (): JSX.Element {
           </figcaption>
         </figure>
       </div>
-    </Link>
+    </a>
   );
 }

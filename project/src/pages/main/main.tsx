@@ -18,7 +18,6 @@ import { changeCurrentCity } from '../../store/app/actions';
 import { fetchOffers } from '../../store/app/api-actions';
 
 export default function Main(): JSX.Element {
-
   const offers = useAppSelector(getOffers);
   const currentCity = useAppSelector(getCurrentCity);
   const currentSort = useAppSelector(getCurrentSort);
