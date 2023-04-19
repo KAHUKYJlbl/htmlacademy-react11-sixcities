@@ -1,14 +1,15 @@
 import { Link } from 'react-router-dom';
+
 import { useAppSelector } from '../../hooks/store-hooks/use-app-selector';
 import { useAppDispatch } from '../../hooks/store-hooks/use -app-dispatch';
-
 import { AppRoute, AuthorizationStatus } from '../../const';
-import { logout } from '../../store/actions/api-actions';
+import { getAuthStatus, getUser } from '../../store/user/selectors';
+import { logout } from '../../store/user/api-actions';
 
 
 export default function HeaderNav(): JSX.Element {
-  const isLogged = useAppSelector((state) => state.authStatus === AuthorizationStatus.Auth);
-  const user = useAppSelector((state) => state.user);
+  const isLogged = useAppSelector(getAuthStatus) === AuthorizationStatus.Auth;
+  const user = useAppSelector(getUser);
   const dispatch = useAppDispatch();
 
   const handleLogoutClick = () => {

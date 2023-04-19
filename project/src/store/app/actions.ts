@@ -43,3 +43,5 @@ export const appProcess = createSlice({
       });
   }
 });
+
+export const {changeCurrentCity, changeCurrentSort} = appProcess.actions;

@@ -1,11 +1,11 @@
 import { createAction } from '@reduxjs/toolkit';
 
-import { AppRoute, Cities, SortType } from '../../const';
+import { AppRoute } from '../../const';
 
-export const setIsLoading = createAction<boolean>('app/setIsLoading');
+// export const setIsLoading = createAction<boolean>('app/setIsLoading');
 
-export const changeCurrentCity = createAction<Cities>('app/changeCurrentCity');
+// export const changeCurrentCity = createAction<Cities>('app/changeCurrentCity');
 
-export const changeCurrentSort = createAction<typeof SortType[keyof typeof SortType]>('app/changeCurrentSort');
+// export const changeCurrentSort = createAction<typeof SortType[keyof typeof SortType]>('app/changeCurrentSort');
 
 export const redirectToRoute = createAction<AppRoute>('app/redirectToRoute');

@@ -1,10 +1,11 @@
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 import { useAppDispatch } from '../../hooks/store-hooks/use -app-dispatch';
 import { useAppSelector } from '../../hooks/store-hooks/use-app-selector';
-import { login } from '../../store/actions/api-actions';
 import LoadingSpinner from '../loading-spinner/loading-spinner';
-import { toast } from 'react-toastify';
+import { getUserLoadingStatus } from '../../store/user/selectors';
+import { login } from '../../store/user/api-actions';
 
 type FormInputData = {
   label: string;
@@ -32,7 +33,7 @@ const formInitialState = {
 };
 
 export default function LoginForm (): JSX.Element {
-  const isLoading = useAppSelector((state) => state.isLoading);
+  const isLoading = useAppSelector(getUserLoadingStatus);
   const dispatch = useAppDispatch();
   const [formData, setFormData] = useState < Record<string, FormInputData> > (formInitialState);
 
