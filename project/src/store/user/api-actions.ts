@@ -20,7 +20,6 @@ export const checkAuthStatus = createAsyncThunk<User, undefined, {
       const {data} = await axios.get<User>(APIRoute.Login);
       return data;
     } catch (err) {
-      dispatch(redirectToRoute(AppRoute.Main));
       toast.error('Login check failed.', {position: toast.POSITION.BOTTOM_RIGHT});
       throw err;
     }

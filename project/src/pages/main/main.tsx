@@ -8,12 +8,13 @@ import PlaceCardList from '../../components/place-card-list/place-card-list';
 import Locations from '../../components/locations/locations';
 import Sort from '../../components/sort/sort';
 import CityMap from '../../components/city-map/city-map';
+import LoadingSpinner from '../../components/loading-spinner/loading-spinner';
+import Oops from '../oops/oops';
 
-import { changeCurrentCity } from '../../store/app/actions';
 import { CurrentSortCallback } from '../../utils/sort-offers';
 import { Cities, FetchStatus, SortType } from '../../const';
-import LoadingSpinner from '../../components/loading-spinner/loading-spinner';
 import { getCurrentCity, getCurrentSort, getOffers, getOffersLoadingStatus } from '../../store/app/selectors';
+import { changeCurrentCity } from '../../store/app/actions';
 import { fetchOffers } from '../../store/app/api-actions';
 
 export default function Main(): JSX.Element {
@@ -56,6 +57,10 @@ export default function Main(): JSX.Element {
 
   if (isOffersLoading === FetchStatus.Idle || isOffersLoading === FetchStatus.Pending) {
     return <LoadingSpinner spinnerType='page' />;
+  }
+
+  if (isOffersLoading === FetchStatus.Failed) {
+    return <Oops />;
   }
 
   return (
