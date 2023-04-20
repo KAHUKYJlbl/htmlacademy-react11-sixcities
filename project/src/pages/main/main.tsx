@@ -13,9 +13,10 @@ import Oops from '../oops/oops';
 
 import { CurrentSortCallback } from '../../utils/sort-offers';
 import { Cities, FetchStatus, SortType } from '../../const';
-import { getCurrentCity, getCurrentSort, getOffers, getOffersLoadingStatus } from '../../store/app/selectors';
-import { changeCurrentCity } from '../../store/app/actions';
-import { fetchOffers } from '../../store/app/api-actions';
+import { getCurrentCity, getCurrentSort } from '../../store/app/selectors';
+import { getOffers, getOffersLoadingStatus } from '../../store/offers/selectors';
+import { changeCurrentCity } from '../../store/app/app-slice';
+import { fetchOffers } from '../../store/offers/api-actions';
 
 export default function Main(): JSX.Element {
   const offers = useAppSelector(getOffers);

@@ -9,6 +9,7 @@ export enum AppRoute {
 export enum NameSpace {
   App = 'APP',
   User = 'USER',
+  Offers = 'OFFERS',
   Room = 'ROOM',
 }
 

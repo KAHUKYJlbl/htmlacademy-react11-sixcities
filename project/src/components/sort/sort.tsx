@@ -8,7 +8,7 @@ import useClickOutside from '../../hooks/use-click-outside/use-click-outside';
 
 import { SortType } from '../../const';
 import { getCurrentSort } from '../../store/app/selectors';
-import { changeCurrentSort } from '../../store/app/actions';
+import { changeCurrentSort } from '../../store/app/app-slice';
 
 export default function Sort (): JSX.Element {
   const ref = useRef(null);
