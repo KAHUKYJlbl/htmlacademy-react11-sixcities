@@ -12,9 +12,10 @@ import { useAppSelector } from '../../hooks/store-hooks/use-app-selector';
 import LoadingSpinner from '../loading-spinner/loading-spinner';
 import HistoryRouter from '../history-router/history-router';
 import browserHistory from '../../services/browser-history';
+import { getAuthStatus } from '../../store/user/selectors';
 
 export default function App(): JSX.Element {
-  const authStatus = useAppSelector((state) => state.authStatus);
+  const authStatus = useAppSelector(getAuthStatus);
 
   if (authStatus === AuthorizationStatus.Unknown) {
     return <LoadingSpinner spinnerType='page' />;
@@ -36,7 +37,7 @@ export default function App(): JSX.Element {
         {/* <Route
           path={AppRoute.Favorites}
           element={
-            <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+            <PrivateRoute>
               <Favorites favorites={offersList} />
             </PrivateRoute>
           }

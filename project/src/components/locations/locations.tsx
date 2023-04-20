@@ -1,10 +1,10 @@
 import classNames from 'classnames';
 
-import { CITIES } from '../../const';
+import { Cities } from '../../const';
 
 type LocationsProps = {
-  activeLocation: string;
-  onLocationChange: (newLocation: string) => void;
+  activeLocation: Cities;
+  onLocationChange: (newLocation: Cities) => void;
 }
 
 export default function Locations ({activeLocation, onLocationChange}: LocationsProps): JSX.Element {
@@ -14,7 +14,7 @@ export default function Locations ({activeLocation, onLocationChange}: Locations
       <section className="locations container">
         <ul className="locations__list tabs__list">
           {
-            Array.from(CITIES, (location) => (
+            Object.values(Cities).map((location) => (
               <li className="locations__item" key={location}>
                 <a
                   className={classNames(

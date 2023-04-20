@@ -1,8 +1,12 @@
 import { useState } from 'react';
-import { useAppDispatch } from '../../hooks/store-hooks/use -app-dispatch';
+import { toast } from 'react-toastify';
 
-import classes from './login-form.module.sass';
-import { login } from '../../store/actions/api-actions';
+import { useAppDispatch } from '../../hooks/store-hooks/use -app-dispatch';
+import { useAppSelector } from '../../hooks/store-hooks/use-app-selector';
+import LoadingSpinner from '../loading-spinner/loading-spinner';
+import { getUserLoadingStatus } from '../../store/user/selectors';
+import { login } from '../../store/user/api-actions';
+import { FetchStatus } from '../../const';
 
 type FormInputData = {
   label: string;
@@ -18,18 +22,19 @@ const formInitialState = {
     value: '',
     regexp: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
     isError: false,
-    errorMessage: 'Valid e-mail required'
+    errorMessage: 'E-mail: valid e-mail required'
   },
   password: {
     label: 'Password',
     value: '',
     regexp: /^(?=.*[0-9])(?=.*[a-zA-Z]).{2,}$/,
     isError: false,
-    errorMessage: 'At least one digit and one letter required'
+    errorMessage: 'Password: at least one digit and one letter required'
   },
 };
 
 export default function LoginForm (): JSX.Element {
+  const isLoading = useAppSelector(getUserLoadingStatus) === FetchStatus.Pending;
   const dispatch = useAppDispatch();
   const [formData, setFormData] = useState < Record<string, FormInputData> > (formInitialState);
 
@@ -51,14 +56,12 @@ export default function LoginForm (): JSX.Element {
 
     if (!formData.email.isError && !formData.password.isError) {
       dispatch(login({
-        login: formData.email.value,
+        email: formData.email.value,
         password: formData.password.value,
       }));
-
-      setFormData({
-        email: {...formData.email, value: ''},
-        password: {...formData.password, value: ''},
-      });
+    } else {
+      formData.email.isError && toast.error(formData.email.errorMessage, {position: toast.POSITION.BOTTOM_RIGHT});
+      formData.password.isError && toast.error(formData.password.errorMessage, {position: toast.POSITION.BOTTOM_RIGHT});
     }
   };
 
@@ -72,7 +75,7 @@ export default function LoginForm (): JSX.Element {
         onSubmit={handleFormSubmit}
       >
         {Object.keys(formData).map((input) => {
-          const {label, value, isError, errorMessage} = formData[input];
+          const {label, value} = formData[input];
           return (
             <div key={input} className="login__input-wrapper form__input-wrapper">
               <label className="visually-hidden">{label}</label>
@@ -85,16 +88,14 @@ export default function LoginForm (): JSX.Element {
                 value={value}
                 onChange={handleFormDataChange}
               />
-              {isError && <p className={classes.error}>{errorMessage}</p>}
             </div>
           );
         })}
         <button
           className="login__submit form__submit button"
           type="submit"
-          disabled={formData.password.isError || formData.email.isError}
         >
-        Sign in
+          {isLoading ? <LoadingSpinner spinnerType='button' /> : 'Sign in'}
         </button>
       </form>
     </section>

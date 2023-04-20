@@ -1,33 +1,35 @@
 import { useEffect, useState } from 'react';
 import { useAppSelector } from '../../hooks/store-hooks/use-app-selector';
 import { useAppDispatch } from '../../hooks/store-hooks/use -app-dispatch';
+import classNames from 'classnames';
 
 import Layout from '../../components/layout/layout';
 import PlaceCardList from '../../components/place-card-list/place-card-list';
 import Locations from '../../components/locations/locations';
 import Sort from '../../components/sort/sort';
 import CityMap from '../../components/city-map/city-map';
-
-import { changeCurrentCity } from '../../store/actions/app-actions';
-import { CurrentSortCallback } from '../../utils/sort-offers';
-import { SortType } from '../../const';
-import { fetchOffers } from '../../store/actions/api-actions';
-import classNames from 'classnames';
 import LoadingSpinner from '../../components/loading-spinner/loading-spinner';
+import Oops from '../oops/oops';
+
+import { CurrentSortCallback } from '../../utils/sort-offers';
+import { Cities, FetchStatus, SortType } from '../../const';
+import { getCurrentCity, getCurrentSort } from '../../store/app/selectors';
+import { getOffers, getOffersLoadingStatus } from '../../store/offers/selectors';
+import { changeCurrentCity } from '../../store/app/app-slice';
+import { fetchOffers } from '../../store/offers/api-actions';
 
 export default function Main(): JSX.Element {
-
-  const offers = useAppSelector((state) => state.offers);
-  const currentCity = useAppSelector((state) => state.currentCity);
-  const currentSort = useAppSelector((state) => state.currentSort);
-  const isLoading = useAppSelector((state) => state.isLoading);
+  const offers = useAppSelector(getOffers);
+  const currentCity = useAppSelector(getCurrentCity);
+  const currentSort = useAppSelector(getCurrentSort);
+  const isOffersLoading = useAppSelector(getOffersLoadingStatus);
   const dispatch = useAppDispatch();
   const [hoveredOfferId, setHoveredOfferId] = useState<number | null>(null);
   useEffect(() => {
     dispatch(fetchOffers());
   }, [dispatch]);
 
-  const handleLocationChange = (newLocation: string) => {
+  const handleLocationChange = (newLocation: Cities) => {
     dispatch(changeCurrentCity(newLocation));
   };
 
@@ -53,8 +55,12 @@ export default function Main(): JSX.Element {
     );
   }
 
-  if (isLoading) {
+  if (isOffersLoading === FetchStatus.Idle || isOffersLoading === FetchStatus.Pending) {
     return <LoadingSpinner spinnerType='page' />;
+  }
+
+  if (isOffersLoading === FetchStatus.Failed) {
+    return <Oops />;
   }
 
   return (

@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 
-import { AppRoute, CITIES } from '../../const';
+import { AppRoute, Cities } from '../../const';
 
 export default function RandomLocation (): JSX.Element {
-  const randomCity = CITIES[Math.floor(Math.random() * CITIES.length)];
+  const randomCity = Object.values(Cities)[Math.floor(Math.random() * Object.values(Cities).length)];
   return (
     <section className="locations locations--login locations--current">
       <div className="locations__item">

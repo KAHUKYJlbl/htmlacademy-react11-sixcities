@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import App from './components/app/app';
 import { store } from './store/store';
-import { checkAuthStatus } from './store/actions/api-actions';
-import 'react-toastify/dist/ReactToastify.css';
+import { checkAuthStatus } from './store/user/api-actions';
 
 store.dispatch(checkAuthStatus());
 
@@ -17,7 +17,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <ToastContainer />
+      <ToastContainer position={toast.POSITION.BOTTOM_RIGHT} />
       <App />
     </Provider>
   </React.StrictMode>,

@@ -1,19 +1,20 @@
 import classNames from 'classnames';
 import { useRef, useState } from 'react';
 
-import { changeCurrentSort } from '../../store/actions/app-actions';
 
 import { useAppSelector } from '../../hooks/store-hooks/use-app-selector';
 import { useAppDispatch } from '../../hooks/store-hooks/use -app-dispatch';
 import useClickOutside from '../../hooks/use-click-outside/use-click-outside';
 
 import { SortType } from '../../const';
+import { getCurrentSort } from '../../store/app/selectors';
+import { changeCurrentSort } from '../../store/app/app-slice';
 
 export default function Sort (): JSX.Element {
   const ref = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
   useClickOutside(ref, () => setIsOpen(false));
-  const currentSort = useAppSelector((state) => state.currentSort);
+  const currentSort = useAppSelector(getCurrentSort);
   const dispatch = useAppDispatch();
 
   const handleSortChange = (newSort: SortType) => {
