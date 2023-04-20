@@ -1,9 +1,8 @@
+import { NewComment } from '../api/comment';
 import { Person } from './person';
 
-export type Comment = {
-  comment: string;
+export type Comment = NewComment & {
   date: string;
   id: number;
-  rating: number;
   user: Person;
 }

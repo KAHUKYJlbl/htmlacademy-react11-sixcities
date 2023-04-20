@@ -9,6 +9,7 @@ import StarRating from '../star-rating/star-rating';
 import ReviewItem from '../review-item/review-item';
 import { useAppSelector } from '../../hooks/store-hooks/use-app-selector';
 import { getComments } from '../../store/comments/selectors';
+import { getAuthStatus } from '../../store/user/selectors';
 
 type RoomInfoProps = {
   isPremium?: boolean;
@@ -17,6 +18,7 @@ type RoomInfoProps = {
 
 export default function RoomInfo ({isPremium = true, offer}: RoomInfoProps): JSX.Element {
   const comments = useAppSelector(getComments);
+  const isLogged = useAppSelector(getAuthStatus);
 
   return (
     <div className="property__container container">
@@ -90,7 +92,7 @@ export default function RoomInfo ({isPremium = true, offer}: RoomInfoProps): JSX
               />
             ))}
           </ul>
-          <NewCommentForm />
+          {isLogged && <NewCommentForm offerId={offer.id.toString()} />}
         </section>
       </div>
     </div>

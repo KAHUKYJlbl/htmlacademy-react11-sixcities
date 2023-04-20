@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { NameSpace, FetchStatus } from '../../const';
-import { fetchComments, fetchNearby, fetchOffer } from './api-actions';
+import { fetchNearby, fetchOffer } from './api-actions';
 import { Offer } from '../../types/offer/offer';
 import { Comment } from '../../types/offer/comment';
 
@@ -37,9 +37,6 @@ export const roomSlice = createSlice({
       })
       .addCase(fetchNearby.fulfilled, (state, action) => {
         state.nearbyOffers = action.payload;
-      })
-      .addCase(fetchComments.fulfilled, (state, action) => {
-        state.comments = action.payload;
       });
   }
 });
