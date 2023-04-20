@@ -12,10 +12,11 @@ import LoadingSpinner from '../../components/loading-spinner/loading-spinner';
 
 import { CurrentSortCallback } from '../../utils/sort-offers';
 import { Cities, SortType } from '../../const';
-import { getCurrentCity, getCurrentSort, getOffers, isOffersLoading, isOffersLoadingFailed } from '../../store/app/selectors';
+import { getCurrentCity, getCurrentSort } from '../../store/app/selectors';
 import { changeCurrentCity } from '../../store/app/app-slice';
 import { fetchOffers } from '../../store/offers/api-actions';
 import Oops from '../../components/oops/oops';
+import { getOffers, isOffersLoading, isOffersLoadingFailed } from '../../store/offers/selectors';
 
 export default function Main(): JSX.Element {
   const offers = useAppSelector(getOffers);

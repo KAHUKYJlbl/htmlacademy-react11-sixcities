@@ -1,6 +1,6 @@
 import { useAppDispatch } from '../../hooks/store-hooks/use -app-dispatch';
 import classes from './oops.module.sass';
-import { fetchOffers } from '../../store/app/api-actions';
+import { fetchOffers } from '../../store/offers/api-actions';
 
 export default function Oops(): JSX.Element {
   const dispatch = useAppDispatch();

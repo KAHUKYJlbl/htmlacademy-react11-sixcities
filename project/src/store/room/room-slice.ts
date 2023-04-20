@@ -20,7 +20,7 @@ const initialState: InitialState = {
 };
 
 export const roomSlice = createSlice({
-  name: NameSpace.User,
+  name: NameSpace.Room,
   initialState,
   reducers: {},
   extraReducers(builder) {

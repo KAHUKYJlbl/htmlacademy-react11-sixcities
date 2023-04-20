@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useAppDispatch } from '../../hooks/store-hooks/use -app-dispatch';
 import { useAppSelector } from '../../hooks/store-hooks/use-app-selector';
@@ -51,11 +51,22 @@ type NewCommentFormProps = {
 export default function NewCommentForm ({offerId}: NewCommentFormProps): JSX.Element {
   const isLoading = useAppSelector(isCommentsLoading);
   const isCommentPosted = useAppSelector(isCommentPostingSucceed);
+
   const dispatch = useAppDispatch();
+
   const [newComment, setNewComment] = useState({
     rating: '',
     review: '',
   });
+
+  useEffect(() => {
+    if (isCommentPosted) {
+      setNewComment({
+        rating: '',
+        review: '',
+      });
+    }
+  }, [isCommentPosted]);
 
   const handleCommentChange = (evt: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setNewComment({
@@ -69,12 +80,12 @@ export default function NewCommentForm ({offerId}: NewCommentFormProps): JSX.Ele
 
     dispatch(postNewComment({id: offerId, comment: newComment.review, rating: +newComment.rating}));
 
-    if (isCommentPosted) {
-      setNewComment({
-        rating: '',
-        review: '',
-      });
-    }
+    // if (newCommentStatus === FetchStatus.Success) {
+    //   setNewComment({
+    //     rating: '',
+    //     review: '',
+    //   });
+    // }
   };
 
   // flex-direction: reverse
