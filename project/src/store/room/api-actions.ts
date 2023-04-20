@@ -1,13 +1,14 @@
 import { generatePath } from 'react-router-dom';
-import {createAsyncThunk} from '@reduxjs/toolkit';
-import { AxiosInstance } from 'axios';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { AxiosError, AxiosInstance } from 'axios';
 import { toast } from 'react-toastify';
 
 import { AppDispatch, State } from '../../types/state/state';
-
-import { APIRoute } from '../../const';
-import { Offer } from '../../types/offer/offer';
 import { Comment } from '../../types/offer/comment';
+import { Offer } from '../../types/offer/offer';
+
+import { APIRoute, AppRoute } from '../../const';
+import { redirectToRoute } from '../actions/app-actions';
 
 export const fetchOffer = createAsyncThunk<Offer, string | undefined, {
   dispatch: AppDispatch;
@@ -18,10 +19,15 @@ export const fetchOffer = createAsyncThunk<Offer, string | undefined, {
   async (id = '0', {dispatch, extra: axios}) => {
     try {
       const {data} = await axios.get<Offer>(generatePath(APIRoute.Offer, { hotelId: id }));
+
       return data;
-    } catch (err) {
-      toast.error('Room loading failed. Please try again.', {position: toast.POSITION.BOTTOM_RIGHT});
-      throw err;
+    } catch (error) {
+      if (error instanceof AxiosError && error.response?.status === 404) {
+        dispatch(redirectToRoute(AppRoute.NotFound));
+        toast.error('Room not found.', {position: toast.POSITION.BOTTOM_RIGHT});
+      }
+
+      throw error;
     }
   },
 );

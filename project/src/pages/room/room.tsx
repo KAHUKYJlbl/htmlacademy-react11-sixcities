@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Navigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks/store-hooks/use -app-dispatch';
 
 import Gallery from '../../components/gallery/gallery';
@@ -9,11 +9,10 @@ import NearPlaces from '../../components/near-places/near-places';
 import CityMap from '../../components/city-map/city-map';
 import LoadingSpinner from '../../components/loading-spinner/loading-spinner';
 
-import { AppRoute, FetchStatus } from '../../const';
+import { FetchStatus } from '../../const';
 import { useAppSelector } from '../../hooks/store-hooks/use-app-selector';
 import { fetchComments, fetchNearby, fetchOffer } from '../../store/room/api-actions';
 import { getNearbyOffers, getOffer, getOfferLoadingStatus } from '../../store/room/selectors';
-import Oops from '../oops/oops';
 
 export default function Room(): JSX.Element {
   const {id} = useParams();
@@ -27,25 +26,17 @@ export default function Room(): JSX.Element {
     dispatch(fetchNearby(id));
   }, [dispatch, id]);
 
-  if (currentOffer === null && isOfferLoading === FetchStatus.Success) {
-    return <Navigate to={AppRoute.NotFound} />;
-  }
-
-  if (isOfferLoading === FetchStatus.Idle || isOfferLoading === FetchStatus.Pending) {
+  if (isOfferLoading === FetchStatus.Idle || isOfferLoading === FetchStatus.Pending || !currentOffer) {
     return <LoadingSpinner spinnerType='page' />;
-  }
-
-  if (isOfferLoading === FetchStatus.Failed) {
-    return <Oops id={id} />;
   }
 
   return (
     <Layout isHeaderNav>
       <main className="page__main page__main--property">
         <section className="property">
-          { currentOffer && <Gallery offer={currentOffer} /> }
-          { currentOffer && <RoomInfo offer={currentOffer} /> }
-          { currentOffer && <CityMap mapClasses={['property__map']} offers={[currentOffer, ...nearbyOffers]} hoveredOfferId={currentOffer.id} /> }
+          <Gallery offer={currentOffer} />
+          <RoomInfo offer={currentOffer} />
+          <CityMap mapClasses={['property__map']} offers={[currentOffer, ...nearbyOffers]} hoveredOfferId={currentOffer.id} />
         </section>
         <div className="container">
           <NearPlaces offers={nearbyOffers} />
