@@ -13,8 +13,8 @@ import LoadingSpinner from '../../components/loading-spinner/loading-spinner';
 import { CurrentSortCallback } from '../../utils/sort-offers';
 import { Cities, SortType } from '../../const';
 import { getCurrentCity, getCurrentSort, getOffers, isOffersLoading, isOffersLoadingFailed } from '../../store/app/selectors';
-import { changeCurrentCity } from '../../store/app/actions';
-import { fetchOffers } from '../../store/app/api-actions';
+import { changeCurrentCity } from '../../store/app/app-slice';
+import { fetchOffers } from '../../store/offers/api-actions';
 import Oops from '../../components/oops/oops';
 
 export default function Main(): JSX.Element {

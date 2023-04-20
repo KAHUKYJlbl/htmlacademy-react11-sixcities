@@ -4,7 +4,6 @@ import { StoredUser } from '../../types/api/login';
 
 import {NameSpace, FetchStatus, AuthorizationStatus} from '../../const';
 import { checkAuthStatus, login, logout } from './api-actions';
-import { dropToken, setToken } from '../../services/token';
 
 type InitialState = {
   isUserLoading: FetchStatus;
@@ -18,7 +17,7 @@ const initialState: InitialState = {
   user: null,
 };
 
-export const userProcess = createSlice({
+export const userSlice = createSlice({
   name: NameSpace.User,
   initialState,
   reducers: {},
@@ -27,8 +26,7 @@ export const userProcess = createSlice({
       .addCase(checkAuthStatus.fulfilled, (state, action) => {
         state.isUserLoading = FetchStatus.Success;
         state.authStatus = AuthorizationStatus.Auth;
-        const {token, ...rest} = action.payload;
-        state.user = rest;
+        state.user = action.payload;
       })
       .addCase(checkAuthStatus.pending, (state) => {
         state.isUserLoading = FetchStatus.Pending;
@@ -40,9 +38,7 @@ export const userProcess = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.isUserLoading = FetchStatus.Success;
         state.authStatus = AuthorizationStatus.Auth;
-        const {token, ...rest} = action.payload;
-        setToken(token);
-        state.user = rest;
+        state.user = action.payload;
       })
       .addCase(login.pending, (state) => {
         state.isUserLoading = FetchStatus.Pending;
@@ -54,7 +50,6 @@ export const userProcess = createSlice({
       .addCase(logout.fulfilled, (state) => {
         state.isUserLoading = FetchStatus.Success;
         state.authStatus = AuthorizationStatus.NoAuth;
-        dropToken();
         state.user = null;
       })
       .addCase(logout.pending, (state) => {
