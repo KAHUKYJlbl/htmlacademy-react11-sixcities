@@ -9,15 +9,15 @@ import NearPlaces from '../../components/near-places/near-places';
 import CityMap from '../../components/city-map/city-map';
 import LoadingSpinner from '../../components/loading-spinner/loading-spinner';
 
-import { FetchStatus } from '../../const';
 import { useAppSelector } from '../../hooks/store-hooks/use-app-selector';
-import { fetchComments, fetchNearby, fetchOffer } from '../../store/room/api-actions';
-import { getNearbyOffers, getOffer, getOfferLoadingStatus } from '../../store/room/selectors';
+import { fetchNearby, fetchOffer } from '../../store/room/api-actions';
+import { getNearbyOffers, getOffer, isOfferLoading } from '../../store/room/selectors';
+import { fetchComments } from '../../store/comments/api-actions';
 
 export default function Room(): JSX.Element {
   const {id} = useParams();
   const dispatch = useAppDispatch();
-  const isOfferLoading = useAppSelector(getOfferLoadingStatus);
+  const isLoading = useAppSelector(isOfferLoading);
   const currentOffer = useAppSelector(getOffer);
   const nearbyOffers = useAppSelector(getNearbyOffers);
   useEffect(() => {
@@ -26,7 +26,7 @@ export default function Room(): JSX.Element {
     dispatch(fetchNearby(id));
   }, [dispatch, id]);
 
-  if (isOfferLoading === FetchStatus.Idle || isOfferLoading === FetchStatus.Pending || !currentOffer) {
+  if (isLoading || !currentOffer) {
     return <LoadingSpinner spinnerType='page' />;
   }
 

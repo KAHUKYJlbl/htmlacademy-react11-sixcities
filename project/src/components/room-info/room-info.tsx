@@ -8,7 +8,7 @@ import NewCommentForm from '../new-comment-form/new-comment-form';
 import StarRating from '../star-rating/star-rating';
 import ReviewItem from '../review-item/review-item';
 import { useAppSelector } from '../../hooks/store-hooks/use-app-selector';
-import { getComments } from '../../store/room/selectors';
+import { getComments } from '../../store/comments/selectors';
 
 type RoomInfoProps = {
   isPremium?: boolean;

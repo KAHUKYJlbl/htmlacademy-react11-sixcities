@@ -1,12 +1,10 @@
 import { FetchStatus, NameSpace } from '../../const';
-import { Offer } from '../../types/offer/offer';
+import { Comment } from '../../types/offer/comment';
 import { State } from '../../types/state/state';
+
+export const getComments = (state: State): Comment[] => state[NameSpace.Room].comments;
 
 export const isOfferLoading = (state: State): boolean => (
   state[NameSpace.Room].isOfferLoading === FetchStatus.Idle
   || state[NameSpace.Room].isOfferLoading === FetchStatus.Pending
 );
-
-export const getNearbyOffers = (state: State): Offer[] => state[NameSpace.Room].nearbyOffers;
-
-export const getOffer = (state: State): Offer | null => state[NameSpace.Room].offer;

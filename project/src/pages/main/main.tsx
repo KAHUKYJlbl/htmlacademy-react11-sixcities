@@ -11,8 +11,8 @@ import CityMap from '../../components/city-map/city-map';
 import LoadingSpinner from '../../components/loading-spinner/loading-spinner';
 
 import { CurrentSortCallback } from '../../utils/sort-offers';
-import { Cities, FetchStatus, SortType } from '../../const';
-import { getCurrentCity, getCurrentSort, getOffers, getOffersLoadingStatus } from '../../store/app/selectors';
+import { Cities, SortType } from '../../const';
+import { getCurrentCity, getCurrentSort, getOffers, isOffersLoading, isOffersLoadingFailed } from '../../store/app/selectors';
 import { changeCurrentCity } from '../../store/app/actions';
 import { fetchOffers } from '../../store/app/api-actions';
 import Oops from '../../components/oops/oops';
@@ -21,7 +21,8 @@ export default function Main(): JSX.Element {
   const offers = useAppSelector(getOffers);
   const currentCity = useAppSelector(getCurrentCity);
   const currentSort = useAppSelector(getCurrentSort);
-  const isOffersLoading = useAppSelector(getOffersLoadingStatus);
+  const isLoading = useAppSelector(isOffersLoading);
+  const isLoadingFailed = useAppSelector(isOffersLoadingFailed);
   const dispatch = useAppDispatch();
   const [hoveredOfferId, setHoveredOfferId] = useState<number | null>(null);
   useEffect(() => {
@@ -54,11 +55,11 @@ export default function Main(): JSX.Element {
     );
   }
 
-  if (isOffersLoading === FetchStatus.Idle || isOffersLoading === FetchStatus.Pending) {
+  if (isLoading) {
     return <LoadingSpinner spinnerType='page' />;
   }
 
-  if (isOffersLoading === FetchStatus.Failed) {
+  if (isLoadingFailed) {
     return <Oops />;
   }
 

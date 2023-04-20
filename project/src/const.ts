@@ -10,6 +10,7 @@ export enum NameSpace {
   App = 'APP',
   User = 'USER',
   Room = 'ROOM',
+  Comments = 'COMMENTS',
 }
 
 export enum APIRoute {

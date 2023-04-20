@@ -4,7 +4,6 @@ import { AxiosError, AxiosInstance } from 'axios';
 import { toast } from 'react-toastify';
 
 import { AppDispatch, State } from '../../types/state/state';
-import { Comment } from '../../types/offer/comment';
 import { Offer } from '../../types/offer/offer';
 
 import { APIRoute, AppRoute } from '../../const';
@@ -44,23 +43,6 @@ export const fetchNearby = createAsyncThunk<Offer[], string | undefined, {
       return data;
     } catch (err) {
       toast.error('Nearby offers loading failed.', {position: toast.POSITION.BOTTOM_RIGHT});
-      throw err;
-    }
-  },
-);
-
-export const fetchComments = createAsyncThunk<Comment[], string | undefined, {
-  dispatch: AppDispatch;
-  state: State;
-  extra: AxiosInstance;
-}>(
-  'room/fetchComments',
-  async (id = '0', {dispatch, extra: axios}) => {
-    try {
-      const {data} = await axios.get<Comment[]>(generatePath(APIRoute.Comments, { hotelId: id }));
-      return data;
-    } catch (err) {
-      toast.error('Comments loading failed.', {position: toast.POSITION.BOTTOM_RIGHT});
       throw err;
     }
   },

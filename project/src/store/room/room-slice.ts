@@ -19,7 +19,7 @@ const initialState: InitialState = {
   comments: [],
 };
 
-export const roomProcess = createSlice({
+export const roomSlice = createSlice({
   name: NameSpace.User,
   initialState,
   reducers: {},
