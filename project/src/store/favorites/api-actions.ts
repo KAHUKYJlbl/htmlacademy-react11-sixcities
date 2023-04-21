@@ -1,12 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError, AxiosInstance } from 'axios';
 import { toast } from 'react-toastify';
+import { generatePath } from 'react-router-dom';
 
 import { Offer } from '../../types/offer/offer';
 import { AppDispatch, State } from '../../types/state/state';
-import { APIRoute } from '../../const';
 import { ToggleFavoriteData } from '../../types/api/favorites';
-import { generatePath } from 'react-router-dom';
+import { APIRoute, AppRoute } from '../../const';
+import { redirectToRoute } from '../actions/app-actions';
 
 export const fetchFavorites = createAsyncThunk<Offer[], undefined, {
   dispatch: AppDispatch;
@@ -48,6 +49,7 @@ export const toggleFavoriteStatus = createAsyncThunk<Offer, ToggleFavoriteData, 
       if (error instanceof AxiosError && error.response?.status === 401) {
         toast.error('You are not logged in or you do not have permission to this page.');
       }
+      dispatch(redirectToRoute(AppRoute.Login));
 
       throw error;
     }

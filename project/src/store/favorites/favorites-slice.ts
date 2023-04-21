@@ -26,6 +26,12 @@ export const favotitesSlice = createSlice({
         state.favoriteOffers = action.payload;
         state.favoritesLoadingStatus = FetchStatus.Success;
       })
+      .addCase(fetchFavorites.pending, (state) => {
+        state.favoritesLoadingStatus = FetchStatus.Pending;
+      })
+      .addCase(fetchFavorites.rejected, (state) => {
+        state.favoritesLoadingStatus = FetchStatus.Failed;
+      })
       .addCase(toggleFavoriteStatus.fulfilled, (state, action) => {
         if (action.payload.isFavorite) {
           state.favoriteOffers.push(action.payload);
