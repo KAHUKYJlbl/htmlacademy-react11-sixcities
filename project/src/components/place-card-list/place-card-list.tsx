@@ -27,7 +27,7 @@ export default function PlaceCardList({
 
   return (
     <div className={classNames(placeCardContainerClasses)}>
-      {offers.map((offer) => (
+      {offers?.map((offer) => (
         <PlaceCard
           key={offer.id}
           offer={offer}

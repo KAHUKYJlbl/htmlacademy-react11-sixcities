@@ -5,11 +5,13 @@ import { useAppDispatch } from '../../hooks/store-hooks/use -app-dispatch';
 import { AppRoute } from '../../const';
 import { getUser, isAuth } from '../../store/user/selectors';
 import { logout } from '../../store/user/api-actions';
+import { getFavorites } from '../../store/favorites/selectors';
 
 
 export default function HeaderNav(): JSX.Element {
   const isAuthorized = useAppSelector(isAuth);
   const user = useAppSelector(getUser);
+  const favoriteOffersCount = useAppSelector(getFavorites).length;
   const dispatch = useAppDispatch();
 
   const handleLogoutClick = () => {
@@ -35,7 +37,7 @@ export default function HeaderNav(): JSX.Element {
                 ? (
                   <>
                     <span className="header__user-name user__name">{user?.email}</span>
-                    <span className="header__favorite-count">{user?.id}</span>
+                    <span className="header__favorite-count">{favoriteOffersCount}</span>
                   </>)
                 : (
                   <span className="header__login">Sign in</span>)

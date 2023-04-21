@@ -13,6 +13,7 @@ export enum APIRoute {
   Comments = '/comments/:hotelId',
   Login = '/login',
   Logout = '/logout',
+  Favorites = '/favorite',
 }
 
 export enum NameSpace {
@@ -21,6 +22,7 @@ export enum NameSpace {
   Offers = 'OFFERS',
   Room = 'ROOM',
   Comments = 'COMMENTS',
+  Favorites = 'FAVORITES',
 }
 
 export enum AuthorizationStatus {

@@ -5,12 +5,12 @@ import { Offer } from '../../types/offer/offer';
 import { fetchOffers } from '../offers/api-actions';
 
 type InitialState = {
-  isOffersLoading: FetchStatus;
+  offersFetchStatus: FetchStatus;
   offers: Offer[] | [];
 }
 
 const initialState: InitialState = {
-  isOffersLoading: FetchStatus.Idle,
+  offersFetchStatus: FetchStatus.Idle,
   offers: [],
 };
 
@@ -21,14 +21,14 @@ export const offersSlice = createSlice({
   extraReducers(builder) {
     builder
       .addCase(fetchOffers.fulfilled, (state, action) => {
-        state.isOffersLoading = FetchStatus.Success;
+        state.offersFetchStatus = FetchStatus.Success;
         state.offers = action.payload;
       })
       .addCase(fetchOffers.pending, (state) => {
-        state.isOffersLoading = FetchStatus.Pending;
+        state.offersFetchStatus = FetchStatus.Pending;
       })
       .addCase(fetchOffers.rejected, (state) => {
-        state.isOffersLoading = FetchStatus.Failed;
+        state.offersFetchStatus = FetchStatus.Failed;
       });
   }
 });
