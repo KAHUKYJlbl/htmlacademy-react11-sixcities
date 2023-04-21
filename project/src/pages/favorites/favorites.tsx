@@ -1,8 +1,12 @@
+import { useEffect } from 'react';
+
 import Layout from '../../components/layout/layout';
-import PlaceCardListByCities from '../../components/place-card-list-by-cities/place-card-list-by-cities';
 import LoadingSpinner from '../../components/loading-spinner/loading-spinner';
+import PlaceCardListByCities from '../../components/place-card-list-by-cities/place-card-list-by-cities';
 import { useAppSelector } from '../../hooks/store-hooks/use-app-selector';
+import { useAppDispatch } from '../../hooks/store-hooks/use -app-dispatch';
 import { getFavorites, isFavoritesLoading } from '../../store/favorites/selectors';
+import { fetchFavorites } from '../../store/favorites/api-actions';
 import { getOffersByCities } from '../../utils/offers-by-cities';
 
 function EmptyFavorites() {
@@ -17,6 +21,11 @@ function EmptyFavorites() {
 export default function Favorites(): JSX.Element {
   const favoriteOffers = useAppSelector(getFavorites);
   const isLoading = useAppSelector(isFavoritesLoading);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchFavorites());
+  }, [dispatch]);
 
   if (isLoading) {
     return <LoadingSpinner spinnerType='page' />;

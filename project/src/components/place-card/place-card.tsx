@@ -21,16 +21,22 @@ const placeCardTypes = {
     placeCardClasses: ['place-card', 'favorites__card'],
     cardInfoClasses: ['place-card__info', 'favorites__card-info'],
     imageWrapperClasses: ['place-card__image-wrapper', 'favorites__image-wrapper'],
+    imageWidth: '150',
+    imageHeight: '110',
   },
   main: {
     placeCardClasses: ['place-card', 'cities__card'],
     cardInfoClasses: ['place-card__info'],
     imageWrapperClasses: ['place-card__image-wrapper', 'cities__image-wrapper'],
+    imageWidth: '260',
+    imageHeight: '200',
   },
   nearby: {
     placeCardClasses: ['place-card', 'near-places__card'],
     cardInfoClasses: ['place-card__info'],
     imageWrapperClasses: ['place-card__image-wrapper', 'near-places__image-wrapper'],
+    imageWidth: '260',
+    imageHeight: '200',
   },
 };
 
@@ -43,18 +49,19 @@ export default function PlaceCard({
   const placeCardClasses = classNames(placeCardTypes[placeCardType].placeCardClasses);
   const imageWrapperClasses = classNames(placeCardTypes[placeCardType].imageWrapperClasses);
   const cardInfoClasses = classNames(placeCardTypes[placeCardType].cardInfoClasses);
+  const imageWidth = placeCardTypes[placeCardType].imageWidth;
+  const imageHeight = placeCardTypes[placeCardType].imageHeight;
 
   return (
     <article
       className={placeCardClasses}
       onMouseEnter={() => onCardMouseEnter(offer.id)}
       onMouseLeave={() => onCardMouseLeave()}
-      // onClick={() => window.scrollTo(0, 0)}
     >
       {offer.isPremium && <Badge title="Premium" badgeClasses={['place-card__mark']} />}
-      <div className={imageWrapperClasses}>
+      <div className={imageWrapperClasses} onClick={() => window.scrollTo(0, 0)}>
         <Link to={generatePath(AppRoute.Room, { id: offer.id.toString() })}>
-          <img className="place-card__image" src={offer.previewImage} width="260" height="200" alt="Place image" />
+          <img className="place-card__image" src={offer.previewImage} width={imageWidth} height={imageHeight} alt="Place image" />
         </Link>
       </div>
       <div className={cardInfoClasses}>
@@ -66,10 +73,11 @@ export default function PlaceCard({
           <FavoriteButton
             isFavorite={offer.isFavorite}
             buttonType="card"
+            offerId={offer.id}
           />
         </div>
         <StarRating rating={offer.rating} starRatingType='card' />
-        <h2 className="place-card__name">
+        <h2 className="place-card__name" onClick={() => window.scrollTo(0, 0)}>
           <Link to={generatePath(AppRoute.Room, { id: offer.id.toString() })}>
             {offer.title}
           </Link>

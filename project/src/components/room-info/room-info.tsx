@@ -28,7 +28,7 @@ export default function RoomInfo ({isPremium = true, offer}: RoomInfoProps): JSX
           <h1 className="property__name">
             {offer.title}
           </h1>
-          <FavoriteButton isFavorite={offer.isFavorite} buttonType='room' />
+          <FavoriteButton isFavorite={offer.isFavorite} buttonType='room' offerId={offer.id} />
         </div>
         <StarRating rating={offer.rating} starRatingType='room' />
         <ul className="property__features">

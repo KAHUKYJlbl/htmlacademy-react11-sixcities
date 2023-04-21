@@ -14,6 +14,7 @@ export enum APIRoute {
   Login = '/login',
   Logout = '/logout',
   Favorites = '/favorite',
+  ToggleFavorite = '/favorite/:hotelId/:status',
 }
 
 export enum NameSpace {

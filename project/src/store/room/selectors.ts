@@ -3,8 +3,8 @@ import { Offer } from '../../types/offer/offer';
 import { State } from '../../types/state/state';
 
 export const isOfferLoading = (state: State): boolean => (
-  state[NameSpace.Room].isOfferLoading === FetchStatus.Idle
-  || state[NameSpace.Room].isOfferLoading === FetchStatus.Pending
+  state[NameSpace.Room].offerLoadingStatus === FetchStatus.Idle
+  || state[NameSpace.Room].offerLoadingStatus === FetchStatus.Pending
 );
 
 export const getNearbyOffers = (state: State): Offer[] => state[NameSpace.Room].nearbyOffers;

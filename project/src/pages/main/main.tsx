@@ -9,21 +9,23 @@ import Locations from '../../components/locations/locations';
 import Sort from '../../components/sort/sort';
 import CityMap from '../../components/city-map/city-map';
 import LoadingSpinner from '../../components/loading-spinner/loading-spinner';
+import Oops from '../../components/oops/oops';
 
 import { CurrentSortCallback } from '../../utils/sort-offers';
 import { Cities, SortType } from '../../const';
 import { getCurrentCity, getCurrentSort } from '../../store/app/selectors';
 import { changeCurrentCity } from '../../store/app/app-slice';
 import { fetchOffers } from '../../store/offers/api-actions';
-import Oops from '../../components/oops/oops';
 import { getOffers, isOffersLoading, isOffersLoadingFailed } from '../../store/offers/selectors';
+import { isFavoritesLoading } from '../../store/favorites/selectors';
 import { fetchFavorites } from '../../store/favorites/api-actions';
 
 export default function Main(): JSX.Element {
   const offers = useAppSelector(getOffers);
   const currentCity = useAppSelector(getCurrentCity);
   const currentSort = useAppSelector(getCurrentSort);
-  const isLoading = useAppSelector(isOffersLoading);
+  const isOffLoading = useAppSelector(isOffersLoading);
+  const isFavLoading = useAppSelector(isFavoritesLoading);
   const isLoadingFailed = useAppSelector(isOffersLoadingFailed);
   const dispatch = useAppDispatch();
   const [hoveredOfferId, setHoveredOfferId] = useState<number | null>(null);
@@ -58,7 +60,7 @@ export default function Main(): JSX.Element {
     );
   }
 
-  if (isLoading) {
+  if (isOffLoading || isFavLoading) {
     return <LoadingSpinner spinnerType='page' />;
   }
 
