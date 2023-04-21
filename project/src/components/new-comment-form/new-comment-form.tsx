@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react';
 import { useAppDispatch } from '../../hooks/store-hooks/use -app-dispatch';
 import { useAppSelector } from '../../hooks/store-hooks/use-app-selector';
 import { postNewComment } from '../../store/comments/api-actions';
-import { isCommentPostingSucceed, isCommentsLoading } from '../../store/comments/selectors';
+import { getCommentPostingStatus, isCommentsLoading } from '../../store/comments/selectors';
+import { FetchStatus } from '../../const';
 
 const Rating: {[rating: string]: string} = {
   '1': 'terribly',
@@ -50,7 +51,7 @@ type NewCommentFormProps = {
 
 export default function NewCommentForm ({offerId}: NewCommentFormProps): JSX.Element {
   const isLoading = useAppSelector(isCommentsLoading);
-  const isCommentPosted = useAppSelector(isCommentPostingSucceed);
+  const commentPostinStatus = useAppSelector(getCommentPostingStatus);
 
   const dispatch = useAppDispatch();
 
@@ -60,13 +61,13 @@ export default function NewCommentForm ({offerId}: NewCommentFormProps): JSX.Ele
   });
 
   useEffect(() => {
-    if (isCommentPosted) {
+    if (commentPostinStatus === FetchStatus.Success) {
       setNewComment({
         rating: '',
         review: '',
       });
     }
-  }, [isCommentPosted]);
+  }, [commentPostinStatus]);
 
   const handleCommentChange = (evt: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setNewComment({

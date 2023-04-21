@@ -9,4 +9,4 @@ export const isCommentsLoading = (state: State): boolean => (
   || state[NameSpace.Comments].commentsLoadingStatus === FetchStatus.Pending
 );
 
-export const isCommentPostingSucceed = (state: State): boolean => (state[NameSpace.Comments].commentPostingStatus === FetchStatus.Success);
+export const getCommentPostingStatus = (state: State): FetchStatus => state[NameSpace.Comments].commentPostingStatus;
