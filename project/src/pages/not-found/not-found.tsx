@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 export default function NotFound (): JSX.Element {
   return (
     <Link to="/">
-      <div className={classes.container}>
-        <figure>
-          <figcaption>
+      <div className={classes.container404}>
+        <figure className={classes.figure404}>
+          <figcaption className={classes.figcaption404}>
             <span className={classes.e}></span>
             <span className={classes.r}></span>
             <span className={classes.r}></span>

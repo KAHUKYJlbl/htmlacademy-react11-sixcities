@@ -1,4 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+
+import { useAppDispatch } from '../../hooks/store-hooks/use -app-dispatch';
+import { useAppSelector } from '../../hooks/store-hooks/use-app-selector';
+import { postNewComment } from '../../store/comments/api-actions';
+import { getCommentPostingStatus, isCommentsLoading } from '../../store/comments/selectors';
+import { FetchStatus } from '../../const';
 
 const Rating: {[rating: string]: string} = {
   '1': 'terribly',
@@ -39,11 +45,29 @@ function RatingStar({currentRating, starRating, changeHandler}: RatingStarProps)
   );
 }
 
-export default function NewCommentForm (): JSX.Element {
+type NewCommentFormProps = {
+  offerId: string;
+}
+
+export default function NewCommentForm ({offerId}: NewCommentFormProps): JSX.Element {
+  const isLoading = useAppSelector(isCommentsLoading);
+  const commentPostinStatus = useAppSelector(getCommentPostingStatus);
+
+  const dispatch = useAppDispatch();
+
   const [newComment, setNewComment] = useState({
     rating: '',
     review: '',
   });
+
+  useEffect(() => {
+    if (commentPostinStatus === FetchStatus.Success) {
+      setNewComment({
+        rating: '',
+        review: '',
+      });
+    }
+  }, [commentPostinStatus]);
 
   const handleCommentChange = (evt: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setNewComment({
@@ -55,10 +79,14 @@ export default function NewCommentForm (): JSX.Element {
   const handleFormSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
-    setNewComment({
-      rating: '',
-      review: '',
-    });
+    dispatch(postNewComment({id: offerId, comment: newComment.review, rating: +newComment.rating}));
+
+    // if (newCommentStatus === FetchStatus.Success) {
+    //   setNewComment({
+    //     rating: '',
+    //     review: '',
+    //   });
+    // }
   };
 
   // flex-direction: reverse
@@ -71,35 +99,37 @@ export default function NewCommentForm (): JSX.Element {
       method="post"
       onSubmit={handleFormSubmit}
     >
-      <label className="reviews__label form__label" htmlFor="review">Your review</label>
-      <div className="reviews__rating-form form__rating">
-        {ratings.map((rating) => (
-          <RatingStar
-            key={rating}
-            currentRating={newComment.rating}
-            starRating={rating}
-            changeHandler={handleCommentChange}
-          />
-        ))}
-      </div>
-      <textarea
-        className="reviews__textarea form__textarea"
-        id="review"
-        name="review"
-        placeholder="Tell how was your stay, what you like and what can be improved"
-        value={newComment.review}
-        onChange={handleCommentChange}
-      >
-      </textarea>
-      <div className="reviews__button-wrapper">
-        <p className="reviews__help">
-          To submit review please make sure to set{' '}
-          <span className="reviews__star">rating</span>
-          and describe your stay with at least{' '}
-          <b className="reviews__text-amount">50 characters</b>.
-        </p>
-        <button className="reviews__submit form__submit button" type="submit">Submit</button>
-      </div>
+      <fieldset disabled={isLoading}>
+        <label className="reviews__label form__label" htmlFor="review">Your review</label>
+        <div className="reviews__rating-form form__rating">
+          {ratings.map((rating) => (
+            <RatingStar
+              key={rating}
+              currentRating={newComment.rating}
+              starRating={rating}
+              changeHandler={handleCommentChange}
+            />
+          ))}
+        </div>
+        <textarea
+          className="reviews__textarea form__textarea"
+          id="review"
+          name="review"
+          placeholder="Tell how was your stay, what you like and what can be improved"
+          value={newComment.review}
+          onChange={handleCommentChange}
+        >
+        </textarea>
+        <div className="reviews__button-wrapper">
+          <p className="reviews__help">
+            To submit review please make sure to set{' '}
+            <span className="reviews__star">rating</span>
+            and describe your stay with at least{' '}
+            <b className="reviews__text-amount">50 characters</b>.
+          </p>
+          <button className="reviews__submit form__submit button" type="submit">Submit</button>
+        </div>
+      </fieldset>
     </form>
   );
 }

@@ -17,7 +17,7 @@ export const fetchOffers = createAsyncThunk<Offer[], undefined, {
       const {data} = await axios.get<Offer[]>(APIRoute.Offers);
       return data;
     } catch (err) {
-      toast.error('Offers loading failed. Try again.');
+      toast.error('Offers loading failed. Please try again.', {position: toast.POSITION.BOTTOM_RIGHT});
       throw err;
     }
   },

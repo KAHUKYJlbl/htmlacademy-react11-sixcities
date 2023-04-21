@@ -2,13 +2,13 @@ import { Link } from 'react-router-dom';
 
 import { useAppSelector } from '../../hooks/store-hooks/use-app-selector';
 import { useAppDispatch } from '../../hooks/store-hooks/use -app-dispatch';
-import { AppRoute, AuthorizationStatus } from '../../const';
-import { getAuthStatus, getUser } from '../../store/user/selectors';
+import { AppRoute } from '../../const';
+import { getUser, isAuth } from '../../store/user/selectors';
 import { logout } from '../../store/user/api-actions';
 
 
 export default function HeaderNav(): JSX.Element {
-  const isLogged = useAppSelector(getAuthStatus) === AuthorizationStatus.Auth;
+  const isAuthorized = useAppSelector(isAuth);
   const user = useAppSelector(getUser);
   const dispatch = useAppDispatch();
 
@@ -20,11 +20,18 @@ export default function HeaderNav(): JSX.Element {
     <nav className="header__nav">
       <ul className="header__nav-list">
         <li className="header__nav-item user">
-          <Link className="header__nav-link header__nav-link--profile" to={isLogged ? AppRoute.Favorites : AppRoute.Login}>
+          <Link className="header__nav-link header__nav-link--profile" to={isAuthorized ? AppRoute.Favorites : AppRoute.Login}>
             <div className="header__avatar-wrapper user__avatar-wrapper">
+              {isAuthorized &&
+              <img
+                className="user__avatar"
+                src={user?.avatarUrl}
+                width="20" height="20"
+                alt="User avatar"
+              />}
             </div>
             {
-              isLogged
+              isAuthorized
                 ? (
                   <>
                     <span className="header__user-name user__name">{user?.email}</span>
@@ -36,7 +43,7 @@ export default function HeaderNav(): JSX.Element {
           </Link>
         </li>
         {
-          isLogged &&
+          isAuthorized &&
             <li className="header__nav-item">
               <a className="header__nav-link" href="#" onClick={handleLogoutClick}>
                 <span className="header__signout">Sign out</span>

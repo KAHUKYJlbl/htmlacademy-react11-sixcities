@@ -6,17 +6,21 @@ export enum AppRoute {
   NotFound = '/not-found',
 }
 
+export enum APIRoute {
+  Offers = '/hotels',
+  Offer = '/hotels/:hotelId',
+  Nearby = '/hotels/:hotelId/nearby',
+  Comments = '/comments/:hotelId',
+  Login = '/login',
+  Logout = '/logout',
+}
+
 export enum NameSpace {
   App = 'APP',
   User = 'USER',
   Offers = 'OFFERS',
   Room = 'ROOM',
-}
-
-export enum APIRoute {
-  Offers = '/hotels',
-  Login = '/login',
-  Logout = '/logout',
+  Comments = 'COMMENTS',
 }
 
 export enum AuthorizationStatus {

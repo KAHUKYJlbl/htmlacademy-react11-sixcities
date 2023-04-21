@@ -1,20 +1,15 @@
 import {PayloadAction, createSlice} from '@reduxjs/toolkit';
 
-import {NameSpace, SortType, Cities, FetchStatus} from '../../const';
-import { Offer } from '../../types/offer/offer';
+import {NameSpace, SortType, Cities} from '../../const';
 
 type InitialState = {
   currentCity: Cities;
   currentSort: SortType;
-  isOffersLoading: FetchStatus;
-  offers: Offer[] | [];
 }
 
 const initialState: InitialState = {
   currentCity: Cities.Paris,
   currentSort: SortType.Popular,
-  isOffersLoading: FetchStatus.Idle,
-  offers: [],
 };
 
 export const appSlice = createSlice({
