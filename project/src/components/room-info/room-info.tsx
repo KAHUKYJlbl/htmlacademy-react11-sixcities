@@ -18,7 +18,7 @@ type RoomInfoProps = {
 
 export default function RoomInfo ({isPremium = true, offer}: RoomInfoProps): JSX.Element {
   const comments = useAppSelector(getComments);
-  const isLogged = useAppSelector(getAuthStatus);
+  const authStatus = useAppSelector(getAuthStatus);
 
   return (
     <div className="property__container container">
@@ -28,7 +28,7 @@ export default function RoomInfo ({isPremium = true, offer}: RoomInfoProps): JSX
           <h1 className="property__name">
             {offer.title}
           </h1>
-          <FavoriteButton isFavorite={offer.isFavorite} buttonType='room' />
+          <FavoriteButton isFavorite={offer.isFavorite} buttonType='room' offerId={offer.id} />
         </div>
         <StarRating rating={offer.rating} starRatingType='room' />
         <ul className="property__features">
@@ -92,7 +92,7 @@ export default function RoomInfo ({isPremium = true, offer}: RoomInfoProps): JSX
               />
             ))}
           </ul>
-          {isLogged && <NewCommentForm offerId={offer.id.toString()} />}
+          {authStatus.auth && <NewCommentForm offerId={offer.id.toString()} />}
         </section>
       </div>
     </div>

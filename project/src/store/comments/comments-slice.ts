@@ -26,18 +26,21 @@ export const commentsSlice = createSlice({
         state.comments = action.payload;
         state.commentsLoadingStatus = FetchStatus.Success;
       })
+      .addCase(fetchComments.pending, (state) => {
+        state.commentsLoadingStatus = FetchStatus.Pending;
+      })
+      .addCase(fetchComments.rejected, (state) => {
+        state.commentsLoadingStatus = FetchStatus.Failed;
+      })
       .addCase(postNewComment.fulfilled, (state, action) => {
         state.comments = action.payload;
-        state.commentsLoadingStatus = FetchStatus.Success;
         state.commentPostingStatus = FetchStatus.Success;
       })
       .addCase(postNewComment.pending, (state) => {
-        state.commentsLoadingStatus = FetchStatus.Pending;
         state.commentPostingStatus = FetchStatus.Pending;
       })
       .addCase(postNewComment.rejected, (state) => {
         state.commentPostingStatus = FetchStatus.Failed;
-        state.commentsLoadingStatus = FetchStatus.Success;
       });
   }
 });

@@ -3,14 +3,16 @@ import { createSlice } from '@reduxjs/toolkit';
 import { NameSpace, FetchStatus } from '../../const';
 import { Offer } from '../../types/offer/offer';
 import { fetchOffers } from '../offers/api-actions';
+import { toggleFavoriteStatus } from '../favorites/api-actions';
+import { logout } from '../user/api-actions';
 
 type InitialState = {
-  isOffersLoading: FetchStatus;
+  offersLoadingStatus: FetchStatus;
   offers: Offer[] | [];
 }
 
 const initialState: InitialState = {
-  isOffersLoading: FetchStatus.Idle,
+  offersLoadingStatus: FetchStatus.Idle,
   offers: [],
 };
 
@@ -21,14 +23,27 @@ export const offersSlice = createSlice({
   extraReducers(builder) {
     builder
       .addCase(fetchOffers.fulfilled, (state, action) => {
-        state.isOffersLoading = FetchStatus.Success;
+        state.offersLoadingStatus = FetchStatus.Success;
         state.offers = action.payload;
       })
       .addCase(fetchOffers.pending, (state) => {
-        state.isOffersLoading = FetchStatus.Pending;
+        state.offersLoadingStatus = FetchStatus.Pending;
       })
       .addCase(fetchOffers.rejected, (state) => {
-        state.isOffersLoading = FetchStatus.Failed;
+        state.offersLoadingStatus = FetchStatus.Failed;
+      })
+      .addCase(toggleFavoriteStatus.fulfilled, (state, action) => {
+        state.offers = state.offers.map((offer) => {
+          if (offer.id === action.payload.id) {
+            return action.payload;
+          }
+          return offer;
+        });
+      })
+      .addCase(logout.fulfilled, (state) => {
+        state.offers = state.offers.map((offer) => (
+          {...offer, isFavorite: false}
+        ));
       });
   }
 });

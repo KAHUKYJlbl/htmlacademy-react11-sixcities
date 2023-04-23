@@ -1,15 +1,12 @@
 import { createSelector } from '@reduxjs/toolkit';
-
 import { FetchStatus, NameSpace } from '../../const';
 import { Offer } from '../../types/offer/offer';
 import { State } from '../../types/state/state';
 
-export const getNearbyOffers = (state: State): Offer[] => state[NameSpace.Room].nearbyOffers;
+export const getFavorites = (state: State): Offer[] => state[NameSpace.Favorites].favoriteOffers;
 
-export const getOffer = (state: State): Offer | null => state[NameSpace.Room].offer;
-
-export const getOfferLoadingStatus = createSelector(
-  (state: State): FetchStatus => state[NameSpace.Room].offerLoadingStatus,
+export const getFavoritesLoadingStatus = createSelector(
+  (state: State): FetchStatus => state[NameSpace.Favorites].favoritesLoadingStatus,
   (status) => ({
     isLoading: [FetchStatus.Idle, FetchStatus.Pending].includes(status),
     isSuccess: status === FetchStatus.Success,
@@ -17,10 +14,10 @@ export const getOfferLoadingStatus = createSelector(
   })
 );
 
-export const getNearbyLoadingStatus = createSelector(
-  (state: State): FetchStatus => state[NameSpace.Room].nearbyLoadingStatus,
+export const getFavoritesPostingStatus = createSelector(
+  (state: State): FetchStatus => state[NameSpace.Favorites].favoritesPostingStatus,
   (status) => ({
-    isLoading: [FetchStatus.Idle, FetchStatus.Pending].includes(status),
+    isLoading: status === FetchStatus.Pending,
     isSuccess: status === FetchStatus.Success,
     isFailed: status === FetchStatus.Failed,
   })

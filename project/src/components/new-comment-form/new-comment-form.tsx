@@ -3,8 +3,9 @@ import { useEffect, useState } from 'react';
 import { useAppDispatch } from '../../hooks/store-hooks/use -app-dispatch';
 import { useAppSelector } from '../../hooks/store-hooks/use-app-selector';
 import { postNewComment } from '../../store/comments/api-actions';
-import { getCommentPostingStatus, isCommentsLoading } from '../../store/comments/selectors';
-import { FetchStatus } from '../../const';
+import { getCommentPostingStatus } from '../../store/comments/selectors';
+import LoadingSpinner from '../loading-spinner/loading-spinner';
+import { toast } from 'react-toastify';
 
 const Rating: {[rating: string]: string} = {
   '1': 'terribly',
@@ -50,8 +51,7 @@ type NewCommentFormProps = {
 }
 
 export default function NewCommentForm ({offerId}: NewCommentFormProps): JSX.Element {
-  const isLoading = useAppSelector(isCommentsLoading);
-  const commentPostinStatus = useAppSelector(getCommentPostingStatus);
+  const commentPostingStatus = useAppSelector(getCommentPostingStatus);
 
   const dispatch = useAppDispatch();
 
@@ -61,13 +61,13 @@ export default function NewCommentForm ({offerId}: NewCommentFormProps): JSX.Ele
   });
 
   useEffect(() => {
-    if (commentPostinStatus === FetchStatus.Success) {
+    if (commentPostingStatus.isSuccess) {
       setNewComment({
         rating: '',
         review: '',
       });
     }
-  }, [commentPostinStatus]);
+  }, [commentPostingStatus]);
 
   const handleCommentChange = (evt: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setNewComment({
@@ -79,14 +79,12 @@ export default function NewCommentForm ({offerId}: NewCommentFormProps): JSX.Ele
   const handleFormSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
-    dispatch(postNewComment({id: offerId, comment: newComment.review, rating: +newComment.rating}));
+    if (newComment.review.length >= 50 && newComment.review.length <= 300 && newComment.rating.length > 0) {
+      dispatch(postNewComment({id: offerId, comment: newComment.review, rating: +newComment.rating}));
+      return;
+    }
 
-    // if (newCommentStatus === FetchStatus.Success) {
-    //   setNewComment({
-    //     rating: '',
-    //     review: '',
-    //   });
-    // }
+    toast.error('Please type 50 to 300 letters review and choose rating.');
   };
 
   // flex-direction: reverse
@@ -99,7 +97,7 @@ export default function NewCommentForm ({offerId}: NewCommentFormProps): JSX.Ele
       method="post"
       onSubmit={handleFormSubmit}
     >
-      <fieldset disabled={isLoading}>
+      <fieldset disabled={commentPostingStatus.isLoading}>
         <label className="reviews__label form__label" htmlFor="review">Your review</label>
         <div className="reviews__rating-form form__rating">
           {ratings.map((rating) => (
@@ -127,7 +125,13 @@ export default function NewCommentForm ({offerId}: NewCommentFormProps): JSX.Ele
             and describe your stay with at least{' '}
             <b className="reviews__text-amount">50 characters</b>.
           </p>
-          <button className="reviews__submit form__submit button" type="submit">Submit</button>
+          <button className="reviews__submit form__submit button" type="submit">
+            {
+              commentPostingStatus.isLoading
+                ? <LoadingSpinner spinnerType='button' />
+                : 'Submit'
+            }
+          </button>
         </div>
       </fieldset>
     </form>

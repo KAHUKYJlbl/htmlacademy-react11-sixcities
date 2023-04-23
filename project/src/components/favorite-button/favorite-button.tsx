@@ -1,9 +1,14 @@
+import { useAppDispatch } from '../../hooks/store-hooks/use -app-dispatch';
+import { useAppSelector } from '../../hooks/store-hooks/use-app-selector';
 import classNames from 'classnames';
-import { useState } from 'react';
+
+import { toggleFavoriteStatus } from '../../store/favorites/api-actions';
+import { getFavoritesPostingStatus } from '../../store/favorites/selectors';
 
 type FavoriteButtonProps = {
   isFavorite: boolean;
   buttonType: 'card' | 'room';
+  offerId: number;
 };
 
 const favoriteButtonTypes = {
@@ -23,18 +28,25 @@ const favoriteButtonTypes = {
   },
 };
 
-export default function FavoriteButton ({isFavorite, buttonType}: FavoriteButtonProps): JSX.Element {
-  const [favoriteState, setFavoriteState] = useState(isFavorite);
+export default function FavoriteButton ({isFavorite, buttonType, offerId}: FavoriteButtonProps): JSX.Element {
+  const dispatch = useAppDispatch();
+  const favoritesPostingStatus = useAppSelector(getFavoritesPostingStatus);
+
+  const buttonClickHandler = () => {
+    if (!favoritesPostingStatus.isLoading) {
+      dispatch(toggleFavoriteStatus({hotelId: offerId, status: +!isFavorite}));
+    }
+  };
 
   return (
     <button
       className={classNames(
         'button',
         favoriteButtonTypes[buttonType].favoriteButtonClasses,
-        favoriteState && favoriteButtonTypes[buttonType].favoriteButtonActiveClasses
+        isFavorite && favoriteButtonTypes[buttonType].favoriteButtonActiveClasses
       )}
       type="button"
-      onClick={() => setFavoriteState((state) => !state)}
+      onClick={buttonClickHandler}
     >
       <svg
         className={classNames(favoriteButtonTypes[buttonType].favoriteIconClasses)}
@@ -43,7 +55,7 @@ export default function FavoriteButton ({isFavorite, buttonType}: FavoriteButton
       >
         <use xlinkHref="#icon-bookmark"></use>
       </svg>
-      <span className="visually-hidden">{favoriteState ? 'In bookmarks' : 'To bookmarks' }</span>
+      <span className="visually-hidden">{isFavorite ? 'In bookmarks' : 'To bookmarks' }</span>
     </button>
   );
 }

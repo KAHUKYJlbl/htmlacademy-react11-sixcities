@@ -1,13 +1,18 @@
+import { useAppDispatch } from '../../hooks/store-hooks/use -app-dispatch';
 import classNames from 'classnames';
 
 import { Cities } from '../../const';
+import { changeCurrentCity } from '../../store/app/app-slice';
 
 type LocationsProps = {
   activeLocation: Cities;
-  onLocationChange: (newLocation: Cities) => void;
 }
 
-export default function Locations ({activeLocation, onLocationChange}: LocationsProps): JSX.Element {
+export default function Locations ({activeLocation}: LocationsProps): JSX.Element {
+  const dispatch = useAppDispatch();
+  const handleLocationChange = (newLocation: Cities) => {
+    dispatch(changeCurrentCity(newLocation));
+  };
 
   return (
     <div className="tabs">
@@ -24,7 +29,7 @@ export default function Locations ({activeLocation, onLocationChange}: Locations
                   href="#"
                   onClick={(evt) => {
                     evt.preventDefault();
-                    onLocationChange(location);
+                    handleLocationChange(location);
                   }}
                 >
                   <span>{location}</span>

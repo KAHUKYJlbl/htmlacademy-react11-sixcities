@@ -1,8 +1,9 @@
+import { Cities } from '../../const';
 import { Person } from './person';
 
 type City = {
   location: Location;
-  name: string;
+  name: Cities;
 }
 
 type Location = {
@@ -32,6 +33,6 @@ type Offer = {
 
 type FavoritesByCities = {
   [city: string]: Offer[];
-}
+};
 
 export type {Offer, FavoritesByCities, Location};
