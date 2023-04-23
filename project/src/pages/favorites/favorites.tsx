@@ -5,9 +5,10 @@ import LoadingSpinner from '../../components/loading-spinner/loading-spinner';
 import PlaceCardListByCities from '../../components/place-card-list-by-cities/place-card-list-by-cities';
 import { useAppSelector } from '../../hooks/store-hooks/use-app-selector';
 import { useAppDispatch } from '../../hooks/store-hooks/use -app-dispatch';
-import { getFavorites, isFavoritesLoading } from '../../store/favorites/selectors';
+import { getFavorites, getFavoritesLoadingStatus } from '../../store/favorites/selectors';
 import { fetchFavorites } from '../../store/favorites/api-actions';
 import { getOffersByCities } from '../../utils/offers-by-cities';
+import Oops from '../../components/oops/oops';
 
 function EmptyFavorites() {
   return (
@@ -20,15 +21,19 @@ function EmptyFavorites() {
 
 export default function Favorites(): JSX.Element {
   const favoriteOffers = useAppSelector(getFavorites);
-  const isLoading = useAppSelector(isFavoritesLoading);
+  const favoritesLoadingStatus = useAppSelector(getFavoritesLoadingStatus);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(fetchFavorites());
   }, [dispatch]);
 
-  if (isLoading) {
+  if (favoritesLoadingStatus.isLoading) {
     return <LoadingSpinner spinnerType='page' />;
+  }
+
+  if (favoritesLoadingStatus.isFailed) {
+    return <Oops type='favorites' />;
   }
 
   return (

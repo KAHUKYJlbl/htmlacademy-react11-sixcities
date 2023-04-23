@@ -3,21 +3,21 @@ import { createSlice } from '@reduxjs/toolkit';
 import { NameSpace, FetchStatus } from '../../const';
 import { fetchNearby, fetchOffer } from './api-actions';
 import { Offer } from '../../types/offer/offer';
-import { Comment } from '../../types/offer/comment';
 import { toggleFavoriteStatus } from '../favorites/api-actions';
+import { logout } from '../user/api-actions';
 
 type InitialState = {
   offerLoadingStatus: FetchStatus;
+  nearbyLoadingStatus: FetchStatus;
   offer: Offer | null;
   nearbyOffers: Offer[];
-  comments: Comment[];
 }
 
 const initialState: InitialState = {
   offerLoadingStatus: FetchStatus.Idle,
+  nearbyLoadingStatus: FetchStatus.Idle,
   offer: null,
   nearbyOffers: [],
-  comments: [],
 };
 
 export const roomSlice = createSlice({
@@ -38,6 +38,13 @@ export const roomSlice = createSlice({
       })
       .addCase(fetchNearby.fulfilled, (state, action) => {
         state.nearbyOffers = action.payload;
+        state.nearbyLoadingStatus = FetchStatus.Success;
+      })
+      .addCase(fetchNearby.pending, (state) => {
+        state.nearbyLoadingStatus = FetchStatus.Pending;
+      })
+      .addCase(fetchNearby.rejected, (state) => {
+        state.nearbyLoadingStatus = FetchStatus.Failed;
       })
       .addCase(toggleFavoriteStatus.fulfilled, (state, action) => {
         if (state.offer?.id === action.payload.id) {
@@ -50,8 +57,17 @@ export const roomSlice = createSlice({
           }
           return offer;
         });
+      })
+      .addCase(logout.fulfilled, (state) => {
+        if (state.offer) {
+          state.offer.isFavorite = false;
+        }
 
-        state.offerLoadingStatus = FetchStatus.Success;
+        if (state.nearbyOffers) {
+          state.nearbyOffers = state.nearbyOffers.map((offer) => (
+            {...offer, isFavorite: false}
+          ));
+        }
       });
   }
 });

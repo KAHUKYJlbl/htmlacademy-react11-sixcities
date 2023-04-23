@@ -1,12 +1,30 @@
 import { useAppDispatch } from '../../hooks/store-hooks/use -app-dispatch';
+
 import classes from './oops.module.sass';
 import { fetchOffers } from '../../store/offers/api-actions';
+import { fetchOffer } from '../../store/room/api-actions';
+import { fetchFavorites } from '../../store/favorites/api-actions';
 
-export default function Oops(): JSX.Element {
+type OopsProps = {
+  type: 'main' | 'room' | 'favorites';
+  arg?: string;
+}
+
+export default function Oops({type, arg}: OopsProps): JSX.Element {
   const dispatch = useAppDispatch();
 
   const handleOopsClick = () => {
-    dispatch(fetchOffers());
+    switch (type) {
+      case 'main':
+        dispatch(fetchOffers());
+        break;
+      case 'favorites':
+        dispatch(fetchFavorites());
+        break;
+      case 'room':
+        dispatch(fetchOffer(arg));
+        break;
+    }
   };
 
   return (

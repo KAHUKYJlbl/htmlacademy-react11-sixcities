@@ -1,7 +1,9 @@
+import { useAppDispatch } from '../../hooks/store-hooks/use -app-dispatch';
+import { useAppSelector } from '../../hooks/store-hooks/use-app-selector';
 import classNames from 'classnames';
 
-import { useAppDispatch } from '../../hooks/store-hooks/use -app-dispatch';
 import { toggleFavoriteStatus } from '../../store/favorites/api-actions';
+import { getFavoritesPostingStatus } from '../../store/favorites/selectors';
 
 type FavoriteButtonProps = {
   isFavorite: boolean;
@@ -27,12 +29,13 @@ const favoriteButtonTypes = {
 };
 
 export default function FavoriteButton ({isFavorite, buttonType, offerId}: FavoriteButtonProps): JSX.Element {
-  // const [favoriteState, setFavoriteState] = useState(isFavorite);
   const dispatch = useAppDispatch();
+  const favoritesPostingStatus = useAppSelector(getFavoritesPostingStatus);
 
   const buttonClickHandler = () => {
-    // setFavoriteState((state) => !state);
-    dispatch(toggleFavoriteStatus({hotelId: offerId, status: +!isFavorite}));
+    if (!favoritesPostingStatus.isLoading) {
+      dispatch(toggleFavoriteStatus({hotelId: offerId, status: +!isFavorite}));
+    }
   };
 
   return (

@@ -4,6 +4,7 @@ import { NameSpace, FetchStatus } from '../../const';
 import { Offer } from '../../types/offer/offer';
 import { fetchOffers } from '../offers/api-actions';
 import { toggleFavoriteStatus } from '../favorites/api-actions';
+import { logout } from '../user/api-actions';
 
 type InitialState = {
   offersLoadingStatus: FetchStatus;
@@ -38,7 +39,11 @@ export const offersSlice = createSlice({
           }
           return offer;
         });
-        state.offersLoadingStatus = FetchStatus.Success;
+      })
+      .addCase(logout.fulfilled, (state) => {
+        state.offers = state.offers.map((offer) => (
+          {...offer, isFavorite: false}
+        ));
       });
   }
 });

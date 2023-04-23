@@ -9,29 +9,30 @@ import RoomInfo from '../../components/room-info/room-info';
 import NearPlaces from '../../components/near-places/near-places';
 import CityMap from '../../components/city-map/city-map';
 import LoadingSpinner from '../../components/loading-spinner/loading-spinner';
+import Oops from '../../components/oops/oops';
 
 import { fetchNearby, fetchOffer } from '../../store/room/api-actions';
-import { getNearbyOffers, getOffer, isOfferLoading } from '../../store/room/selectors';
+import { getNearbyOffers, getOffer, getOfferLoadingStatus } from '../../store/room/selectors';
 import { fetchComments } from '../../store/comments/api-actions';
-import { isFavoritesLoading } from '../../store/favorites/selectors';
-import { fetchFavorites } from '../../store/favorites/api-actions';
 
 export default function Room(): JSX.Element {
   const {id} = useParams();
   const dispatch = useAppDispatch();
-  const isOffLoading = useAppSelector(isOfferLoading);
-  const isFavLoading = useAppSelector(isFavoritesLoading);
   const currentOffer = useAppSelector(getOffer);
   const nearbyOffers = useAppSelector(getNearbyOffers);
+  const offerLoadingStstus = useAppSelector(getOfferLoadingStatus);
   useEffect(() => {
     dispatch(fetchOffer(id));
     dispatch(fetchComments(id));
     dispatch(fetchNearby(id));
-    dispatch(fetchFavorites());
   }, [dispatch, id]);
 
-  if (isFavLoading || isOffLoading || !currentOffer) {
+  if (offerLoadingStstus.isLoading || !currentOffer) {
     return <LoadingSpinner spinnerType='page' />;
+  }
+
+  if (offerLoadingStstus.isFailed) {
+    return <Oops type='room' arg={id} />;
   }
 
   return (

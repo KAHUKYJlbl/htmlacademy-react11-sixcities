@@ -12,31 +12,21 @@ import LoadingSpinner from '../../components/loading-spinner/loading-spinner';
 import Oops from '../../components/oops/oops';
 
 import { CurrentSortCallback } from '../../utils/sort-offers';
-import { Cities, SortType } from '../../const';
+import { SortType } from '../../const';
 import { getCurrentCity, getCurrentSort } from '../../store/app/selectors';
-import { changeCurrentCity } from '../../store/app/app-slice';
 import { fetchOffers } from '../../store/offers/api-actions';
-import { getOffers, isOffersLoading, isOffersLoadingFailed } from '../../store/offers/selectors';
-import { isFavoritesLoading } from '../../store/favorites/selectors';
-import { fetchFavorites } from '../../store/favorites/api-actions';
+import { getOffers, getOffersLoadingStatus } from '../../store/offers/selectors';
 
 export default function Main(): JSX.Element {
   const offers = useAppSelector(getOffers);
   const currentCity = useAppSelector(getCurrentCity);
   const currentSort = useAppSelector(getCurrentSort);
-  const isOffLoading = useAppSelector(isOffersLoading);
-  const isFavLoading = useAppSelector(isFavoritesLoading);
-  const isLoadingFailed = useAppSelector(isOffersLoadingFailed);
+  const offersLoadingStatus = useAppSelector(getOffersLoadingStatus);
   const dispatch = useAppDispatch();
   const [hoveredOfferId, setHoveredOfferId] = useState<number | null>(null);
   useEffect(() => {
     dispatch(fetchOffers());
-    dispatch(fetchFavorites());
   }, [dispatch]);
-
-  const handleLocationChange = (newLocation: Cities) => {
-    dispatch(changeCurrentCity(newLocation));
-  };
 
   const filteredOffers = offers.filter((offer) => offer.city.name === currentCity);
 
@@ -60,19 +50,19 @@ export default function Main(): JSX.Element {
     );
   }
 
-  if (isOffLoading || isFavLoading) {
+  if (offersLoadingStatus.isLoading) {
     return <LoadingSpinner spinnerType='page' />;
   }
 
-  if (isLoadingFailed) {
-    return <Oops />;
+  if (offersLoadingStatus.isFailed) {
+    return <Oops type='main' />;
   }
 
   return (
     <Layout isHeaderNav wrapperClasses={['page--gray', 'page--main']}>
       <main className={classNames('page__main page__main--index', !filteredOffers.length && 'page__main--index-empty')}>
         <h1 className="visually-hidden">Cities</h1>
-        <Locations activeLocation={currentCity} onLocationChange={handleLocationChange} />
+        <Locations activeLocation={currentCity} />
         <div className="cities">
           {
             !filteredOffers.length
