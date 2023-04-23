@@ -10,6 +10,8 @@ import LoadingSpinner from '../loading-spinner/loading-spinner';
 import HistoryRouter from '../history-router/history-router';
 import browserHistory from '../../services/browser-history';
 import { getAuthStatus } from '../../store/user/selectors';
+import { ErrorBoundary } from 'react-error-boundary';
+import Oops from '../oops/oops';
 
 const Favorites = lazy(() => import('../../pages/favorites/favorites'));
 const Login = lazy(() => import('../../pages/login/login'));
@@ -24,37 +26,39 @@ export default function App(): JSX.Element {
   }
 
   return (
-    <Suspense fallback={<LoadingSpinner spinnerType='page' />}>
-      <HistoryRouter history={browserHistory}>
-        <Routes>
-          <Route
-            path={AppRoute.Main}
-            element={
-              <Main />
-            }
-          />
-          <Route
-            path={AppRoute.Login}
-            element={<Login />}
-          />
-          <Route
-            path={AppRoute.Favorites}
-            element={
-              <PrivateRoute>
-                <Favorites />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path={AppRoute.Room}
-            element={<Room />}
-          />
-          <Route
-            path="*"
-            element={<NotFound />}
-          />
-        </Routes>
-      </HistoryRouter>
-    </Suspense>
+    <ErrorBoundary fallback={<Oops type='error-boundary' />}>
+      <Suspense fallback={<LoadingSpinner spinnerType='page' />}>
+        <HistoryRouter history={browserHistory}>
+          <Routes>
+            <Route
+              path={AppRoute.Main}
+              element={
+                <Main />
+              }
+            />
+            <Route
+              path={AppRoute.Login}
+              element={<Login />}
+            />
+            <Route
+              path={AppRoute.Favorites}
+              element={
+                <PrivateRoute>
+                  <Favorites />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path={AppRoute.Room}
+              element={<Room />}
+            />
+            <Route
+              path="*"
+              element={<NotFound />}
+            />
+          </Routes>
+        </HistoryRouter>
+      </Suspense>
+    </ErrorBoundary>
   );
 }
