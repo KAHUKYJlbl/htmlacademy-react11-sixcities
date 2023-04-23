@@ -1,5 +1,6 @@
 import { Link, generatePath } from 'react-router-dom';
 import classNames from 'classnames';
+import { memo } from 'react';
 
 import Badge from '../badge/badge';
 import FavoriteButton from '../favorite-button/favorite-button';
@@ -40,7 +41,7 @@ const placeCardTypes = {
   },
 };
 
-export default function PlaceCard({
+function PlaceCard({
   offer,
   placeCardType,
   onCardMouseEnter,
@@ -87,3 +88,5 @@ export default function PlaceCard({
     </article>
   );
 }
+
+export default memo(PlaceCard);
