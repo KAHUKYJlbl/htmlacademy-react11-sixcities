@@ -25,14 +25,12 @@ export const favotitesSlice = createSlice({
       .addCase(fetchFavorites.fulfilled, (state, action) => {
         state.favoriteOffers = action.payload;
         state.favoritesLoadingStatus = FetchStatus.Success;
-        state.favoritesPostingStatus = FetchStatus.Idle;
       })
       .addCase(fetchFavorites.pending, (state) => {
         state.favoritesLoadingStatus = FetchStatus.Pending;
       })
       .addCase(fetchFavorites.rejected, (state) => {
         state.favoritesLoadingStatus = FetchStatus.Failed;
-        state.favoritesPostingStatus = FetchStatus.Failed;
       })
       .addCase(toggleFavoriteStatus.fulfilled, (state, action) => {
         if (action.payload.isFavorite) {
@@ -44,6 +42,9 @@ export const favotitesSlice = createSlice({
       })
       .addCase(toggleFavoriteStatus.pending, (state) => {
         state.favoritesPostingStatus = FetchStatus.Pending;
+      })
+      .addCase(toggleFavoriteStatus.rejected, (state) => {
+        state.favoritesPostingStatus = FetchStatus.Failed;
       });
   }
 });
