@@ -20,18 +20,18 @@ export default function Room(): JSX.Element {
   const dispatch = useAppDispatch();
   const currentOffer = useAppSelector(getOffer);
   const nearbyOffers = useAppSelector(getNearbyOffers);
-  const offerLoadingStstus = useAppSelector(getOfferLoadingStatus);
+  const offerLoadingStatus = useAppSelector(getOfferLoadingStatus);
   useEffect(() => {
     dispatch(fetchOffer(id));
     dispatch(fetchComments(id));
     dispatch(fetchNearby(id));
   }, [dispatch, id]);
 
-  if (offerLoadingStstus.isLoading || !currentOffer) {
+  if (offerLoadingStatus.isLoading) {
     return <LoadingSpinner spinnerType='page' />;
   }
 
-  if (offerLoadingStstus.isFailed) {
+  if (offerLoadingStatus.isFailed || !currentOffer) {
     return <Oops type='room' arg={id} />;
   }
 
@@ -41,7 +41,11 @@ export default function Room(): JSX.Element {
         <section className="property">
           <Gallery offer={currentOffer} />
           <RoomInfo offer={currentOffer} />
-          <CityMap mapClasses={['property__map']} offers={[currentOffer, ...nearbyOffers]} hoveredOfferId={currentOffer.id} />
+          <CityMap
+            mapClasses={['property__map']}
+            offers={[currentOffer, ...nearbyOffers]}
+            hoveredOfferId={currentOffer.id}
+          />
         </section>
         <div className="container">
           <NearPlaces offers={nearbyOffers} />

@@ -6,8 +6,7 @@ import { AppDispatch, State } from '../../types/state/state';
 import { StoredUser, User } from '../../types/api/login';
 import { AuthData } from '../../types/api/login';
 
-import { APIRoute, AppRoute } from '../../const';
-import { redirectToRoute } from '../actions/app-actions';
+import { APIRoute } from '../../const';
 import { dropToken, setToken } from '../../services/token';
 import { fetchFavorites } from '../favorites/api-actions';
 
@@ -40,7 +39,6 @@ export const login = createAsyncThunk<StoredUser, AuthData, {
       const {data: {token, ...rest}} = await axios.post<User>(APIRoute.Login, {email, password});
       setToken(token);
       dispatch(fetchFavorites());
-      dispatch(redirectToRoute(AppRoute.Main));
       return rest;
     } catch (err) {
       toast.error('Login failed. Please try again.');
