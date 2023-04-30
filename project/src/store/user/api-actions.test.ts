@@ -11,7 +11,7 @@ import { fetchFavorites } from '../favorites/api-actions';
 import { user } from '../../mock/user';
 import { AuthData } from '../../types/api/login';
 
-describe('Async actions', () => {
+describe('User async actions', () => {
   const api = createAPI();
   const mockAPI = new MockAdapter(api);
   const middlewares = [thunk.withExtraArgument(api)];
@@ -41,7 +41,7 @@ describe('Async actions', () => {
     ]);
   });
 
-  it('should dispatch RequriedAuthorization and FetchFavorites when POST /login', async () => {
+  it('should dispatch login and FetchFavorites when POST /login', async () => {
     const fakeAuth: AuthData = {email: 'test@test.ru', password: '123456'};
 
     const store = mockStore();
