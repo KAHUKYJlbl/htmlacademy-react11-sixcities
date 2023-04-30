@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import PrivateRoute from '../private-route/private-route';
+import PrivateRoute from '../../hocs/private-route/private-route';
 import { Suspense, lazy } from 'react';
 
 import Main from '../../pages/main/main';

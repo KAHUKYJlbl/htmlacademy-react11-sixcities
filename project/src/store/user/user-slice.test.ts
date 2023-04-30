@@ -1,5 +1,5 @@
 import { AuthorizationStatus, FetchStatus } from '../../const';
-import { user } from '../../mock/user';
+import { storedUser } from '../../mock/user';
 import { checkAuthStatus, login, logout } from './api-actions';
 import { userSlice } from './user-slice';
 
@@ -24,11 +24,11 @@ describe('Reducer: userSlice', () => {
       authStatus: AuthorizationStatus.Unknown,
       user: null,
     };
-    expect(userSlice.reducer(state, {type: checkAuthStatus.fulfilled.type, payload: user}))
+    expect(userSlice.reducer(state, {type: checkAuthStatus.fulfilled.type, payload: storedUser}))
       .toEqual({
         userLoadingStatus: FetchStatus.Success,
         authStatus: AuthorizationStatus.Auth,
-        user,
+        user: storedUser,
       });
   });
 
@@ -66,11 +66,11 @@ describe('Reducer: userSlice', () => {
       authStatus: AuthorizationStatus.Unknown,
       user: null,
     };
-    expect(userSlice.reducer(state, {type: login.fulfilled.type, payload: user}))
+    expect(userSlice.reducer(state, {type: login.fulfilled.type, payload: storedUser}))
       .toEqual({
         userLoadingStatus: FetchStatus.Success,
         authStatus: AuthorizationStatus.Auth,
-        user,
+        user: storedUser,
       });
   });
 
@@ -106,7 +106,7 @@ describe('Reducer: userSlice', () => {
     const state = {
       userLoadingStatus: FetchStatus.Success,
       authStatus: AuthorizationStatus.Auth,
-      user,
+      user: storedUser,
     };
     expect(userSlice.reducer(state, {type: logout.fulfilled.type}))
       .toEqual({

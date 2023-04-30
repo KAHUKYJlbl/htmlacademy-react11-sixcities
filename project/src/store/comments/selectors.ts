@@ -4,7 +4,9 @@ import { FetchStatus, NameSpace } from '../../const';
 import { Comment } from '../../types/offer/comment';
 import { State } from '../../types/state/state';
 
-export const getComments = (state: State): Comment[] => state[NameSpace.Comments].comments;
+export const getSortedComments = (state: State): Comment[] => [...state[NameSpace.Comments].comments]
+  .sort((a, b) => Date.parse(b.date) - Date.parse(a.date))
+  .slice(0, 10);
 
 export const getCommentsLoadingStatus = createSelector(
   [(state: State): FetchStatus => state[NameSpace.Comments].commentsLoadingStatus],

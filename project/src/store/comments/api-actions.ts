@@ -27,7 +27,7 @@ export const fetchComments = createAsyncThunk<Comment[], string | undefined, {
 );
 
 export const postNewComment = createAsyncThunk<
-Comment[],
+  Comment[],
   {id: string | undefined; comment: string; rating: number},
   {dispatch: AppDispatch; state: State; extra: AxiosInstance}
 >(
