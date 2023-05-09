@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/htmlacademy-react11-sixcities/static/css/main.8f2818cd.css",
-    "main.js": "/htmlacademy-react11-sixcities/static/js/main.390bed18.js",
+    "main.js": "/htmlacademy-react11-sixcities/static/js/main.1440c019.js",
     "static/js/274.786f91ef.chunk.js": "/htmlacademy-react11-sixcities/static/js/274.786f91ef.chunk.js",
     "static/js/674.3faba969.chunk.js": "/htmlacademy-react11-sixcities/static/js/674.3faba969.chunk.js",
     "static/js/902.43cfd053.chunk.js": "/htmlacademy-react11-sixcities/static/js/902.43cfd053.chunk.js",
@@ -9,7 +9,7 @@
     "static/js/561.6dfd112e.chunk.js": "/htmlacademy-react11-sixcities/static/js/561.6dfd112e.chunk.js",
     "index.html": "/htmlacademy-react11-sixcities/index.html",
     "main.8f2818cd.css.map": "/htmlacademy-react11-sixcities/static/css/main.8f2818cd.css.map",
-    "main.390bed18.js.map": "/htmlacademy-react11-sixcities/static/js/main.390bed18.js.map",
+    "main.1440c019.js.map": "/htmlacademy-react11-sixcities/static/js/main.1440c019.js.map",
     "274.786f91ef.chunk.js.map": "/htmlacademy-react11-sixcities/static/js/274.786f91ef.chunk.js.map",
     "674.3faba969.chunk.js.map": "/htmlacademy-react11-sixcities/static/js/674.3faba969.chunk.js.map",
     "902.43cfd053.chunk.js.map": "/htmlacademy-react11-sixcities/static/js/902.43cfd053.chunk.js.map",
@@ -18,6 +18,6 @@
   },
   "entrypoints": [
     "static/css/main.8f2818cd.css",
-    "static/js/main.390bed18.js"
+    "static/js/main.1440c019.js"
   ]
 }
