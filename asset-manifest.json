@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/htmlacademy-react11-sixcities/static/css/main.8f2818cd.css",
-    "main.js": "/htmlacademy-react11-sixcities/static/js/main.ecf7d58e.js",
+    "main.js": "/htmlacademy-react11-sixcities/static/js/main.d112323b.js",
     "static/js/274.786f91ef.chunk.js": "/htmlacademy-react11-sixcities/static/js/274.786f91ef.chunk.js",
     "static/js/674.3faba969.chunk.js": "/htmlacademy-react11-sixcities/static/js/674.3faba969.chunk.js",
-    "static/js/902.43cfd053.chunk.js": "/htmlacademy-react11-sixcities/static/js/902.43cfd053.chunk.js",
+    "static/js/902.e40df98d.chunk.js": "/htmlacademy-react11-sixcities/static/js/902.e40df98d.chunk.js",
     "static/css/561.09fdadb3.chunk.css": "/htmlacademy-react11-sixcities/static/css/561.09fdadb3.chunk.css",
     "static/js/561.6dfd112e.chunk.js": "/htmlacademy-react11-sixcities/static/js/561.6dfd112e.chunk.js",
     "index.html": "/htmlacademy-react11-sixcities/index.html",
     "main.8f2818cd.css.map": "/htmlacademy-react11-sixcities/static/css/main.8f2818cd.css.map",
-    "main.ecf7d58e.js.map": "/htmlacademy-react11-sixcities/static/js/main.ecf7d58e.js.map",
+    "main.d112323b.js.map": "/htmlacademy-react11-sixcities/static/js/main.d112323b.js.map",
     "274.786f91ef.chunk.js.map": "/htmlacademy-react11-sixcities/static/js/274.786f91ef.chunk.js.map",
     "674.3faba969.chunk.js.map": "/htmlacademy-react11-sixcities/static/js/674.3faba969.chunk.js.map",
-    "902.43cfd053.chunk.js.map": "/htmlacademy-react11-sixcities/static/js/902.43cfd053.chunk.js.map",
+    "902.e40df98d.chunk.js.map": "/htmlacademy-react11-sixcities/static/js/902.e40df98d.chunk.js.map",
     "561.09fdadb3.chunk.css.map": "/htmlacademy-react11-sixcities/static/css/561.09fdadb3.chunk.css.map",
     "561.6dfd112e.chunk.js.map": "/htmlacademy-react11-sixcities/static/js/561.6dfd112e.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.8f2818cd.css",
-    "static/js/main.ecf7d58e.js"
+    "static/js/main.d112323b.js"
   ]
 }
