@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/static/css/main.9a07e772.css",
-    "main.js": "/static/js/main.43abdbe9.js",
-    "static/js/274.1d1c33e4.chunk.js": "/static/js/274.1d1c33e4.chunk.js",
-    "static/js/674.13025341.chunk.js": "/static/js/674.13025341.chunk.js",
-    "static/js/902.b83b3aca.chunk.js": "/static/js/902.b83b3aca.chunk.js",
-    "static/css/943.aea19cda.chunk.css": "/static/css/943.aea19cda.chunk.css",
-    "static/js/943.66baa4c8.chunk.js": "/static/js/943.66baa4c8.chunk.js",
-    "index.html": "/index.html",
-    "main.9a07e772.css.map": "/static/css/main.9a07e772.css.map",
-    "main.43abdbe9.js.map": "/static/js/main.43abdbe9.js.map",
-    "274.1d1c33e4.chunk.js.map": "/static/js/274.1d1c33e4.chunk.js.map",
-    "674.13025341.chunk.js.map": "/static/js/674.13025341.chunk.js.map",
-    "902.b83b3aca.chunk.js.map": "/static/js/902.b83b3aca.chunk.js.map",
-    "943.aea19cda.chunk.css.map": "/static/css/943.aea19cda.chunk.css.map",
-    "943.66baa4c8.chunk.js.map": "/static/js/943.66baa4c8.chunk.js.map"
+    "main.css": "/htmlacademy-react11-sixcities/static/css/main.8f2818cd.css",
+    "main.js": "/htmlacademy-react11-sixcities/static/js/main.390bed18.js",
+    "static/js/274.786f91ef.chunk.js": "/htmlacademy-react11-sixcities/static/js/274.786f91ef.chunk.js",
+    "static/js/674.3faba969.chunk.js": "/htmlacademy-react11-sixcities/static/js/674.3faba969.chunk.js",
+    "static/js/902.43cfd053.chunk.js": "/htmlacademy-react11-sixcities/static/js/902.43cfd053.chunk.js",
+    "static/css/561.09fdadb3.chunk.css": "/htmlacademy-react11-sixcities/static/css/561.09fdadb3.chunk.css",
+    "static/js/561.6dfd112e.chunk.js": "/htmlacademy-react11-sixcities/static/js/561.6dfd112e.chunk.js",
+    "index.html": "/htmlacademy-react11-sixcities/index.html",
+    "main.8f2818cd.css.map": "/htmlacademy-react11-sixcities/static/css/main.8f2818cd.css.map",
+    "main.390bed18.js.map": "/htmlacademy-react11-sixcities/static/js/main.390bed18.js.map",
+    "274.786f91ef.chunk.js.map": "/htmlacademy-react11-sixcities/static/js/274.786f91ef.chunk.js.map",
+    "674.3faba969.chunk.js.map": "/htmlacademy-react11-sixcities/static/js/674.3faba969.chunk.js.map",
+    "902.43cfd053.chunk.js.map": "/htmlacademy-react11-sixcities/static/js/902.43cfd053.chunk.js.map",
+    "561.09fdadb3.chunk.css.map": "/htmlacademy-react11-sixcities/static/css/561.09fdadb3.chunk.css.map",
+    "561.6dfd112e.chunk.js.map": "/htmlacademy-react11-sixcities/static/js/561.6dfd112e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9a07e772.css",
-    "static/js/main.43abdbe9.js"
+    "static/css/main.8f2818cd.css",
+    "static/js/main.390bed18.js"
   ]
 }
