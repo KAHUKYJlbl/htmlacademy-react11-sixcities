@@ -1,6 +1,7 @@
 {
   "name": "project",
   "version": "0.1.0",
+  "homepage": "https://kahukyjlbl.github.io/htmlacademy-react11-sixcities",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.6",
@@ -24,7 +25,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test --passWithNoTests",
     "eject": "react-scripts eject",
-    "lint": "eslint --ext .tsx --ext .ts src/"
+    "lint": "eslint --ext .tsx --ext .ts src/",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "parser": "@typescript-eslint/parser",
@@ -85,6 +88,7 @@
     "axios-mock-adapter": "^1.21.2",
     "eslint-config-htmlacademy": "^8.0.0",
     "faker": "^5.5.3",
+    "gh-pages": "^5.0.0",
     "jest": "^27.5.1",
     "ts-jest": "^29.1.0",
     "typescript": "^5.0.4"
