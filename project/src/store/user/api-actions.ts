@@ -1,5 +1,5 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import { AxiosInstance } from 'axios';
+import { AxiosError, AxiosInstance } from 'axios';
 import { toast } from 'react-toastify';
 
 import { AppDispatch, State } from '../../types/state/state';
@@ -22,7 +22,9 @@ export const checkAuthStatus = createAsyncThunk<StoredUser, undefined, {
       dispatch(fetchFavorites());
       return rest;
     } catch (err) {
-      toast.error('Login check failed.');
+      if (err instanceof AxiosError && err.response?.status !== 401) {
+        toast.error('Login check failed.');
+      }
       throw err;
     }
   },
