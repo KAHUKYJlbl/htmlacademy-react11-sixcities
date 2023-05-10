@@ -62,7 +62,7 @@ export default function RoomInfo ({isPremium = true, offer}: RoomInfoProps): JSX
             <div className={classNames('user__avatar-wrapper property__avatar-wrapper', offer.host.isPro && 'property__avatar-wrapper--pro')}>
               <img
                 className="property__avatar user__avatar"
-                src={`htmlacademy-react11-sixcities/${offer.host.avatarUrl}`}
+                src={offer.host.avatarUrl}
                 width="74" height="74"
                 alt="Host avatar"
               />

@@ -28,7 +28,7 @@ export default function App(): JSX.Element {
   return (
     <ErrorBoundary fallback={<Oops type='error-boundary' />}>
       <Suspense fallback={<LoadingSpinner spinnerType='page' />}>
-        <HistoryRouter history={browserHistory} basename={process.env.REACT_APP_BASE_URL}>
+        <HistoryRouter history={browserHistory}>
           <Routes>
             <Route
               path={AppRoute.Main}

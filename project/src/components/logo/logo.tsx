@@ -28,7 +28,7 @@ export default function Logo({logoType}: LogoProps): JSX.Element {
     >
       <img
         className="header__logo"
-        src="htmlacademy-react11-sixcities/img/logo.svg"
+        src="img/logo.svg"
         alt="6 cities logo"
         width={LogoTypes[logoType].width}
         height={LogoTypes[logoType].height}
