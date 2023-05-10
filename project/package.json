@@ -1,7 +1,6 @@
 {
   "name": "project",
   "version": "0.1.0",
-  "homepage": "http://kahukyjlbl.github.io/htmlacademy-react11-sixcities",
   "private": true,
   "dependencies": {
     "classnames": "2.3.2",
@@ -24,9 +23,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --passWithNoTests",
     "eject": "react-scripts eject",
-    "lint": "eslint --ext .tsx --ext .ts src/",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "lint": "eslint --ext .tsx --ext .ts src/"
   },
   "eslintConfig": {
     "parser": "@typescript-eslint/parser",
