@@ -1,6 +1,6 @@
 import { useAppDispatch } from '../../hooks/store-hooks/use -app-dispatch';
 
-import classes from './oops.module.sass';
+import classes from './oops.module.css';
 import { fetchOffers } from '../../store/offers/api-actions';
 import { fetchOffer } from '../../store/room/api-actions';
 import { fetchFavorites } from '../../store/favorites/api-actions';

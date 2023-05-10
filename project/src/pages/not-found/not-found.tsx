@@ -1,4 +1,4 @@
-import classes from './not-found.module.sass';
+import classes from './not-found.module.css';
 import { Link } from 'react-router-dom';
 
 export default function NotFound (): JSX.Element {

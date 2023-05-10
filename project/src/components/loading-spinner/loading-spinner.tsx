@@ -1,5 +1,5 @@
 import { Watch } from 'react-loader-spinner';
-import classes from './loading-spinner.module.sass';
+import classes from './loading-spinner.module.css';
 
 const spinnerTypes = {
   page: {

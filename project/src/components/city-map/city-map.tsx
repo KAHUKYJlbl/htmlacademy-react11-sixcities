@@ -35,13 +35,13 @@ export default function CityMap ({mapClasses, offers, hoveredOfferId}: CityMapPr
     const markersLayer = leaflet.layerGroup([]);
 
     const defaultCustomIcon = leaflet.icon({
-      iconUrl: 'img/pin.svg',
+      iconUrl: 'htmlacademy-react11-sixcities/img/pin.svg',
       iconSize: [27, 39],
       iconAnchor: [14, 39],
     });
 
     const currentCustomIcon = leaflet.icon({
-      iconUrl: 'img/pin-active.svg',
+      iconUrl: 'htmlacademy-react11-sixcities/img/pin-active.svg',
       iconSize: [27, 39],
       iconAnchor: [14, 39],
     });
